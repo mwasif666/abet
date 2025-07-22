@@ -116,7 +116,3 @@
   color: #555;
   font-size: 1.2rem !important;
 }
-.accordion-button:not(.collapsed) {
-  color: white !important;
-  background-color: var(--main-color) !important;
-}
