@@ -1,0 +1,29 @@
+.contant_banner h5 {
+  color: var(--main-color);
+}
+.contant_banner h1 {
+  color: var(--main-color2);
+  font-size: 3.8rem;
+  font-weight: 700;
+}
+.contant_banner h4 {
+  color: var(--main-color2);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.contant_banner a {
+  color: var(--main-color);
+  background: transparent;
+  border-color: var(--main-color);
+  border-style: solid;
+  border-width: 1px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 10px 30px;
+  margin-top: 20px !important;
+}
+.contant_banner h1 span {
+  background: linear-gradient(to right, #8b0000, #000000); /* brown to black */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

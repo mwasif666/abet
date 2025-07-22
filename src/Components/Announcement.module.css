@@ -1,0 +1,58 @@
+/* AnnouncementsMarquee.module.css */
+.tickerContainer {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.tickerHeader {
+  background-color: transparent;
+  color: var(--main-color);
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.tickerTitle {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.tickerMarqueeContainer {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tickerMarquee {
+  display: inline-block;
+  animation: marquee linear infinite;
+  padding-left: 100%;
+}
+
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.tickerPostTitle {
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.tickerPostDate {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+.itemSeparator {
+  color: #6c757d;
+  font-weight: bold;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
