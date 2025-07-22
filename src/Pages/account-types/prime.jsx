@@ -6,7 +6,7 @@ import Phone from "../../assets/phone.png";
 import { NavLink, useLocation } from "react-router-dom";
 import MicroTable from "./PriceSection";
 
-const Micro = () => {
+const Prime = () => {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
@@ -271,4 +271,4 @@ const Micro = () => {
   );
 };
 
-export default Micro;
+export default Prime;

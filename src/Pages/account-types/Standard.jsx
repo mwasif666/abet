@@ -4,9 +4,9 @@ import { Container, Row, Col, Button, Nav, Navbar } from "react-bootstrap";
 import RawSpreadTable from "./PriceSection";
 import Phone from "../../assets/phone.png";
 import { NavLink, useLocation } from "react-router-dom";
-import MicroTable from "./PriceSection";
+import StandardPrice from "./StandardPrice";
 
-const Micro = () => {
+const Standard = () => {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
@@ -17,8 +17,10 @@ const Micro = () => {
         <Container>
           <Row>
             <Col className="text-center">
-              <h2 className={styles.heroTitle}>Abet Global Micro Account</h2>
-              <p className={styles.heroSubtitle}>Micro Magic, Mega Impact!</p>
+              <h2 className={styles.heroTitle}>Abet Global Standard Account</h2>
+              <p className={styles.heroSubtitle}>
+                MStandard Climbs, Trades Win!
+              </p>
               <Button
                 variant=""
                 size="sm"
@@ -109,7 +111,7 @@ const Micro = () => {
               />
             </Col>
             <Col md={6}>
-              <MicroTable />
+              <StandardPrice />
             </Col>
           </Row>
         </Container>
@@ -271,4 +273,4 @@ const Micro = () => {
   );
 };
 
-export default Micro;
+export default Standard;

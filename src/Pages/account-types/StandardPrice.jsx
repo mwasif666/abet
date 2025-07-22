@@ -2,21 +2,21 @@ import React from "react";
 import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
 import styles from "../../Components/PricingSection.module.css";
 
-const MicroTable = () => {
+const StandardPrice = () => {
   const packages = [
     {
-      name: "Micro",
+      name: "Standard",
       features: [
         "Base Currency Options: USD",
-        "Contract Size: 1 Lot = 1,000",
+        "Contract Size: 1 Lot = 100,000",
         "Leverage: Up to 1:1000",
         "Negative balance protection: yes",
-        "Spread on all majors: As Low as 1 Pip",
+        "Spread on all majors: As Low as 0.5 Pip",
         "Minimum Deposit: $10",
         "Commission: No",
         "Maximum open/pending orders per client: 200 Positions",
-        "Minimum trade volume: 0.10 Lots (MT5)",
-        "Lot restriction per ticket: 200 Lots",
+        "Minimum trade volume: 0.01 Lots",
+        "Lot restriction per ticket: 20 Lots",
         "Hedging allowed: Yes",
         "Islamic Account: Yes",
         "Swap Free: Yes",
@@ -24,7 +24,7 @@ const MicroTable = () => {
         "Bonus facility: No",
         "Execution: Market",
         "Margin Call: 80%",
-        "Stop out: 30%",
+        "Stop out: 10%",
       ],
       highlight: false,
     },
@@ -73,4 +73,4 @@ const MicroTable = () => {
   );
 };
 
-export default MicroTable;
+export default StandardPrice;

@@ -3,9 +3,12 @@ import styles from "./Micro.module.css";
 import { Container, Row, Col, Button, Nav, Navbar } from "react-bootstrap";
 import RawSpreadTable from "./PriceSection";
 import Phone from "../../assets/phone.png";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const RawSpread = () => {
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
   return (
     <div className={styles.rawSpreadAccount}>
       {/* Hero Section */}
@@ -39,27 +42,43 @@ const RawSpread = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className={`mx-auto ${styles.navMenu}`}>
-                    <Link to="/account-types/micro" className={styles.navLink}>
+                    <NavLink
+                      to="/account-types/micro"
+                      className={`${styles.navLink} ${
+                        isActive("/account-types/micro") ? styles.active : ""
+                      }`}
+                    >
                       Micro
-                    </Link>
-                    <Link
+                    </NavLink>
+
+                    <NavLink
                       to="/account-types/raw-spread"
-                      className={`${styles.navLink}`}
+                      className={`${styles.navLink} ${
+                        isActive("/account-types/raw-spread")
+                          ? styles.active
+                          : ""
+                      }`}
                     >
                       Raw Spread
-                    </Link>
-                    <Nav.Link
-                      href="https://abet.leosagitrades.com/account-types/standard/"
-                      className={styles.navLink}
+                    </NavLink>
+
+                    <NavLink
+                      to="/account-types/standard"
+                      className={`${styles.navLink} ${
+                        isActive("/account-types/standard") ? styles.active : ""
+                      }`}
                     >
                       Standard
-                    </Nav.Link>
-                    <Nav.Link
-                      href="https://abet.leosagitrades.com/account-types/prime/"
-                      className={styles.navLink}
+                    </NavLink>
+
+                    <NavLink
+                      to="/account-types/prime/"
+                      className={`${styles.navLink} ${
+                        isActive("/account-types/prime/") ? styles.active : ""
+                      }`}
                     >
                       Prime
-                    </Nav.Link>
+                    </NavLink>
                   </Nav>
                 </Navbar.Collapse>
               </Navbar>
