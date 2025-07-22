@@ -3,7 +3,7 @@
 }
 .contant_banner h1 {
   color: var(--main-color2);
-  font-size: 3.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
 }
 .contant_banner h4 {
@@ -26,4 +26,97 @@
   background: linear-gradient(to right, #8b0000, #000000); /* brown to black */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.ctaButton {
+  font-weight: 700;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  padding: 10px 30px;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #8c1313;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(174, 24, 24, 0.3);
+}
+.cardContainer {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.cardContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cardBody {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cardHeader {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0;
+}
+.title2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0;
+}
+
+.cardContent {
+  flex-grow: 1;
+}
+
+.text {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.text2 {
+  color: #555;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+.navLink {
+  color: #000;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.active {
+  color: var(--main-color); /* Active color */
+  font-weight: 700;
+}
+.earn_div p {
+  color: #555;
+  font-size: 1.2rem !important;
+}
+.accordion-button:not(.collapsed) {
+  color: white !important;
+  background-color: var(--main-color) !important;
 }

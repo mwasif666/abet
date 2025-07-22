@@ -1,164 +1,340 @@
 import React from "react";
 import styles from "../style/Referfriend.module.css";
 import Accordion from "react-bootstrap/Accordion";
+import { Container } from "react-bootstrap";
 
 const ReferFriend = () => {
   return (
     <>
-      <div
-        className="container"
-        style={{
-          height: "700px",
-        }}
-      >
-        <div className="row d-flex align-items-center h-100">
-          <div className="col-lg-6">
-            <div className={styles.contant_banner}>
-              <h5>REFER A FRIEND</h5>
-              <h1>Refer Friends and Earn Rewards</h1>
-              <p>
-                Earn up to $100 for every friend you invite to trade with Abet
-                Global. You can get more reward the more friends you recommend!
-              </p>
-              <div>
-                <a href="#" className="btn">
-                  LOGIN
-                </a>
-                <a href="#" className="btn">
-                  SIGN UP
-                </a>
+      <Container>
+        <div
+          className="container"
+          style={{
+            height: "700px",
+          }}
+        >
+          <div className="row d-flex align-items-center h-100">
+            <div className="col-lg-6">
+              <div className={styles.contant_banner}>
+                <h5>REFER A FRIEND</h5>
+                <h1>Refer Friends and Earn Rewards</h1>
+                <p>
+                  Earn up to $100 for every friend you invite to trade with Abet
+                  Global. You can get more reward the more friends you
+                  recommend!
+                </p>
+                <div>
+                  <div className="d-flex gap-4">
+                    <a href="#" className={`btn my-4 ${styles.ctaButton}`}>
+                      LOGIN
+                    </a>
+                    <a href="#" className={`btn my-4 ${styles.ctaButton}`}>
+                      SIGN UP
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className={styles.video}>
+                <img
+                  src="/Refer-Friends-1.png"
+                  alt="Refer a Friend"
+                  style={{ width: "100%", height: "auto" }}
+                />
               </div>
             </div>
           </div>
-          <div className="col-lg-6">
-            <div className={styles.video}>
-              <img
-                src="/Refer-Friends-1.png"
-                alt="Refer a Friend"
-                style={{ width: "100%", height: "auto" }}
-              />
+        </div>
+        <div>
+          <div className="row">
+            <div className="mb-4">
+              <h5>SHARE AND EARN</h5>
+              <h2>
+                Get $100 in extra funds by referring friends to Abet Global.
+              </h2>
+            </div>
+
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Earn Together
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Both you and your friend can receive up to $100 each in
+                      extra trading funds.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Earn Together
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Both you and your friend can receive up to $100 each in
+                      extra trading funds.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Earn Together
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Both you and your friend can receive up to $100 each in
+                      extra trading funds.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <div>
-          <h5>SHARE AND EARN</h5>
-          <h1>Get $100 in extra funds by referring friends to Abet Global.</h1>
-        </div>
-        <div>
-          <div>
-            <h2>Earn Together</h2>
-            <h5>
-              Both you and your friend can receive up to $100 each in extra
-              trading funds.
-            </h5>
-          </div>
-          <div>
-            <h2>Earn Together</h2>
-            <h5>
-              Both you and your friend can receive up to $100 each in extra
-              trading funds.
-            </h5>
-          </div>
-          <div>
-            <h2>Earn Together</h2>
-            <h5>
-              Both you and your friend can receive up to $100 each in extra
-              trading funds.
-            </h5>
-          </div>
-        </div>
-        <div>
-          <h5>TIERED REWARDS</h5>
-          <h1>Maximise your earnings by unlocking all tiers.</h1>
-          <h5>
-            Our tiered reward structure ensures that the more your referred
-            friend deposits and trades, the higher the rewards you both receive.
-            Only volume traded on FX & metals counts toward unlocking rewards.
-          </h5>
-        </div>
-        <div>
-          <h5>EXTRA BENEFITS</h5>
-          <h1>Become a Referral Champion and earn exclusive badges!</h1>
-        </div>
-      </div>
-      <div>
-        <div>
-          <div>
-            <h1>Referral Starter</h1>
-            <h5>Refer 5 friends and earn $10.</h5>
-          </div>
-          <div>
-            <h1>Referral Influencer</h1>
-            <h5>Refer 10 friends and earn $20.</h5>
-          </div>
-          <div>
-            <h1>Referral Expert</h1>
-            <h5>Refer 20 friends and earn $30.</h5>
-          </div>
-          <div>
-            <h1>Referral Master</h1>
-            <h5>Refer 30 friends and earn $40.</h5>
-          </div>
-          <div>
-            <h1>Referral Champion</h1>
-            <h5>Refer 50 friends and earn $100.</h5>
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <div>
-          <h5>BOOST YOUR FUNDS</h5>
-          <h1>Start earning extra funds today!</h1>
-        </div>
-        <div>
-          <h1>Step 1: Refer a friend</h1>
-          <h5>
-            Log in to your Abet Global Portal to find your unique referral link.
-            Send it directly to friends or share it on social media to reach a
-            wider audience.
-          </h5>
-        </div>
-        <div>
-          <h1>Step 2: Track progress</h1>
-          <h5>
-            Use the Portal to monitor your referrals and rewards. Keep track of
-            your friends’ progress to guide them through the steps and ensure
-            rewards for both of you.
-          </h5>
-        </div>
-        <div>
-          <h1>Step 3: Earn rewards</h1>
-          <h5>
-            You’ll receive a reward once your referred friend creates a live
-            trading account, makes a deposit, and completes the required trades.
-          </h5>
+        <div className="row mt-5">
+          <div className={styles.earn_div}>
+            <div className="mb-4">
+              <h5>SHARE AND EARN</h5>
+              <h2>
+                Get $100 in extra funds by referring friends to Abet Global.
+              </h2>
+              <p className={styles.para}>
+                Our tiered reward structure ensures that the more your referred
+                friend deposits and trades, the higher the rewards you both
+                receive. Only volume traded on FX & metals counts toward
+                unlocking rewards.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <div>
-            <h6>HOW TO START</h6>
-            <h1>Watch our step-by-step guide on how to make referrals.</h1>
-          </div>
-          <div>
-            <video
-              src="/video.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{ width: "100%", height: "auto" }}
-            ></video>
+        <div className="mt-5">
+          <div className="row">
+            <div className="mb-4">
+              <h5>EXTRA BENEFITS</h5>
+              <h2>Become a Referral Champion and earn exclusive badges!</h2>
+            </div>
+
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Referral Starter
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Refer 5 friends and earn $10.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Referral Starter
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Refer 5 friends and earn $10.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Referral Starter
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Refer 5 friends and earn $10.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Referral Starter
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Refer 5 friends and earn $10.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Referral Starter
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Refer 5 friends and earn $10.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Referral Starter
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Refer 5 friends and earn $10.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div>
-        <div>
-          <h6>FAQS</h6>
-          <h1>Refer a Friend FAQs</h1>
+        <div className="mt-5">
+          <div className="row">
+            <div className="mb-4">
+              <h5>BOOST YOUR FUNDS</h5>
+              <h2>Start earning extra funds today!</h2>
+            </div>
+
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Step 1: Refer a friend
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Log in to your Abet Global Portal to find your unique
+                      referral link. Send it directly to friends or share it on
+                      social media to reach a wider audience.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Step 2: Track progress
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Use the Portal to monitor your referrals and rewards. Keep
+                      track of your friends’ progress to guide them through the
+                      steps and ensure rewards for both of you.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={`card-title ${styles.title}`}>
+                      Step 3: Earn rewards
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      You’ll receive a reward once your referred friend creates
+                      a live trading account, makes a deposit, and completes the
+                      required trades.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-5">
+          <div className="row">
+            <div className="mb-4"></div>
+
+            <div className="col-12 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className="row py-5">
+                  <div className="col-lg-6">
+                    <div className="card-body d-flex align-items-center h-100 px-5">
+                      <div className={styles.cardHeader}>
+                        <h5>HOW TO START</h5>
+                        <h2>
+                          Watch our step-by-step guide on how to make referrals.
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div>
+                      <video
+                        src="/video.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{ width: "100%", height: "auto" }}
+                      ></video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row mt-5">
+          <div className="mb-4">
+            <h5>FAQS</h5>
+            <h2>Refer a Friend FAQs</h2>
+          </div>
           <div>
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
@@ -207,60 +383,102 @@ const ReferFriend = () => {
             </Accordion>
           </div>
         </div>
-      </div>
 
-      <div>
-        <h1>Explore More</h1>
-        <div>
-          <div>
-            <img src="puzzle2-1.png" alt="puzzle" />
-            <h1>Products</h1>
-            <h5>
-              Trade CFDs across FX, indices, shares, commodities, futures,
-              crypto, & ETFs.
-            </h5>
-            <h2>Explore Products</h2>
-          </div>
-          <div>
-            <img src="mt5-img-1.png" alt="platforn" />
-            <h1>Platforms</h1>
-            <h5>
-              Choose the right trading platform for your needs – we offer MT4
-              and MT5.
-            </h5>
-            <h2>See All Trading Platforms</h2>
-          </div>
-          <div>
-            <img src="capital-market.png" alt="capital market" />
-            <h1>Partnerships</h1>
-            <h5>
-              Introduce your network and enjoy competitive benefits by
-              partnering with Abet Global.
-            </h5>
-            <h2>Join as a Partner</h2>
+        <div className="mt-5">
+          <div className="row">
+            <div className="mb-4">
+              <h2>Explore More</h2>
+            </div>
+
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <img src="mt5-img-1.png" alt="platforn" />
+                    <h3 className={`card-title ${styles.title}`}>Platforms</h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Choose the right trading platform for your needs – we
+                      offer MT4 and MT5.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <img src="puzzle2-1.png" alt="puzzle" />
+                    <h3 className={`card-title ${styles.title}`}>Products</h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Trade CFDs across FX, indices, shares, commodities,
+                      futures, crypto, & ETFs.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className={`card-body ${styles.cardBody}`}>
+                  <div className={styles.cardHeader}>
+                    <img src="capital-market.png" alt="capital market" />
+                    <h3 className={`card-title ${styles.title}`}>
+                      Partnerships
+                    </h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={`card-text ${styles.text}`}>
+                      Introduce your network and enjoy competitive benefits by
+                      partnering with Abet Global.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div>
-        <h5>GLOBAL BROKER</h5>
-        <h1>Start trading online with Abet Global today!</h1>
-        <a href="#" className="btn">
-          Start Trading
-        </a>
-        <div>
-          <img
-            src="/crypto-payments.png"
-            alt="Crypto Payments"
-            style={{ width: "100%", height: "auto" }}
-          />
-          <img
-            src="/mastercard-new.svg"
-            alt="Master Card"
-            style={{ width: "100%", height: "auto" }}
-          />
+        <div className="mt-5">
+          <div className="row">
+            <div className="mb-4"></div>
+
+            <div className="col-12 mb-4">
+              <div className={`card ${styles.cardContainer}`}>
+                <div className="row py-5">
+                  <div className="col-lg-12">
+                    <div className="card-body text-center d-flex justify-content-center align-items-center h-100 px-5">
+                      <div className={styles.cardHeader}>
+                        <h5>GLOBAL BROKER</h5>
+                        <h2>Start trading online with Abet Global today!</h2>
+                        <a href="#" className={`btn my-4 ${styles.ctaButton}`}>
+                          Start Trading
+                        </a>
+                        <div className="d-flex gap-5 justify-content-center align-items-center">
+                          <img
+                            src="/crypto-payments.png"
+                            alt="Crypto Payments"
+                            style={{ width: "120px", height: "auto" }}
+                          />
+                          <img
+                            src="/mastercard-new.svg"
+                            alt="Master Card"
+                            style={{ width: "120px", height: "auto" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </Container>
     </>
   );
 };

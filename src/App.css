@@ -13,3 +13,13 @@ h6 {
 h2 {
   color: var(--main-color) !important;
 }
+a {
+  text-decoration: none;
+}
+.accordion-button:not(.collapsed) {
+  color: white !important;
+  background-color: var(--main-color) !important;
+}
+.accordion-button:focus {
+  box-shadow: none !important;
+}
