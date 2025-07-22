@@ -5,6 +5,7 @@ import RawSpreadTable from "./PriceSection";
 import Phone from "../../assets/phone.png";
 import { NavLink, useLocation } from "react-router-dom";
 import MicroTable from "./PriceSection";
+import PrimeTable from "./PrimeTable";
 
 const Prime = () => {
   const location = useLocation();
@@ -17,8 +18,8 @@ const Prime = () => {
         <Container>
           <Row>
             <Col className="text-center">
-              <h2 className={styles.heroTitle}>Abet Global Micro Account</h2>
-              <p className={styles.heroSubtitle}>Micro Magic, Mega Impact!</p>
+              <h2 className={styles.heroTitle}>Abet Global Prime Account</h2>
+              <p className={styles.heroSubtitle}>Prime Leverage, Prime Gains</p>
               <Button
                 variant=""
                 size="sm"
@@ -95,12 +96,12 @@ const Prime = () => {
                 Why Choose Our Micro Account?
               </h2>
               <p className={styles.sectionText}>
-                Experience trading like never before with Abet Global’s Micro
-                Account! Designed for both beginners and seasoned traders, it
-                offers minimal deposits, floating spreads, and high leverage.
-                Enjoy flexibility, fast execution, and powerful tools to
-                maximize your trading potential. Trade smarter with a
-                user-focused account that delivers big on every detail.
+                Elevate your trading experience with the Abet Global Prime
+                Account, designed for professionals and beginners alike. With a
+                minimum deposit of just $10, floating spreads as low as 1 pip,
+                and leverage up to 1:1000, this account offers unbeatable
+                flexibility, zero commissions, and market execution to maximize
+                your trading potential.
               </p>
               <img
                 src={Phone}
@@ -109,7 +110,7 @@ const Prime = () => {
               />
             </Col>
             <Col md={6}>
-              <MicroTable />
+              <PrimeTable />
             </Col>
           </Row>
         </Container>
@@ -122,10 +123,9 @@ const Prime = () => {
             <Col>
               <h2 className={styles.sectionTitle}>Fast order execution</h2>
               <p className={styles.sectionText}>
-                Our advanced trading infrastructure ensures lightning-fast
-                market execution, so you never miss a trading opportunity.{" "}
-                <br /> React instantly to market changes and maximize your
-                results with ultra-low latency.
+                Trade seamlessly with lightning-fast market execution, ensuring
+                that your orders are processed <br /> instantly without slippage
+                or delays for optimal results.
               </p>
             </Col>
           </Row>
@@ -146,10 +146,9 @@ const Prime = () => {
                   </div>
                   <div className={styles.cardContent}>
                     <p className={`card-text ${styles.text}`}>
-                      Embrace complete trading freedom with no restrictions on
-                      strategies. Scalping, hedging, or expert
-                      advisors—everything is supported, letting you implement
-                      your preferred approach confidently.
+                      Enjoy unrestricted trading freedom! Our Prime Account
+                      supports scalping, hedging, and automated strategies,
+                      enabling you to trade the way you prefer.
                     </p>
                   </div>
                 </div>
@@ -165,10 +164,9 @@ const Prime = () => {
                   </div>
                   <div className={styles.cardContent}>
                     <p className={`card-text ${styles.text}`}>
-                      Access precise market depth insights with Level II
-                      pricing. Analyze liquidity, understand order flow, and
-                      make well-informed trading decisions with transparent data
-                      at your fingertips.
+                      Access deeper insights with Level II market pricing,
+                      providing a clear view of market liquidity and depth to
+                      enhance your trading strategies.
                     </p>
                   </div>
                 </div>
@@ -187,16 +185,16 @@ const Prime = () => {
                 Flexible Funding and Withdrawal Options
               </h3>
               <p className={styles.sectionText}>
-                Easily manage your funds with various deposit and withdrawal
-                methods tailored for convenience and security. Trade globally
-                without limitations or delays in managing your capital.
+                Simplify your trading journey with secure and versatile deposit
+                and withdrawal options designed to cater to global traders’
+                needs.
               </p>
 
               <h3 className={styles.sectionTitle}>Flexible Lot Sizing</h3>
               <p className={styles.sectionText}>
-                With a contract size of 1 Lot = 1,000, trade at your comfort
-                level. Whether you’re starting small or scaling up, our lot
-                sizing caters to your goals.
+                Control your risk effectively with customizable lot sizes
+                ranging from micro to standard lots, suitable for traders of all
+                levels.
               </p>
             </Col>
             <Col md={6}>
@@ -211,10 +209,9 @@ const Prime = () => {
                       </div>
                       <div className={styles.cardContent}>
                         <p className={`card-text ${styles.text2}`}>
-                          Diversify your portfolio by trading Forex,
-                          commodities, and global indices. Broaden your
-                          opportunities across major financial markets with
-                          seamless execution.
+                          Diversify your portfolio with Forex, CFDs on
+                          commodities, and global indices, gaining access to a
+                          variety of global markets.
                         </p>
                       </div>
                     </div>
@@ -230,10 +227,9 @@ const Prime = () => {
                       </div>
                       <div className={styles.cardContent}>
                         <p className={`card-text ${styles.text2}`}>
-                          Amplify your potential with leverage as high as
-                          1:1000. Trade larger positions with smaller capital
-                          while managing risk effectively with negative balance
-                          protection.
+                          Amplify your trading power with leverage up to 1:1000,
+                          enabling you to open larger positions with a minimal
+                          investment.
                         </p>
                       </div>
                     </div>
@@ -249,14 +245,12 @@ const Prime = () => {
                       </div>
                       <div className={styles.cardContent}>
                         <p className={`card-text ${styles.text2}`}>
-                          Choose the currency that suits your needs. Our Micro
-                          Account supports USD and other major currencies,
-                          offering convenience and flexibility for global
-                          traders.
+                          Trade seamlessly in USD and other major currencies,
+                          ensuring convenience for traders worldwide.
                           <br />
-                          Take your trading to the next level with Abet Global’s
-                          Micro Account—built for flexibility, speed, and
-                          growth.
+                          Take your trading to the next level with the Abet
+                          Global Prime Account. Leverage, trade, and grow with a
+                          platform built for excellence.
                         </p>
                       </div>
                     </div>
