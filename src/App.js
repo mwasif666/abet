@@ -16,6 +16,7 @@ import RawSpread from "./Pages/account-types/RawSpread";
 import Standard from "./Pages/account-types/Standard";
 import Prime from "./Pages/account-types/prime";
 import ReferFriend from "./Pages/ReferFriend";
+import MetaTrader from "./Pages/MetaTrader";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/account-types/standard" element={<Standard />} />
         <Route path="/account-types/prime" element={<Prime />} />
         <Route path="/refer-a-friend" element={<ReferFriend/>} />
+        <Route path="/meta-trader-5" element={<MetaTrader/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
