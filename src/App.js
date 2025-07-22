@@ -15,6 +15,7 @@ import Micro from "./Pages/account-types/micro";
 import RawSpread from "./Pages/account-types/RawSpread";
 import Standard from "./Pages/account-types/Standard";
 import Prime from "./Pages/account-types/prime";
+import ReferFriend from "./Pages/ReferFriend";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/account-types/raw-spread" element={<RawSpread />} />
         <Route path="/account-types/standard" element={<Standard />} />
         <Route path="/account-types/prime" element={<Prime />} />
+        <Route path="/refer-a-friend" element={<ReferFriend/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
