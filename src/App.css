@@ -23,3 +23,7 @@ a {
 .accordion-button:focus {
   box-shadow: none !important;
 }
+
+body {
+  overflow-x: hidden;
+}

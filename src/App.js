@@ -17,6 +17,11 @@ import Standard from "./Pages/account-types/Standard";
 import Prime from "./Pages/account-types/prime";
 import ReferFriend from "./Pages/ReferFriend";
 import MetaTrader from "./Pages/MetaTrader";
+import Forex from "./Pages/account-types/Forex";
+import Indices from "./Pages/account-types/indices";
+import Energies from "./Pages/account-types/Energies";
+import Metals from "./Pages/account-types/Metals";
+import Cryptocurrency from "./Pages/account-types/Cryptocurrency";
 
 function App() {
   return (
@@ -33,9 +38,17 @@ function App() {
         <Route path="/account-types/micro" element={<Micro />} />
         <Route path="/account-types/raw-spread" element={<RawSpread />} />
         <Route path="/account-types/standard" element={<Standard />} />
+        <Route path="/account-types/forex" element={<Forex />} />
+        <Route path="/account-types/indices" element={<Indices />} />
+        <Route path="/account-types/energies" element={<Energies />} />
+        <Route path="/account-types/metals" element={<Metals />} />
+        <Route
+          path="/account-types/cryptocurrency"
+          element={<Cryptocurrency />}
+        />
         <Route path="/account-types/prime" element={<Prime />} />
-        <Route path="/refer-a-friend" element={<ReferFriend/>} />
-        <Route path="/meta-trader-5" element={<MetaTrader/>} />
+        <Route path="/refer-a-friend" element={<ReferFriend />} />
+        <Route path="/meta-trader-5" element={<MetaTrader />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

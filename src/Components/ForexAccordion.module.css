@@ -1,0 +1,118 @@
+.accordionContainer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cardWrapper {
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.cardHeader {
+  padding: 0;
+  background-color: #f8f9fa;
+  border-bottom: none;
+}
+
+.cardHeaderButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 20px;
+  text-align: left;
+  color: #333;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.cardHeaderButton:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.cardHeaderButton:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.title {
+  flex-grow: 1;
+  margin-right: 15px;
+}
+
+.rightIconGroup {
+  display: flex;
+  align-items: center;
+}
+
+.normalIcon,
+.activeIcon {
+  display: flex;
+  align-items: center;
+}
+
+.normalIcon svg,
+.activeIcon svg {
+  width: 16px;
+  height: 16px;
+  fill: #333;
+}
+
+.hidden {
+  display: none;
+}
+
+.cardExpand {
+  transition: all 0.3s ease;
+}
+
+.cardBody {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.panel {
+  margin-bottom: 0;
+}
+
+.panel-heading {
+  padding: 0;
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #555;
+}
+
+.panel-title span {
+  font-weight: 400;
+}
+
+.panel-default {
+  border: none;
+}
+
+.panel-default > .panel-heading {
+  background-color: transparent;
+  border: none;
+}
+
+ul {
+  padding-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li {
+  margin-bottom: 5px;
+}
