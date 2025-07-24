@@ -178,7 +178,7 @@ export default function Testimonial() {
             ))}
           </Carousel>
         </div>
-        <div className="col-lg-6">
+        <div className="col-lg-6 d-lg-block d-none">
           <img src="./testimonialback.png" alt="" />
         </div>
       </div>

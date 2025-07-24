@@ -330,6 +330,9 @@ const CustomNavbar = () => {
                     handleClose();
                     closeMegaMenu();
                   }}
+                  onMouseEnter={() => {
+                    closeMegaMenu();
+                  }}
                 >
                   Home
                 </Nav.Link>
@@ -385,6 +388,9 @@ const CustomNavbar = () => {
                     handleClose();
                     closeMegaMenu();
                   }}
+                  onMouseEnter={() => {
+                    closeMegaMenu();
+                  }}
                 >
                   Promotions
                 </Nav.Link>
@@ -396,6 +402,9 @@ const CustomNavbar = () => {
                     handleClose();
                     closeMegaMenu();
                   }}
+                  onMouseEnter={() => {
+                    closeMegaMenu();
+                  }}
                 >
                   About Us
                 </Nav.Link>
@@ -405,6 +414,9 @@ const CustomNavbar = () => {
                   className={styles.navLink}
                   onClick={() => {
                     handleClose();
+                    closeMegaMenu();
+                  }}
+                  onMouseEnter={() => {
                     closeMegaMenu();
                   }}
                 >

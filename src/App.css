@@ -87,3 +87,58 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+@media (max-width: 768px) {
+  .logo {
+    max-width: 150px;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .progressContainer {
+    width: 160px;
+  }
+
+  .spinnerContainer {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    max-width: 120px;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .progressContainer {
+    width: 140px;
+    margin-bottom: 1.5rem;
+  }
+
+  .spinnerContainer {
+    width: 35px;
+    height: 35px;
+  }
+}
+/* Add this to your CSS file */
+thead {
+  background-color: var(--main-color) !important;
+  color: white;
+}
+th,
+td {
+  text-align: center;
+  padding: 13px 0px !important;
+}
+
+.ha-table .ha-table__head-column-cell {
+  background-color: inherit !important;
+  color: white;
+  text-align: center;
+}

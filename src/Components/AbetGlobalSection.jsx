@@ -23,10 +23,10 @@ const AbetGlobalSection = () => {
           </div>
 
           {/* Right Column - Content */}
-          <div className="col-lg-8">
+          <div className="col-lg-8 col-12">
             <div className={styles.contentWrapper}>
               <div className="row">
-                <div className="col-8">
+                <div className={`col-lg-8 col-12" ${styles.contentGlobal}`}>
                   <h2 className={styles.sectionHeading}>
                     Your Doorway to Excellent Diversified Trading is ABET
                     Global.

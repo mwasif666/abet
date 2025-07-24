@@ -209,7 +209,7 @@ const BenefitsSection = () => {
           </p>
         </div>
 
-        <div className="row row-cols-6 g-4">
+        <div className="row row-cols-lg-6 row-cols-2 g-4">
           {benefits.map((benefit, index) => (
             <div key={index} className="col p-0">
               <Link to="/benefithome">

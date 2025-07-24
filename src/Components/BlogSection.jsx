@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./BlogSection.module.css";
 import axios from "axios";
 
 const BlogSection = () => {
+  // Local fallback data
   const blogPosts = [
     {
       id: 1,
@@ -66,16 +67,29 @@ const BlogSection = () => {
     },
   ];
 
-  const [blog, setBlog] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  const [blog, setBlog] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const fetchBlog = async () => {
     setLoading(true);
+    setError(null);
     try {
-      let response = await axios.get("https://api.leosagitrades.com/public/blogs_list");
-      setBlog(response.data);
+      const response = await axios.get(
+        "https://api.leosagitrades.com/public/blogs_list"
+      );
+
+      // Ensure the response data is an array before setting it
+      if (Array.isArray(response.data)) {
+        setBlog(response.data);
+      } else {
+        setBlog(blogPosts); // Fallback to local data
+        setError("API response is not in expected format");
+      }
     } catch (error) {
       console.error("Error fetching blog data:", error);
+      setBlog(blogPosts); // Fallback to local data
+      setError("Failed to fetch blog data. Showing default posts.");
     } finally {
       setLoading(false);
     }
@@ -84,6 +98,9 @@ const BlogSection = () => {
   useEffect(() => {
     fetchBlog();
   }, []);
+
+  // Determine which data to display
+  const displayData = blog.length > 0 ? blog : blogPosts;
 
   return (
     <section className={`${styles.blogSection} py-5`}>
@@ -102,41 +119,55 @@ const BlogSection = () => {
           </div>
         </div>
 
-        <div className="row">
-          {blog.map((post) => (
-            <div key={post.id} className="col-lg-4 col-md-6 mb-4">
-              <div className={`${styles.blogCard} h-100`}>
-                <a href={post.link} className={styles.blogLink}>
-                  <div className={styles.blogImageContainer}>
-                    <img
-                      src={post.imageUrl}
-                      alt={post.title}
-                      className={`${styles.blogImage} img-fluid`}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className={styles.blogContent}>
-                    <span
-                      className={`${styles.blogCategory} ${
-                        post.category === "News"
-                          ? styles.newsCategory
-                          : styles.blogCategory
-                      }`}
-                    >
-                      {post.category}
-                    </span>
-                    <h4 className={styles.blogTitle}>{post.title}</h4>
-                    <p className={styles.blogExcerpt}>{post.excerpt}</p>
-                  </div>
-                </a>
-              </div>
+        {loading ? (
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
-          ))}
-        </div>
+          </div>
+        ) : error ? (
+          <div className="alert alert-warning">{error}</div>
+        ) : (
+          <>
+            <div className="row">
+              {displayData.map((post) => (
+                <div key={post.id} className="col-lg-4 col-md-6 mb-4">
+                  <div className={`${styles.blogCard} h-100`}>
+                    <a href={post.link} className={styles.blogLink}>
+                      <div className={styles.blogImageContainer}>
+                        <img
+                          src={post.imageUrl}
+                          alt={post.title}
+                          className={`${styles.blogImage} img-fluid`}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className={styles.blogContent}>
+                        <span
+                          className={`${styles.blogCategory} ${
+                            post.category === "News"
+                              ? styles.newsCategory
+                              : styles.blogCategory
+                          }`}
+                        >
+                          {post.category}
+                        </span>
+                        <h4 className={styles.blogTitle}>{post.title}</h4>
+                        <p className={styles.blogExcerpt}>{post.excerpt}</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-        <div className="text-center mt-4">
-          <a className={`${styles.readMoreBtn} btn btn-primary`}>Read More</a>
-        </div>
+            <div className="text-center mt-4">
+              <a href="#" className={`${styles.readMoreBtn} btn btn-primary`}>
+                Read More
+              </a>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

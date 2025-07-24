@@ -1,0 +1,90 @@
+.tradingSection {
+  background: linear-gradient(135deg, #2c3e50 0%, var(--main-color) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 4rem;
+  border-radius: 50px;
+  margin-bottom: 80px;
+}
+
+.tradingTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  position: relative;
+  color: white !important;
+}
+
+.tradingSubtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.tradingButton {
+  background-color: #fff;
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  border: none;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tradingButton:hover {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tradingButton:active {
+  transform: translateY(0);
+}
+
+.buttonIcon {
+  transition: transform 0.3s ease;
+}
+
+.tradingButton:hover .buttonIcon {
+  transform: translateX(3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .tradingTitle {
+    font-size: 1.8rem;
+  }
+
+  .tradingSubtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .tradingSection {
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  .tradingTitle {
+    font-size: 1.5rem;
+  }
+
+  .tradingSubtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tradingButton {
+    padding: 0.7rem 1.8rem;
+  }
+}

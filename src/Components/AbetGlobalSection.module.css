@@ -105,11 +105,14 @@
   .spacerColumn {
     display: none; /* Hide spacer column on tablets */
   }
+  .contentWrapper::after {
+    display: none;
+  }
 }
 
 @media (max-width: 767.98px) {
-  .sectionContainer {
-    padding: 2rem 0;
+  .sectionContainer .contentGlobal {
+    padding: 2rem !important;
   }
 
   .sectionHeading {

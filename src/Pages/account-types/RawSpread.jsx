@@ -128,6 +128,16 @@ const RawSpread = () => {
                 decisions and execute trades without delays for optimal results.
               </p>
             </Col>
+            <div>
+              <Button
+                variant=""
+                size="sm"
+                href="https://secure.abetglobal.com/account/register"
+                className={styles.ctaButton}
+              >
+                Open Account
+              </Button>
+            </div>
           </Row>
         </Container>
       </section>

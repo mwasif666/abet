@@ -1,0 +1,162 @@
+.contactFormSection {
+  padding: 4rem 0;
+}
+
+.contactFormWrapper {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 100%;
+}
+
+.formImage {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+}
+
+.formImage img {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+.formContent {
+  padding: 3rem;
+}
+
+.formTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.formSubtitle {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.contactForm {
+  margin-top: 1.5rem;
+}
+
+.formGroup {
+  position: relative;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.required {
+  color: #e74c3c;
+}
+
+.form-control,
+.form-select {
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+.is-invalid {
+  border-color: #e74c3c;
+}
+
+.is-invalid:focus {
+  box-shadow: 0 0 0 0.25rem rgba(231, 76, 60, 0.25);
+}
+
+.errorMessage {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.fileInfo {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #3498db;
+}
+
+.fileInfo i {
+  margin-right: 0.5rem;
+}
+
+.submitButton {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.submitButton:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.submitButton:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.successMessage {
+  padding: 1.5rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .formContent {
+    padding: 2rem;
+  }
+
+  .formImage {
+    padding: 2rem;
+  }
+
+  .formImage img {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 767px) {
+  .contactFormSection {
+    padding: 2rem 0;
+  }
+
+  .formContent {
+    padding: 1.5rem;
+  }
+
+  .formTitle {
+    font-size: 1.5rem;
+  }
+
+  .formSubtitle {
+    font-size: 0.9rem;
+  }
+}

@@ -90,6 +90,16 @@ const Margin = () => {
                 Metals & Commodities, FX Indices, and Indices transactions.
               </p>
             </Col>
+            <div>
+              <Button
+                variant=""
+                size="sm"
+                href="https://secure.abetglobal.com/account/register"
+                className={styles.ctaButton}
+              >
+                Open Account
+              </Button>
+            </div>
           </Row>
         </Container>
       </section>
@@ -115,11 +125,13 @@ const Margin = () => {
 
             <div className="mt-4">
               <div className="table-responsive">
-                <table className="table table-bordered text-center">
-                  <thead className="table-dark">
-                    <tr>
-                      <th scope="col">Leverage</th>
-                      <th scope="col">Total Equity</th>
+                <table className="table table-bordered ha-table">
+                  <thead className="ha-table__head table-dark2">
+                    <tr className="ha-table__head-column">
+                      <th className="ha-table__head-column-cell">Leverage</th>
+                      <th className="ha-table__head-column-cell">
+                        Total Equity
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -188,7 +200,7 @@ const Margin = () => {
             <div className="mt-4">
               <div className="table-responsive">
                 <table className="table table-bordered ha-table">
-                  <thead className="ha-table__head table-dark">
+                  <thead className="ha-table__head table-dark2">
                     <tr className="ha-table__head-column">
                       <th className="ha-table__head-column-cell">
                         <div className="ha-table__head-column-cell-wrap">
@@ -322,7 +334,7 @@ const Margin = () => {
               </h4>
               <div className="table-responsive">
                 <table className="table table-bordered ha-table">
-                  <thead className="ha-table__head table-dark">
+                  <thead className="ha-table__head table-dark2">
                     <tr className="ha-table__head-column">
                       <th className="ha-table__head-column-cell">
                         <div className="ha-table__head-column-cell-wrap">
@@ -407,7 +419,7 @@ const Margin = () => {
               </h4>
               <div className="table-responsive">
                 <table className="table table-bordered ha-table">
-                  <thead className="ha-table__head table-dark">
+                  <thead className="ha-table__head table-dark2">
                     <tr className="ha-table__head-column">
                       <th className="ha-table__head-column-cell">
                         <div className="ha-table__head-column-cell-wrap">
@@ -512,7 +524,7 @@ const Margin = () => {
               </h4>
               <div className="table-responsive">
                 <table className="table table-bordered ha-table">
-                  <thead className="ha-table__head table-dark">
+                  <thead className="ha-table__head table-dark2">
                     <tr className="ha-table__head-column">
                       <th className="ha-table__head-column-cell">
                         <div className="ha-table__head-column-cell-wrap">
@@ -675,7 +687,7 @@ const Margin = () => {
               <h4 className="mb-4">BTCUSD</h4>
               <div className="table-responsive">
                 <table className="table table-bordered ha-table">
-                  <thead className="ha-table__head table-dark">
+                  <thead className="ha-table__head table-dark2">
                     <tr className="ha-table__head-column">
                       <th className="ha-table__head-column-cell">
                         <div className="ha-table__head-column-cell-wrap">
@@ -889,7 +901,7 @@ const Margin = () => {
 
               <div className="table-responsive">
                 <table className="table table-bordered ha-table">
-                  <thead className="ha-table__head table-dark">
+                  <thead className="ha-table__head table-dark2">
                     <tr className="ha-table__head-column">
                       <th className="ha-table__head-column-cell">
                         <div className="ha-table__head-column-cell-wrap">

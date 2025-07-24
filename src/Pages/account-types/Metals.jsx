@@ -104,6 +104,16 @@ const Metals = () => {
                 Metals & Commodities, FX Indices, and Indices transactions.
               </p>
             </Col>
+            <div>
+              <Button
+                variant=""
+                size="sm"
+                href="https://secure.abetglobal.com/account/register"
+                className={styles.ctaButton}
+              >
+                Open Account
+              </Button>
+            </div>
           </Row>
         </Container>
       </section>
