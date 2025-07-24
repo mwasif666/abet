@@ -10,7 +10,7 @@ import About from "./Pages/About";
 import Partnership from "./Pages/Partnership";
 import Transfers from "./Pages/Transfers";
 import NotFound from "./Pages/NotFound";
-import Footer from "./Pages/Footer";
+import Footer from "./Components/Footer";
 import Micro from "./Pages/account-types/micro";
 import RawSpread from "./Pages/account-types/RawSpread";
 import Standard from "./Pages/account-types/Standard";
@@ -22,11 +22,13 @@ import Indices from "./Pages/account-types/indices";
 import Energies from "./Pages/account-types/Energies";
 import Metals from "./Pages/account-types/Metals";
 import Cryptocurrency from "./Pages/account-types/Cryptocurrency";
-
+import AddBlog from "./Pages/Blog/AddBlog";
+import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <Router>
       <CustomNavbar />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/trading" element={<Trading />} />
@@ -49,6 +51,9 @@ function App() {
         <Route path="/account-types/prime" element={<Prime />} />
         <Route path="/refer-a-friend" element={<ReferFriend />} />
         <Route path="/meta-trader-5" element={<MetaTrader />} />
+        <Route path="/add-blog" element={<AddBlog/>} />
+        
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

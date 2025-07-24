@@ -1,6 +1,7 @@
 // AnnouncementsMarquee.jsx
 import React, { useEffect, useRef } from "react";
 import styles from "./Announcement.module.css";
+import axios from "axios";
 
 const AnnouncementsMarquee = () => {
   const announcements = [
@@ -59,6 +60,25 @@ const AnnouncementsMarquee = () => {
     marquee.style.animationDuration = `${duration}s`;
   }, []);
 
+  const [blog, setBlog] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  const fetchBlog = async() =>{
+    setLoading(true);
+    try {
+       let response = await axios.get('https://api.leosagitrades.com/public/blogs_list');
+        setBlog(response.data);
+     } catch (error) {
+       console.error("Error fetching blog data:", error);
+     }finally{
+      setLoading(false);
+     }
+  }
+
+  useEffect(()=>{
+    fetchBlog();
+  },[])
+
   return (
     <div className={`${styles.tickerContainer} container py-2`}>
       <div className="row align-items-center">
@@ -67,7 +87,7 @@ const AnnouncementsMarquee = () => {
         </div>
         <div className={`${styles.tickerMarqueeContainer} col`}>
           <div ref={marqueeRef} className={styles.tickerMarquee}>
-            {announcements.map((announcement, index) => (
+            {blog.map((announcement, index) => (
               <div key={index} className={styles.tickerItem}>
                 <span className={styles.tickerPostTitle}>
                   {announcement.title}

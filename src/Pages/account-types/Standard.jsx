@@ -1,7 +1,5 @@
-import React from "react";
 import styles from "./Micro.module.css";
 import { Container, Row, Col, Button, Nav, Navbar } from "react-bootstrap";
-import RawSpreadTable from "./PriceSection";
 import Phone from "../../assets/phone.png";
 import { NavLink, useLocation } from "react-router-dom";
 import StandardPrice from "./StandardPrice";
