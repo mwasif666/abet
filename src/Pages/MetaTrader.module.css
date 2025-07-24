@@ -1,0 +1,15 @@
+.metaHeading {
+  font-size: 3rem;
+  color: var(--main-color);
+  font-weight: 900;
+}
+.metaFeature {
+  background-color: rgb(243, 243, 243);
+  border-radius: 30px;
+  width: fit-content;
+  padding: 10px 20px;
+}
+.parameta {
+  font-size: 20px;
+  word-spacing: 3px;
+}
