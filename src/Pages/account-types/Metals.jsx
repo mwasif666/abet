@@ -1,12 +1,9 @@
 import React from "react";
 import styles from "./Forex.module.css";
 import { Container, Row, Col, Button, Nav, Navbar } from "react-bootstrap";
-import RawSpreadTable from "./PriceSection";
-import Phone from "../../assets/phone.png";
+
 import { NavLink, useLocation } from "react-router-dom";
-import StandardPrice from "./StandardPrice";
-import ForexBenefits from "../../Components/ForexBenefits";
-import ForexAccordion from "../../Components/ForexAccordion";
+import Accordion4 from "../../Components/Accordion4";
 import Benefit4 from "../../Components/Benefit4";
 
 const Metals = () => {
@@ -20,7 +17,7 @@ const Metals = () => {
         <Container>
           <Row>
             <Col className="text-center">
-              <h2 className={styles.heroTitle}>Forex</h2>
+              <h2 className={styles.heroTitle}>Metals</h2>
             </Col>
           </Row>
         </Container>
@@ -241,7 +238,7 @@ const Metals = () => {
           </Row>
         </div>
       </section>
-      <ForexAccordion />
+      <Accordion4 />
     </div>
   );
 };

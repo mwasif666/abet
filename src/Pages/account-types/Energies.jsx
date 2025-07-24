@@ -17,7 +17,7 @@ const Energies = () => {
         <Container>
           <Row>
             <Col className="text-center">
-              <h2 className={styles.heroTitle}>Forex</h2>
+              <h2 className={styles.heroTitle}>Energies</h2>
             </Col>
           </Row>
         </Container>

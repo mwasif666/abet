@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import CustomNavbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import Trading from "./Pages/Trading";
@@ -22,41 +27,91 @@ import Indices from "./Pages/account-types/indices";
 import Energies from "./Pages/account-types/Energies";
 import Metals from "./Pages/account-types/Metals";
 import Cryptocurrency from "./Pages/account-types/Cryptocurrency";
-import AddBlog from "./Pages/Blog/AddBlog";
-import { ToastContainer } from 'react-toastify';
+import Execution from "./Pages/account-types/execution-policy";
+import Spreads from "./Pages/account-types/Spreads";
+import Margin from "./Pages/account-types/Margin";
+import Logo from "./assets/logo.png";
+
+const Preloader = () => {
+  return (
+    <div className="preloader">
+      <div className="preloader-content">
+        <img src={Logo} alt="Logo" />
+        <p className="video-description">Trade Anytime Anywhere</p>
+        <div className="spinner"></div>
+      </div>
+    </div>
+  );
+};
+
+const AppWrapper = () => {
+  const [loading, setLoading] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Initial page load
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // 3 seconds for first load
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Route change loading
+    setLoading(true);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // 1 second for route change
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  return (
+    <>
+      {loading && <Preloader />}
+      <div className={`app-content ${loading ? "content-hidden" : ""}`}>
+        <CustomNavbar />
+        <Routes location={location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/trading" element={<Trading />} />
+          <Route path="/platforms" element={<Platforms />} />
+          <Route path="/promotions" element={<Promotions />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/partnership" element={<Partnership />} />
+          <Route path="/transfers" element={<Transfers />} />
+          <Route path="/account-types/micro" element={<Micro />} />
+          <Route path="/account-types/raw-spread" element={<RawSpread />} />
+          <Route path="/account-types/standard" element={<Standard />} />
+          <Route path="/account-types/forex" element={<Forex />} />
+          <Route path="/account-types/indices" element={<Indices />} />
+          <Route path="/account-types/energies" element={<Energies />} />
+          <Route path="/account-types/metals" element={<Metals />} />
+          <Route
+            path="/account-types/cryptocurrency"
+            element={<Cryptocurrency />}
+          />
+          <Route path="/account-types/prime" element={<Prime />} />
+          <Route
+            path="/account-types/execution-policy"
+            element={<Execution />}
+          />
+          <Route path="/account-types/spreads" element={<Spreads />} />
+          <Route path="/account-types/margin-leverage" element={<Margin />} />
+          <Route path="/refer-a-friend" element={<ReferFriend />} />
+          <Route path="/meta-trader-5" element={<MetaTrader />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </div>
+    </>
+  );
+};
+
 function App() {
   return (
     <Router>
-      <CustomNavbar />
-      <ToastContainer />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/trading" element={<Trading />} />
-        <Route path="/platforms" element={<Platforms />} />
-        <Route path="/promotions" element={<Promotions />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/partnership" element={<Partnership />} />
-        <Route path="/transfers" element={<Transfers />} />
-        <Route path="/account-types/micro" element={<Micro />} />
-        <Route path="/account-types/raw-spread" element={<RawSpread />} />
-        <Route path="/account-types/standard" element={<Standard />} />
-        <Route path="/account-types/forex" element={<Forex />} />
-        <Route path="/account-types/indices" element={<Indices />} />
-        <Route path="/account-types/energies" element={<Energies />} />
-        <Route path="/account-types/metals" element={<Metals />} />
-        <Route
-          path="/account-types/cryptocurrency"
-          element={<Cryptocurrency />}
-        />
-        <Route path="/account-types/prime" element={<Prime />} />
-        <Route path="/refer-a-friend" element={<ReferFriend />} />
-        <Route path="/meta-trader-5" element={<MetaTrader />} />
-        <Route path="/add-blog" element={<AddBlog/>} />
-        
-
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
+      <AppWrapper />
     </Router>
   );
 }
