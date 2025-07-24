@@ -31,6 +31,7 @@ import Execution from "./Pages/account-types/execution-policy";
 import Spreads from "./Pages/account-types/Spreads";
 import Margin from "./Pages/account-types/Margin";
 import Logo from "./assets/logo.png";
+import AddBlog from "./Pages/Blog/AddBlog";
 
 const Preloader = () => {
   return (
@@ -100,6 +101,7 @@ const AppWrapper = () => {
           <Route path="/account-types/margin-leverage" element={<Margin />} />
           <Route path="/refer-a-friend" element={<ReferFriend />} />
           <Route path="/meta-trader-5" element={<MetaTrader />} />
+        <Route path="/add-blog" element={<AddBlog/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
