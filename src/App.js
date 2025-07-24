@@ -30,13 +30,14 @@ import Cryptocurrency from "./Pages/account-types/Cryptocurrency";
 import Execution from "./Pages/account-types/execution-policy";
 import Spreads from "./Pages/account-types/Spreads";
 import Margin from "./Pages/account-types/Margin";
+import Logo from "./assets/logo.png";
 
 const Preloader = () => {
   return (
     <div className="preloader">
       <div className="preloader-content">
-        <img src="./logo.png" alt="Logo" />
-        <p className="video-description">Transformative Hair Service</p>
+        <img src={Logo} alt="Logo" />
+        <p className="video-description">Trade Anytime Anywhere</p>
         <div className="spinner"></div>
       </div>
     </div>
