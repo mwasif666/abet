@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./BlogSection.module.css";
+import axios from "axios";
 
 const BlogSection = () => {
   const blogPosts = [
@@ -65,6 +66,25 @@ const BlogSection = () => {
     },
   ];
 
+  const [blog, setBlog] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  const fetchBlog = async () => {
+    setLoading(true);
+    try {
+      let response = await axios.get("https://api.leosagitrades.com/public/blogs_list");
+      setBlog(response.data);
+    } catch (error) {
+      console.error("Error fetching blog data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBlog();
+  }, []);
+
   return (
     <section className={`${styles.blogSection} py-5`}>
       <div className="container">
@@ -83,7 +103,7 @@ const BlogSection = () => {
         </div>
 
         <div className="row">
-          {blogPosts.map((post) => (
+          {blog.map((post) => (
             <div key={post.id} className="col-lg-4 col-md-6 mb-4">
               <div className={`${styles.blogCard} h-100`}>
                 <a href={post.link} className={styles.blogLink}>

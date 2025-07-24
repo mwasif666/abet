@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Footer.module.css";
+import styles from "../style/Footer.module.css"; 
 import { Container, Row, Col, Button } from "react-bootstrap";
 import {
   FaFacebook,

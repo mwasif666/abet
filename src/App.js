@@ -15,7 +15,7 @@ import About from "./Pages/About";
 import Partnership from "./Pages/Partnership";
 import Transfers from "./Pages/Transfers";
 import NotFound from "./Pages/NotFound";
-import Footer from "./Pages/Footer";
+import Footer from "./Components/Footer";
 import Micro from "./Pages/account-types/micro";
 import RawSpread from "./Pages/account-types/RawSpread";
 import Standard from "./Pages/account-types/Standard";
@@ -32,6 +32,7 @@ import Spreads from "./Pages/account-types/Spreads";
 import Margin from "./Pages/account-types/Margin";
 import Logo from "./assets/logo.png";
 import BenefitsHome from "./Components/BenefitsHome";
+import AddBlog from "./Pages/Blog/AddBlog";
 
 const Preloader = () => {
   return (
@@ -102,6 +103,7 @@ const AppWrapper = () => {
           <Route path="/refer-a-friend" element={<ReferFriend />} />
           <Route path="/meta-trader-5" element={<MetaTrader />} />
           <Route path="/benefithome" element={<BenefitsHome />} />
+          <Route path="/add-blog" element={<AddBlog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
