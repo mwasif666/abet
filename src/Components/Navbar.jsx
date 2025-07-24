@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { FiSearch, FiPhone } from "react-icons/fi";
+import { FiSearch, FiPhone, FiChevronLeft } from "react-icons/fi";
 import Logo from "../assets/logo.png";
 import { IoLogoWindows } from "react-icons/io5";
 import { MdOutlineDesktopMac } from "react-icons/md";
@@ -18,13 +18,23 @@ import { MdOutlineDesktopMac } from "react-icons/md";
 const CustomNavbar = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState(null);
+  const [showMobileMegaMenu, setShowMobileMegaMenu] = useState(false);
+  const [mobileMenuTitle, setMobileMenuTitle] = useState("");
+  const [mobileMenuContent, setMobileMenuContent] = useState(null);
   const megaMenuRef = useRef(null);
   const tradingLinkRef = useRef(null);
   const platformsLinkRef = useRef(null);
   const location = useLocation();
 
-  const handleClose = () => setShowOffcanvas(false);
-  const handleShow = () => setShowOffcanvas(true);
+  const handleClose = () => {
+    setShowOffcanvas(false);
+    setShowMobileMegaMenu(false);
+  };
+
+  const handleShow = () => {
+    setShowOffcanvas(true);
+    setActiveMegaMenu(null);
+  };
 
   const toggleMegaMenu = (menuName, e) => {
     e.preventDefault();
@@ -33,6 +43,181 @@ const CustomNavbar = () => {
 
   const closeMegaMenu = () => {
     setActiveMegaMenu(null);
+  };
+
+  const handleMobileMegaMenu = (menuName) => {
+    setMobileMenuTitle(menuName === "trading" ? "Trading" : "Platforms");
+    setShowMobileMegaMenu(true);
+
+    if (menuName === "trading") {
+      setMobileMenuContent(
+        <>
+          <div className={styles.mobileMegaMenuColumn}>
+            <h3 className={styles.mobileMegaMenuTitle}>Account Type</h3>
+            <ul className={styles.mobileMegaMenuList}>
+              <li>
+                <Link to="/account-types/micro" onClick={handleClose}>
+                  Micro
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/raw-spread" onClick={handleClose}>
+                  Raw Spread
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/standard" onClick={handleClose}>
+                  Standard
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/prime" onClick={handleClose}>
+                  Prime
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.mobileMegaMenuColumn}>
+            <h3 className={styles.mobileMegaMenuTitle}>Instruments</h3>
+            <ul className={styles.mobileMegaMenuList}>
+              <li>
+                <Link to="/account-types/forex" onClick={handleClose}>
+                  Forex
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/indices" onClick={handleClose}>
+                  Indices
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/energies" onClick={handleClose}>
+                  Energies
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/metals" onClick={handleClose}>
+                  Metals
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/cryptocurrency" onClick={handleClose}>
+                  Cryptocurrency
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.mobileMegaMenuColumn}>
+            <h3 className={styles.mobileMegaMenuTitle}>Trading Conditions</h3>
+            <ul className={styles.mobileMegaMenuList}>
+              <li>
+                <Link
+                  to="/account-types/execution-policy"
+                  onClick={handleClose}
+                >
+                  Execution Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/spreads" onClick={handleClose}>
+                  Spreads
+                </Link>
+              </li>
+              <li>
+                <Link to="/account-types/margin-leverage" onClick={handleClose}>
+                  Margin & Leverage
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </>
+      );
+    } else {
+      setMobileMenuContent(
+        <>
+          <div className={styles.mobileMegaMenuColumn}>
+            <h3 className={styles.mobileMegaMenuTitle}>PC / MAC</h3>
+            <ul className={styles.mobileMegaMenuList}>
+              <li className={styles.platform_icons}>
+                <IoLogoWindows className={styles.platform_icon_style} />
+                <Link to="/meta-trader-5" onClick={handleClose}>
+                  MT5 for PC
+                </Link>
+              </li>
+              <li className={styles.platform_icons}>
+                <img
+                  src="./mac2.png"
+                  className={styles.images_megamenu}
+                  alt=""
+                />
+                <Link to="/meta-trader-5" onClick={handleClose}>
+                  MT5 for Mac
+                </Link>
+              </li>
+              <li className={styles.platform_icons}>
+                <MdOutlineDesktopMac className={styles.platform_icon_style} />
+                <Link to="/meta-trader-5" onClick={handleClose}>
+                  MT5 for WebTrader
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.mobileMegaMenuColumn}>
+            <h3 className={styles.mobileMegaMenuTitle}>SmartPhones</h3>
+            <ul className={styles.mobileMegaMenuList}>
+              <li className={styles.platform_icons}>
+                <img
+                  src="./mac2.png"
+                  className={styles.images_megamenu}
+                  alt=""
+                />
+                <Link to="/meta-trader-5" onClick={handleClose}>
+                  MT5 for IPhone
+                </Link>
+              </li>
+              <li className={styles.platform_icons}>
+                <img
+                  src="./andriod.png"
+                  className={styles.images_megamenu}
+                  alt=""
+                />
+                <Link to="/meta-trader-5" onClick={handleClose}>
+                  MT5 for Android
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.mobileMegaMenuColumn}>
+            <h3 className={styles.mobileMegaMenuTitle}>Tablets</h3>
+            <ul className={styles.mobileMegaMenuList}>
+              <li className={styles.platform_icons}>
+                <img
+                  src="./mac2.png"
+                  className={styles.images_megamenu}
+                  alt=""
+                />
+                <Link
+                  to="/account-types/execution-policy"
+                  onClick={handleClose}
+                >
+                  MT5 for IPad
+                </Link>
+              </li>
+              <li className={styles.platform_icons}>
+                <img
+                  src="./andriod.png"
+                  className={styles.images_megamenu}
+                  alt=""
+                />
+                <Link to="/account-types/spreads" onClick={handleClose}>
+                  MT5 for Android
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </>
+      );
+    }
   };
 
   // Close mega menu when clicking outside or route changes
@@ -59,6 +244,7 @@ const CustomNavbar = () => {
   // Close mega menu when route changes
   useEffect(() => {
     closeMegaMenu();
+    handleClose();
   }, [location.pathname]);
 
   // Close mega menu when scrolling
@@ -140,7 +326,6 @@ const CustomNavbar = () => {
                   as={NavLink}
                   to="/"
                   className={styles.navLink}
-                  onMouseEnter={() => setActiveMegaMenu("tading")}
                   onClick={() => {
                     handleClose();
                     closeMegaMenu();
@@ -153,8 +338,19 @@ const CustomNavbar = () => {
                     as={NavLink}
                     to="#"
                     className={styles.navLink}
-                    onClick={(e) => toggleMegaMenu("trading", e)}
-                    onMouseEnter={() => setActiveMegaMenu("trading")}
+                    onClick={(e) => {
+                      if (window.innerWidth < 992) {
+                        e.preventDefault();
+                        handleMobileMegaMenu("trading");
+                      } else {
+                        toggleMegaMenu("trading", e);
+                      }
+                    }}
+                    onMouseEnter={() => {
+                      if (window.innerWidth >= 992) {
+                        setActiveMegaMenu("trading");
+                      }
+                    }}
                   >
                     Trading
                   </Nav.Link>
@@ -164,8 +360,19 @@ const CustomNavbar = () => {
                     as={NavLink}
                     to="#"
                     className={styles.navLink}
-                    onClick={(e) => toggleMegaMenu("platforms", e)}
-                    onMouseEnter={() => setActiveMegaMenu("platforms")}
+                    onClick={(e) => {
+                      if (window.innerWidth < 992) {
+                        e.preventDefault();
+                        handleMobileMegaMenu("platforms");
+                      } else {
+                        toggleMegaMenu("platforms", e);
+                      }
+                    }}
+                    onMouseEnter={() => {
+                      if (window.innerWidth >= 992) {
+                        setActiveMegaMenu("platforms");
+                      }
+                    }}
                   >
                     Platforms
                   </Nav.Link>
@@ -174,7 +381,6 @@ const CustomNavbar = () => {
                   as={NavLink}
                   to="/promotions"
                   className={styles.navLink}
-                  onMouseEnter={() => setActiveMegaMenu("tading")}
                   onClick={() => {
                     handleClose();
                     closeMegaMenu();
@@ -186,7 +392,6 @@ const CustomNavbar = () => {
                   as={NavLink}
                   to="/about"
                   className={styles.navLink}
-                  onMouseEnter={() => setActiveMegaMenu("tading")}
                   onClick={() => {
                     handleClose();
                     closeMegaMenu();
@@ -198,7 +403,6 @@ const CustomNavbar = () => {
                   as={NavLink}
                   to="/partnership"
                   className={styles.navLink}
-                  onMouseEnter={() => setActiveMegaMenu("tading")}
                   onClick={() => {
                     handleClose();
                     closeMegaMenu();
@@ -470,6 +674,36 @@ const CustomNavbar = () => {
           </div>
         </Container>
       )}
+
+      {/* Mobile Mega Menu Offcanvas */}
+      <Offcanvas
+        show={showMobileMegaMenu}
+        onHide={() => setShowMobileMegaMenu(false)}
+        placement="end"
+        className={styles.mobileMegaMenuCanvas}
+      >
+        <Offcanvas.Header className={styles.mobileMegaMenuHeader}>
+          <Button
+            variant="link"
+            onClick={() => setShowMobileMegaMenu(false)}
+            className={styles.mobileMegaMenuBackButton}
+          >
+            <FiChevronLeft size={24} />
+          </Button>
+          <Offcanvas.Title className={styles.mobileMegaMenuTitle}>
+            {mobileMenuTitle}
+          </Offcanvas.Title>
+          <div
+            className={styles.mobileMegaMenuCloseButton}
+            onClick={handleClose}
+          >
+            &times;
+          </div>
+        </Offcanvas.Header>
+        <Offcanvas.Body className={styles.mobileMegaMenuBody}>
+          {mobileMenuContent}
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 };

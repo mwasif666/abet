@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./BenefitsSection.module.css";
-import { Link } from "react-router-dom";
 
 // SVG Icons for Deposit, Withdrawal, and Instruments
 const DepositIcon = () => (
@@ -154,7 +153,7 @@ const InstrumentsIcon = () => (
   </svg>
 );
 
-const BenefitsSection = () => {
+const BenefitsHome = () => {
   const benefits = [
     {
       title: "Minimum Deposit",
@@ -209,18 +208,16 @@ const BenefitsSection = () => {
           </p>
         </div>
 
-        <div className="row row-cols-6 g-4">
+        <div className="row row-cols-3 g-4">
           {benefits.map((benefit, index) => (
             <div key={index} className="col p-0">
-              <Link to="/benefithome">
-                <div className={`${styles.benefitCard} h-100 py-3`}>
-                  <div className={styles.benefitIcon}>{benefit.icon}</div>
-                  <h4 className={styles.benefitTitle}>{benefit.title}</h4>
-                  <p className={styles.benefitDescription}>
-                    {benefit.description}
-                  </p>
-                </div>
-              </Link>
+              <div className={`${styles.benefitCard} h-100 py-3`}>
+                <div className={styles.benefitIcon}>{benefit.icon}</div>
+                <h4 className={styles.benefitTitle}>{benefit.title}</h4>
+                <p className={styles.benefitDescription}>
+                  {benefit.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -229,4 +226,4 @@ const BenefitsSection = () => {
   );
 };
 
-export default BenefitsSection;
+export default BenefitsHome;

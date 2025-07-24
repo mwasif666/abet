@@ -308,9 +308,9 @@
 }
 /* Responsive adjustments */
 @media (max-width: 991.98px) {
-  .megaMenu {
+  /* .megaMenu {
     display: none;
-  }
+  } */
 
   .topLinks {
     flex-direction: column;
@@ -326,5 +326,90 @@
     margin-left: 0;
     margin-top: 10px;
     width: 100%;
+  }
+}
+/* Mobile Mega Menu Styles */
+.mobileMegaMenuCanvas {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.mobileMegaMenuHeader {
+  background-color: var(--main-color);
+  color: white;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileMegaMenuBackButton {
+  color: white !important;
+  padding: 0;
+  margin-right: 15px;
+}
+
+.mobileMegaMenuTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.mobileMegaMenuCloseButton {
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.mobileMegaMenuBody {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.mobileMegaMenuColumn {
+  margin-bottom: 30px;
+}
+
+.mobileMegaMenuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobileMegaMenuList li {
+  margin-bottom: 15px;
+}
+
+.mobileMegaMenuList a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 8px 0;
+  transition: color 0.3s;
+}
+
+.mobileMegaMenuList a:hover {
+  color: var(--main-color);
+}
+
+.platform_icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.platform_icon_style {
+  font-size: 25px;
+  color: black;
+}
+
+.images_megamenu {
+  width: 25px !important;
+}
+
+@media (min-width: 992px) {
+  .mobileMegaMenuCanvas {
+    display: none !important;
   }
 }
