@@ -17,7 +17,11 @@ const HomeBanner = () => {
               It's Your Turn to <span> Profit</span>
             </h1>
             <h4>Trade Anytime Anywhere</h4>
-            <a href="#" className="btn">
+            <a
+              href="https://www.secure.abetglobal.com/account/register"
+              target="_blank"
+              className="btn"
+            >
               Start Trading{" "}
             </a>
           </div>
