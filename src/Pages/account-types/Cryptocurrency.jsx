@@ -8,6 +8,7 @@ import StandardPrice from "./StandardPrice";
 import ForexBenefits from "../../Components/ForexBenefits";
 import ForexAccordion from "../../Components/ForexAccordion";
 import Benefit5 from "../../Components/Benefit5";
+import Accordion6 from "../../Components/Accordion6";
 
 const Cryptocurrency = () => {
   const location = useLocation();
@@ -160,7 +161,7 @@ const Cryptocurrency = () => {
           </Row>
         </div>
       </section>
-      <ForexAccordion />
+      <Accordion6 />
     </div>
   );
 };

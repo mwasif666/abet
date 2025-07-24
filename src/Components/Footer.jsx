@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../style/Footer.module.css"; 
+import styles from "../style/Footer.module.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import {
   FaFacebook,
@@ -8,8 +8,15 @@ import {
   FaTelegram,
 } from "react-icons/fa";
 import Logo from "../assets/logowhite.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <footer className={styles.footer}>
       {/* Main Footer Content */}
@@ -74,15 +81,19 @@ const Footer = () => {
                 <h3 className={styles.footerHeading}>Quick Link</h3>
                 <ul className={styles.footerLinks}>
                   <li>
-                    <a href="https://abet.leosagitrades.com/about-us/">
+                    <Link onClick={handleClick} to="/about">
                       About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B447548718055&text&type=phone_number&app_absent=0">
+                      Support
                     </a>
                   </li>
                   <li>
-                    <a href="#">Support</a>
-                  </li>
-                  <li>
-                    <a href="https://abetglobal.abetglobal.com/faqs/">FAQ's</a>
+                    <Link onClick={handleClick} to="/faqs">
+                      FAQ's
+                    </Link>
                   </li>
                   <li>
                     <a href="https://abet.leosagitrades.com/contact-us/">
@@ -115,7 +126,7 @@ const Footer = () => {
               {/* Footer Navigation Columns */}
             </Row>
           </div>
-          <Row xs={6} lg={5}>
+          <Row xs={2} lg={4}>
             {/* Trading Accounts */}
             <Col className="mb-4">
               <h3 className={styles.footerHeading}>Trading Accounts</h3>
@@ -190,7 +201,7 @@ const Footer = () => {
             </Col>
 
             {/* About ABET */}
-            <Col className="mb-4">
+            {/* <Col className="mb-4">
               <h3 className={styles.footerHeading}>About ABET</h3>
               <ul className={styles.footerLinks}>
                 <li>
@@ -208,7 +219,7 @@ const Footer = () => {
                   <a href="https://abet.leosagitrades.com/faqs">FAQs</a>
                 </li>
               </ul>
-            </Col>
+            </Col> */}
 
             {/* MT5 Platforms */}
             <Col className="mb-4">

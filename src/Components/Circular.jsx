@@ -1,6 +1,7 @@
 // CircularAnimation.js
 import React from "react";
 import styles from "./CircularAnimation.module.css";
+import { Link } from "react-router-dom";
 
 const CircularAnimation = () => {
   const points = [
@@ -13,7 +14,12 @@ const CircularAnimation = () => {
     { id: 7, line1: "LEVERAGED", line2: "TRANSACTIONS" },
     { id: 8, line1: "STATE OF THE ART", line2: "TECHNOLOGY" },
   ];
-
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className={styles.wrapper}>
       <div className="container">
@@ -107,9 +113,11 @@ const CircularAnimation = () => {
                 communication tools, these platforms break down barriers of time
                 and location while facilitating safe and rapid trading.
               </p>
-              <a href="" className="btn">
-                More About Us
-              </a>
+              <div className="mt-4">
+                <Link onClick={handleClick} to="/about">
+                  More About Us
+                </Link>
+              </div>
             </div>
           </div>
         </div>

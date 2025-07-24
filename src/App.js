@@ -33,6 +33,8 @@ import Margin from "./Pages/account-types/Margin";
 import Logo from "./assets/logo.png";
 import BenefitsHome from "./Components/BenefitsHome";
 import AddBlog from "./Pages/Blog/AddBlog";
+import AbetApp from "./Pages/AbetApp";
+import FAQ from "./Components/FAQ";
 
 const Preloader = () => {
   return (
@@ -104,6 +106,8 @@ const AppWrapper = () => {
           <Route path="/meta-trader-5" element={<MetaTrader />} />
           <Route path="/benefithome" element={<BenefitsHome />} />
           <Route path="/add-blog" element={<AddBlog />} />
+          <Route path="/AbetApp" element={<AbetApp />} />
+          <Route path="/faqs" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

@@ -1,8 +1,16 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import styles from "./AbetGlobalSection.module.css";
+import { Link } from "react-router-dom";
 
 const AbetGlobalSection = () => {
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className={`${styles.sectionContainer}`}>
       <div className="container">
@@ -35,15 +43,16 @@ const AbetGlobalSection = () => {
                   </p>
 
                   <div className={styles.buttonWrapper}>
-                    <a
-                      href="https://abet.leosagitrades.com/abet-app"
+                    <Link
+                      to="/AbetApp"
+                      onClick={handleClick}
                       className={`btn ${styles.ctaButton}`}
                     >
                       <span className={styles.buttonContent}>
                         <FaArrowRight className={styles.buttonIcon} />
                         <span>View More</span>
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
