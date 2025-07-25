@@ -23,9 +23,9 @@
 .tickerMarquee {
   display: inline-flex;
   white-space: nowrap;
-  animation: marquee 15s linear infinite;
+  animation: marquee 300s linear infinite;
   will-change: transform;
-  padding-left: 20vh; 
+  padding-left: 20vh;
 }
 
 .tickerItem {

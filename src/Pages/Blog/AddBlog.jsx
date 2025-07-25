@@ -1,20 +1,20 @@
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState, ContentState, convertToRaw } from "draft-js";
-import draftToHtml from "draftjs-to-html";
-import htmlToDraft from "html-to-draftjs";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import Link from "@tiptap/extension-link";
+import Image from "@tiptap/extension-image";
 import { Container, Card, Form, Button, Spinner, Modal } from "react-bootstrap";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const AddBlog = () => {
   const formRef = useRef();
   const { id } = useParams();
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
@@ -26,6 +26,18 @@ const AddBlog = () => {
     url: "",
     description: "",
     imageFile: "",
+  });
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Underline,
+      Link.configure({
+        openOnClick: false,
+      }),
+      Image,
+    ],
+    content: "",
   });
 
   useEffect(() => {
@@ -42,6 +54,32 @@ const AddBlog = () => {
     }
   }, [id]);
 
+  const showSuccessAlert = (message) => {
+    MySwal.fire({
+      title: "Success!",
+      text: message,
+      icon: "success",
+      confirmButtonText: "OK",
+      customClass: {
+        confirmButton: "btn btn-primary",
+      },
+      buttonsStyling: false,
+    });
+  };
+
+  const showErrorAlert = (message) => {
+    MySwal.fire({
+      title: "Error!",
+      text: message,
+      icon: "error",
+      confirmButtonText: "OK",
+      customClass: {
+        confirmButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+  };
+
   const getBlogDetail = async () => {
     try {
       const response = await axios.get(
@@ -57,17 +95,11 @@ const AddBlog = () => {
         });
 
         if (data.long_description) {
-          const contentBlock = htmlToDraft(data.long_description);
-          if (contentBlock) {
-            const contentState = ContentState.createFromBlockArray(
-              contentBlock.contentBlocks
-            );
-            setEditorState(EditorState.createWithContent(contentState));
-          }
+          editor?.commands.setContent(data.long_description);
         }
       }
     } catch (error) {
-      toast.error("Failed to fetch blog details. Please try again.");
+      showErrorAlert("Failed to fetch blog details. Please try again.");
       console.error("Error fetching blog:", error);
     } finally {
       setLoading(false);
@@ -87,7 +119,7 @@ const AddBlog = () => {
         setLoading(false);
       }
     } else {
-      toast.error("Incorrect password");
+      showErrorAlert("Incorrect password");
     }
   };
 
@@ -101,12 +133,10 @@ const AddBlog = () => {
     const url = form.elements.formBasicUrl.value;
     const description = form.elements.formShortDescription.value;
     const imageFile = form.elements.formImage.files[0];
-    const longDescription = draftToHtml(
-      convertToRaw(editorState.getCurrentContent())
-    );
+    const longDescription = editor?.getHTML() || "";
 
     if (!title || !url || !description || (!id && !imageFile)) {
-      toast.error("All required fields must be filled.");
+      showErrorAlert("All required fields must be filled.");
       setSubmitting(false);
       return;
     }
@@ -144,12 +174,12 @@ const AddBlog = () => {
         }
       );
       if (response.status === 200) {
-        toast.success("Blog added successfully!");
+        showSuccessAlert("Blog added successfully!");
         formRef.current.reset();
-        setEditorState(EditorState.createEmpty());
+        editor?.commands.clearContent();
       }
     } catch (error) {
-      toast.error("Failed to add blog. Please try again.");
+      showErrorAlert("Failed to add blog. Please try again.");
       throw error;
     }
   };
@@ -166,10 +196,10 @@ const AddBlog = () => {
         }
       );
       if (response.status === 200) {
-        toast.success("Blog updated successfully!");
+        showSuccessAlert("Blog updated successfully!");
       }
     } catch (error) {
-      toast.error("Failed to update blog. Please try again.");
+      showErrorAlert("Failed to update blog. Please try again.");
       throw error;
     }
   };
@@ -277,31 +307,10 @@ const AddBlog = () => {
             <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Long Description*</Form.Label>
               <div
-                className="border rounded p-2"
+                className="border rounded p-3 bg-white"
                 style={{ minHeight: "300px" }}
               >
-                <Editor
-                  editorState={editorState}
-                  onEditorStateChange={setEditorState}
-                  toolbar={{
-                    options: [
-                      "inline",
-                      "blockType",
-                      "fontSize",
-                      "list",
-                      "textAlign",
-                      "colorPicker",
-                      "link",
-                      "embedded",
-                      "emoji",
-                      "image",
-                      "remove",
-                      "history",
-                    ],
-                  }}
-                  editorClassName="px-2"
-                  placeholder="Write your blog content here..."
-                />
+                <EditorContent editor={editor} />
               </div>
             </Form.Group>
 
