@@ -1,86 +1,51 @@
-// AnnouncementsMarquee.jsx
 import React, { useEffect, useRef } from "react";
 import styles from "./Announcement.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AnnouncementsMarquee = () => {
-  const announcements = [
-    {
-      title: "Stocks Rise, Bitcoin Holds, Oil Falls",
-      date: "February 4, 2025",
-    },
-    {
-      title: "Inquisitive Bites: Digital Currency Revolution",
-      date: "January 31, 2025",
-    },
-    {
-      title: "Deadliest U.S. Aviation Crash in Years",
-      date: "January 30, 2025",
-    },
-    {
-      title: "Stocks Rise, Bitcoin Holds, Oil Falls",
-      date: "February 4, 2025",
-    },
-    {
-      title: "Inquisitive Bites: Digital Currency Revolution",
-      date: "January 31, 2025",
-    },
-    {
-      title: "Deadliest U.S. Aviation Crash in Years",
-      date: "January 30, 2025",
-    },
-    {
-      title: "Stocks Rise, Bitcoin Holds, Oil Falls",
-      date: "February 4, 2025",
-    },
-    {
-      title: "Inquisitive Bites: Digital Currency Revolution",
-      date: "January 31, 2025",
-    },
-    {
-      title: "Deadliest U.S. Aviation Crash in Years",
-      date: "January 30, 2025",
-    },
-    // Add more announcements as needed
-  ];
-
   const marqueeRef = useRef(null);
+  const navigate = useNavigate();
+  const [blog, setBlog] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
     const marquee = marqueeRef.current;
     if (!marquee) return;
 
-    // Clone the announcements to create seamless looping
     const marqueeContent = marquee.innerHTML;
     marquee.innerHTML += marqueeContent;
 
-    // Adjust animation duration based on content width
-    const duration = marquee.scrollWidth / 100; // Adjust divisor to control speed
-
+    const duration = marquee.scrollWidth / 100;
     marquee.style.animationDuration = `${duration}s`;
-  }, []);
+  }, [blog]);
 
-  const [blog, setBlog] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-
-  const fetchBlog = async() =>{
+  const fetchBlog = async () => {
     setLoading(true);
     try {
-       let response = await axios.get('https://api.leosagitrades.com/public/blogs_list');
-        setBlog(response.data);
-     } catch (error) {
-       console.error("Error fetching blog data:", error);
-     }finally{
+      const response = await axios.get(
+        "https://api.leosagitrades.com/public/blogs_list"
+      );
+      setBlog(response.data.data);
+    } catch (error) {
+      console.error("Error fetching blog data:", error);
+    } finally {
       setLoading(false);
-     }
+    }
+  };
+
+  useEffect(() => {
+    fetchBlog();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center">Loading...</div>;
   }
 
-  useEffect(()=>{
-    fetchBlog();
-  },[])
-
-  if(loading){
-    return <div className="text-center">Loading...</div>;
+  const renderItems = blog.length > 0 ? blog : [{ title: "No Anouncement found", date: "" }];
+  
+  const handleBlogRedirect =(id)=>{
+    navigate('')
   }
 
   return (
@@ -91,17 +56,19 @@ const AnnouncementsMarquee = () => {
         </div>
         <div className={`${styles.tickerMarqueeContainer} col`}>
           <div ref={marqueeRef} className={styles.tickerMarquee}>
-            {blog.length > 0 ? blog.map((announcement, index) => (
-              <div key={index} className={styles.tickerItem}>
+            {renderItems.map((announcement, index) => (
+              <div key={index} className={styles.tickerItem} onClick={()=>handleBlogRedirect(announcement.id)}>
                 <span className={styles.tickerPostTitle}>
                   {announcement.title}
                 </span>
-                <span className={styles.tickerPostDate}>
-                  {announcement.date}
-                </span>
+                {announcement.date && (
+                  <span className={styles.tickerPostDate}>
+                    {announcement.date}
+                  </span>
+                )}
                 <span className={styles.itemSeparator}>•</span>
               </div>
-            )): <div> No blog found</div>}
+            ))}
           </div>
         </div>
       </div>

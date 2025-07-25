@@ -72,8 +72,12 @@ const BlogSection = () => {
   const fetchBlog = async () => {
     setLoading(true);
     try {
-      let response = await axios.get("https://api.leosagitrades.com/public/blogs_list");
-      setBlog(response.data);
+      let response = await axios.get(
+        "https://api.leosagitrades.com/public/blogs_list"
+      );
+      console.log(response);
+
+      setBlog(response.data.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);
     } finally {
@@ -103,35 +107,49 @@ const BlogSection = () => {
         </div>
 
         <div className="row">
-          {blog.map((post) => (
-            <div key={post.id} className="col-lg-4 col-md-6 mb-4">
-              <div className={`${styles.blogCard} h-100`}>
-                <a href={post.link} className={styles.blogLink}>
-                  <div className={styles.blogImageContainer}>
-                    <img
-                      src={post.imageUrl}
-                      alt={post.title}
-                      className={`${styles.blogImage} img-fluid`}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className={styles.blogContent}>
-                    <span
-                      className={`${styles.blogCategory} ${
-                        post.category === "News"
-                          ? styles.newsCategory
-                          : styles.blogCategory
-                      }`}
-                    >
-                      {post.category}
-                    </span>
-                    <h4 className={styles.blogTitle}>{post.title}</h4>
-                    <p className={styles.blogExcerpt}>{post.excerpt}</p>
-                  </div>
-                </a>
-              </div>
+          {loading ? (
+            <div className="text-center mt-4">
+              <h4>Loading...</h4>
             </div>
-          ))}
+          ) : blog.length > 0 ? (
+            blog?.map((post) => (
+              <div key={post.id} className="col-lg-4 col-md-6 mb-4">
+                <div className={`${styles.blogCard} h-100`}>
+                  <a href={post.link} className={styles.blogLink}>
+                    <div className={styles.blogImageContainer}>
+                      <img
+                        src={`https://api.leosagitrades.com/public/storage/blogs/${post.original_name}`}
+                        alt={post.title}
+                        className={`${styles.blogImage} img-fluid`}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className={styles.blogContent}>
+                      <span
+                        className={`${styles.blogCategory} ${
+                          post.category === "News"
+                            ? styles.newsCategory
+                            : styles.blogCategory
+                        }`}
+                      >
+                        {post.category}
+                      </span>
+                      <h4 className={styles.blogTitle}>{post.title}</h4>
+
+                      <p
+                        className={styles.blogExcerpt}
+                        dangerouslySetInnerHTML={{ __html: post.description.slice(0,200) + '...' }}
+                      ></p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-center mt-4">
+              <h4>No Blog Found!</h4>
+            </div>
+          )}
         </div>
 
         <div className="text-center mt-4">
