@@ -204,7 +204,7 @@ const BenefitsHome = () => {
           <p className={styles.sectionDescription}>
             Taking control of your orders, risk management, and market trend
             analysis is all made possible by our user-friendly interface. You
-            can easily take charge of your trades.
+            can easily take charge of your trades
           </p>
         </div>
 
