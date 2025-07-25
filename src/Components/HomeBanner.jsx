@@ -86,7 +86,7 @@ const HomeBanner = () => {
               Welcome to ABET Global
             </motion.h5>
             <motion.h1 variants={textVariants}>
-              It's Your Turn to{" "}
+              It's Your Turn to
               <motion.span
                 style={{ display: "inline-block" }}
                 animate={
