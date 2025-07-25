@@ -9,9 +9,9 @@ const AnnouncementsMarquee = () => {
   const [blog, setBlog] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
-  useEffect(() => {
+useEffect(() => {
     const marquee = marqueeRef.current;
-    if (!marquee || announcements.length === 0) return;
+    if (!marquee) return;
 
     const marqueeContent = marquee.innerHTML;
     marquee.innerHTML += marqueeContent;
