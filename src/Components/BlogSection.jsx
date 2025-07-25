@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import styles from "./BlogSection.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const BlogSection = () => {
-
+  const navigate = useNavigate();
   const [blog, setBlog] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -24,6 +25,10 @@ const BlogSection = () => {
   useEffect(() => {
     fetchBlog();
   }, []);
+
+   const handleBlogRedirect =(id)=>{
+    navigate(`/blog-details/${id}`)
+  }
 
   return (
     <section className={`${styles.blogSection} py-5`}>
@@ -49,7 +54,7 @@ const BlogSection = () => {
             </div>
           ) : blog.length > 0 ? (
             blog?.map((post) => (
-              <div key={post.id} className="col-lg-4 col-md-6 mb-4">
+              <div key={post.id} className="col-lg-4 col-md-6 mb-4" onClick={()=>handleBlogRedirect(post.id)}>
                 <div className={`${styles.blogCard} h-100`}>
                   <a href={post.link} className={styles.blogLink}>
                     <div className={styles.blogImageContainer}>
