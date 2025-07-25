@@ -38,6 +38,7 @@ import FAQ from "./Components/FAQ";
 import Contact from "./Pages/Contact";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import LegalDocuments from "./Pages/LegalDocuments";
+import RiskDisclosure from "./Components/Risk";
 
 const Preloader = () => {
   return (
@@ -114,6 +115,7 @@ const AppWrapper = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/legal-documents" element={<LegalDocuments />} />
+          <Route path="/risk" element={<RiskDisclosure />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

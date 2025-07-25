@@ -1,0 +1,89 @@
+.riskDisclosureContainer {
+  padding: 2rem 0;
+}
+
+.disclosureCard {
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.cardHeader {
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 1.5rem;
+  border-bottom: none;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  color: white !important;
+}
+
+.cardBody {
+  padding: 2rem;
+}
+
+.contentSection {
+  line-height: 1.8;
+}
+
+.paragraph {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.warningAlert {
+  background-color: #fff8e6;
+  border-left: 4px solid #ffc107;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+}
+
+.warningTitle {
+  color: #d35400;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cardFooter {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  border-radius: 0 0 10px 10px !important;
+  text-align: center;
+}
+
+.footerText {
+  margin: 0;
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cardHeader {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .cardBody {
+    padding: 1.5rem;
+  }
+
+  .warningAlert {
+    padding: 1rem;
+  }
+}
