@@ -38,6 +38,7 @@ import FAQ from "./Components/FAQ";
 import Contact from "./Pages/Contact";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import LegalDocuments from "./Pages/LegalDocuments";
+import BlogDetail from "./Pages/Blog/BlogDetail";
 
 const Preloader = () => {
   return (
@@ -56,20 +57,19 @@ const AppWrapper = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Initial page load
+
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); // 3 seconds for first load
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    // Route change loading
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); // 1 second for route change
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
@@ -114,6 +114,7 @@ const AppWrapper = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/legal-documents" element={<LegalDocuments />} />
+          <Route path="/blog-details/:id" element={<BlogDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

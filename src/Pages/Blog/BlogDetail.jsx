@@ -1,23 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const BlogDetail = () => {
   const { id } = useParams();
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog] = useState({});
   const [loading, setLoading] = useState(true);
 
   const getBLogDetail = async () => {
     try {
       const response = await axios.get(
-        `https://api.leosagitrades.com/public/storage/blogs/${id}`
+        `https://api.leosagitrades.com/public/blogs_list/${id}`
       );
-      if (response.status === 200) {
-        setBlog(response.data);
+      if (response) {
+        setBlog(response.data.data[0]);
       }
     } catch (error) {
       toast.error("Failed to fetch blog details. Please try again.");
     } finally {
       setLoading(false);
+      console.log(blog);
     }
   };
 
@@ -27,6 +30,14 @@ const BlogDetail = () => {
 
   const tag = [];
 
+  if (loading) {
+    return (
+      <div className="text-center mt-4">
+        <h6>Loading...</h6>
+      </div>
+    );
+  }
+
   return (
     <>
       <div>
@@ -35,8 +46,12 @@ const BlogDetail = () => {
           <h4>2 min read</h4>
         </div>
         <div>
-          <h1>{blog.title}</h1>
-          <p>{blog.short_description}</p>
+          <h1>{blog?.title}</h1>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: blog.description.slice(0, 200) + "...",
+            }}
+          ></p>
         </div>
         <div>
           <div>
@@ -45,14 +60,17 @@ const BlogDetail = () => {
               <h5>
                 by <span>ABET Global News</span>
               </h5>
-              <h5>{blog.date}</h5>
+              <h5>{blog?.date}</h5>
             </div>
           </div>
           <div>{/* social media icons */}</div>
         </div>
         <div>
-          <img src={blog.iamge} alt={blog.title} />
-          <p>{blog.long_description}</p>
+          <img src={`https://api.leosagitrades.com/public/storage/blogs/${blog.original_name}`} alt={blog.title} />
+          <p
+           
+            dangerouslySetInnerHTML={{ __html: blog.description }}
+          ></p>
         </div>
         <div>
           <div>
