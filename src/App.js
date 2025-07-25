@@ -109,6 +109,7 @@ const AppWrapper = () => {
           <Route path="/meta-trader-5" element={<MetaTrader />} />
           <Route path="/benefithome" element={<BenefitsHome />} />
           <Route path="/add-blog" element={<AddBlog />} />
+          <Route path="/add-blog/:id" element={<AddBlog />} />
           <Route path="/AbetApp" element={<AbetApp />} />
           <Route path="/faqs" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
