@@ -20,7 +20,6 @@ const BlogDetail = () => {
       toast.error("Failed to fetch blog details. Please try again.");
     } finally {
       setLoading(false);
-      console.log(blog);
     }
   };
 
