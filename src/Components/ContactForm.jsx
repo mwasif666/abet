@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./ContactForm.module.css";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -44,15 +46,26 @@ const ContactForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      setIsSubmitting(true);
-      // Simulate API call
-      setTimeout(() => {
-        console.log("Form submitted:", formData);
-        setIsSubmitting(false);
-        setSubmitSuccess(true);
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+
+    try {
+      const data = new FormData();
+      data.append("department", formData.department);
+      data.append("subject", formData.subject);
+      data.append("name", formData.name);
+      data.append("email", formData.email);
+      data.append("message", formData.message);
+      if (formData.attachment) {
+        data.append("attachment", formData.attachment);
+      }
+
+      const response = await axios.post("https://api.leosagitrades.com/public/save_contact_form",data);
+      if(response){
+        toast.success("Form submitted successfully!");
         setFormData({
           department: "",
           subject: "",
@@ -61,9 +74,22 @@ const ContactForm = () => {
           message: "",
           attachment: null,
         });
-      }, 1500);
+      }
+    } catch (error) {
+      toast.error("Submission failed. Please try again.");
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
+  // const postContactForm = async(data)=>{
+  //   try {
+     
+  //   } catch (error) {
+  //     toast.error("Failed to submit the form, Please try again...")
+  //   }
+  // }
 
   return (
     <div className={`${styles.contactFormSection} container-fluid`}>
@@ -126,7 +152,7 @@ const ContactForm = () => {
                             {errors.department}
                           </div>
                         )}
-                      </div>
+                      </div> 
 
                       <div className={`mb-3 ${styles.formGroup}`}>
                         <label htmlFor="subject" className={styles.formLabel}>
