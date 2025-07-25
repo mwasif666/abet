@@ -26,9 +26,9 @@ const BlogSection = () => {
     fetchBlog();
   }, []);
 
-   const handleBlogRedirect =(id)=>{
-    navigate(`/blog-details/${id}`)
-  }
+  const handleBlogRedirect = (id) => {
+    navigate(`/blog-details/${id}`);
+  };
 
   return (
     <section className={`${styles.blogSection} py-5`}>
@@ -54,12 +54,16 @@ const BlogSection = () => {
             </div>
           ) : blog.length > 0 ? (
             blog?.map((post) => (
-              <div key={post.id} className="col-lg-4 col-md-6 mb-4" onClick={()=>handleBlogRedirect(post.id)}>
+              <div
+                key={post.id}
+                className="col-lg-4 col-md-6 mb-4"
+                onClick={() => handleBlogRedirect(post.id)}
+              >
                 <div className={`${styles.blogCard} h-100`}>
                   <a href={post.link} className={styles.blogLink}>
                     <div className={styles.blogImageContainer}>
                       <img
-                        src={`https://api.leosagitrades.com/public/storage/blogs/${post.original_name}`}
+                        src={`https://api.leosagitrades.com/storage/app/public/blogs/${post.encoded_name}`}
                         alt={post.title}
                         className={`${styles.blogImage} img-fluid`}
                         loading="lazy"
@@ -79,7 +83,9 @@ const BlogSection = () => {
 
                       <p
                         className={styles.blogExcerpt}
-                        dangerouslySetInnerHTML={{ __html: post.description.slice(0,200) + '...' }}
+                        dangerouslySetInnerHTML={{
+                          __html: post.description.slice(0, 200) + "...",
+                        }}
                       ></p>
                     </div>
                   </a>
