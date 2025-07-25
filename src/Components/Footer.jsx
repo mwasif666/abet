@@ -269,9 +269,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="https://abet.leosagitrades.com/legal-documents">
+                <Link onClick={handleClick} to="/legal-documents">
                   Legal Documents
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="https://abet.leosagitrades.com/blogs">Blogs</a>

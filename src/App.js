@@ -37,6 +37,7 @@ import AbetApp from "./Pages/AbetApp";
 import FAQ from "./Components/FAQ";
 import Contact from "./Pages/Contact";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
+import LegalDocuments from "./Pages/LegalDocuments";
 
 const Preloader = () => {
   return (
@@ -112,6 +113,7 @@ const AppWrapper = () => {
           <Route path="/faqs" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/legal-documents" element={<LegalDocuments />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

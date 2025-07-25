@@ -142,3 +142,6 @@ td {
   color: white;
   text-align: center;
 }
+a:hover {
+  text-decoration: none !important;
+}
