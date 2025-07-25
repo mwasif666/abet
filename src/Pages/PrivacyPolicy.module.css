@@ -1,0 +1,81 @@
+.privacyContainer {
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.mainHeading {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.sectionHeading {
+  color: var(--main-color);
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+}
+
+.subSectionHeading {
+  color: var(--main-color);
+  margin: 1.5rem 0 0.8rem;
+  font-weight: 500;
+}
+
+.policySection {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.policySection p {
+  margin-bottom: 1rem;
+}
+
+.dataList {
+  padding-left: 2rem;
+  margin: 1rem 0;
+}
+
+.dataList li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.bulletList {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+  list-style-type: disc;
+}
+
+.bulletList li {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .privacyContainer {
+    padding: 1rem;
+  }
+
+  .sectionHeading {
+    font-size: 1.4rem;
+  }
+
+  .subSectionHeading {
+    font-size: 1.2rem;
+  }
+}

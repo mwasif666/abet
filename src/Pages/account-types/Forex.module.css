@@ -16,7 +16,9 @@
   color: #333;
   line-height: 1.6;
 }
-
+.rawSpreadAccount h4 {
+  font-weight: 700;
+}
 .section {
   padding: 60px 0;
 }
@@ -113,4 +115,10 @@
 }
 .section2 h2 {
   color: white !important;
+}
+@media all and (min-width: 300px) and (max-width: 768px) {
+  .navMenu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

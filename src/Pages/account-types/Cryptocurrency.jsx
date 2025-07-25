@@ -8,6 +8,7 @@ import StandardPrice from "./StandardPrice";
 import ForexBenefits from "../../Components/ForexBenefits";
 import ForexAccordion from "../../Components/ForexAccordion";
 import Benefit5 from "../../Components/Benefit5";
+import Accordion6 from "../../Components/Accordion6";
 
 const Cryptocurrency = () => {
   const location = useLocation();
@@ -107,6 +108,16 @@ const Cryptocurrency = () => {
                 Metals & Commodities, FX Indices, and Indices transactions.
               </p>
             </Col>
+            <div>
+              <Button
+                variant=""
+                size="sm"
+                href="https://secure.abetglobal.com/account/register"
+                className={styles.ctaButton}
+              >
+                Open Account
+              </Button>
+            </div>
           </Row>
         </Container>
       </section>
@@ -160,7 +171,7 @@ const Cryptocurrency = () => {
           </Row>
         </div>
       </section>
-      <ForexAccordion />
+      <Accordion6 />
     </div>
   );
 };

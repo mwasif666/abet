@@ -1,3 +1,6 @@
+.contant_banner {
+  padding-top: 50px;
+}
 .contant_banner h5 {
   color: var(--main-color);
 }
@@ -26,4 +29,19 @@
   background: linear-gradient(to right, #8b0000, #000000); /* brown to black */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.reverse {
+  height: 450px;
+}
+@media all and (min-width: 300px) and (max-width: 768px) {
+  .contant_banner h1 {
+    font-size: 2rem;
+  }
+  .contant_banner h4 {
+    font-size: 1.4rem;
+  }
+  .reverse {
+    text-align: center;
+    height: 100vh !important;
+  }
 }

@@ -3,68 +3,6 @@ import styles from "./BlogSection.module.css";
 import axios from "axios";
 
 const BlogSection = () => {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "China Vows to Fight 'Any Type of War' with US",
-      excerpt:
-        "China Vows to Fight 'Any Type of War' with U.S. Amid Escalating Tensions China vows",
-      imageUrl:
-        "https://abet.leosagitrades.com/wp-content/uploads/2025/03/CHINA-US.-02.png",
-      category: "News",
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "Copper Stocks Surge Amid Tariff Tensions!",
-      excerpt:
-        "Introduction Copper, often referred to as 'Dr. Copper' for its ability to predict economic trends,",
-      imageUrl:
-        "https://abet.leosagitrades.com/wp-content/uploads/2025/03/COOPERSTOCK.png",
-      category: "Blog",
-      link: "#",
-    },
-    {
-      id: 3,
-      title: "Japanese Bond Yields Surge to Near 16-Year Highs",
-      excerpt:
-        "Japanese Bond Yields Surge to Near 16-Year Highs Amid Global Sell-Off. Japanese bond yields surge,",
-      imageUrl:
-        "https://abet.leosagitrades.com/wp-content/uploads/2025/03/japan-BOND.png",
-      category: "News",
-      link: "#",
-    },
-    {
-      id: 4,
-      title: "Bitcoin Rises Toward $90,000",
-      excerpt:
-        "Bitcoin Rises Toward $90,000 as Cryptocurrency Recovers to Earlier Losses from the Trade War Sell-Off.",
-      imageUrl:
-        "https://abet.leosagitrades.com/wp-content/uploads/2025/03/btc-rise.png",
-      category: "News",
-      link: "#",
-    },
-    {
-      id: 5,
-      title: "Markets in Flux: Stocks Up, Bitcoin Steady, Oil Slips",
-      excerpt:
-        "Global financial markets are navigating a landscape marked by mixed performances across various sectors, influenced",
-      imageUrl:
-        "https://abet.leosagitrades.com/wp-content/uploads/2025/02/MARKET-IN-FLEX.png",
-      category: "News",
-      link: "#",
-    },
-    {
-      id: 6,
-      title: "Stocks Rise, Bitcoin Holds, Oil Falls",
-      excerpt:
-        "Global financial markets are navigating a landscape marked by mixed performances across various sectors, influenced",
-      imageUrl:
-        "https://abet.leosagitrades.com/wp-content/uploads/2025/02/BTC-OIL.png",
-      category: "News",
-      link: "#",
-    },
-  ];
 
   const [blog, setBlog] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -75,8 +13,6 @@ const BlogSection = () => {
       let response = await axios.get(
         "https://api.leosagitrades.com/public/blogs_list"
       );
-      console.log(response);
-
       setBlog(response.data.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);

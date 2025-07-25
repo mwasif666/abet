@@ -26,6 +26,7 @@
 
 .benefitCard {
   text-align: center;
+  padding: 1rem;
 }
 
 .benefitCard:hover {
@@ -56,4 +57,9 @@
   color: #6c757d;
   font-size: 1rem;
   margin-bottom: 0;
+}
+@media all and (min-width: 300px) and (max-width: 768px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
 }

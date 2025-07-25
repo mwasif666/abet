@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../style/Footer.module.css"; 
+import styles from "../style/Footer.module.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import {
   FaFacebook,
@@ -8,8 +8,15 @@ import {
   FaTelegram,
 } from "react-icons/fa";
 import Logo from "../assets/logowhite.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <footer className={styles.footer}>
       {/* Main Footer Content */}
@@ -70,30 +77,34 @@ const Footer = () => {
                 </address>
               </Col>
 
-              <Col lg={3} md={4} sm={6} className="mb-4">
+              <div className="mb-4 col-lg-3 col-6">
                 <h3 className={styles.footerHeading}>Quick Link</h3>
                 <ul className={styles.footerLinks}>
                   <li>
-                    <a href="https://abet.leosagitrades.com/about-us/">
+                    <Link onClick={handleClick} to="/about">
                       About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B447548718055&text&type=phone_number&app_absent=0">
+                      Support
                     </a>
                   </li>
                   <li>
-                    <a href="#">Support</a>
+                    <Link onClick={handleClick} to="/faqs">
+                      FAQ's
+                    </Link>
                   </li>
                   <li>
-                    <a href="https://abetglobal.abetglobal.com/faqs/">FAQ's</a>
-                  </li>
-                  <li>
-                    <a href="https://abet.leosagitrades.com/contact-us/">
+                    <Link onClick={handleClick} to="/contact">
                       Contact Us
-                    </a>
+                    </Link>
                   </li>
                 </ul>
-              </Col>
+              </div>
 
               {/* Get The App */}
-              <Col lg={3} md={4} sm={6} className="mb-4">
+              <div className="mb-4 col-lg-3 col-6">
                 <h3 className={styles.footerHeading}>Get The App</h3>
                 <div className={styles.appButtons}>
                   <a href="#">
@@ -111,34 +122,34 @@ const Footer = () => {
                     />
                   </a>
                 </div>
-              </Col>
+              </div>
               {/* Footer Navigation Columns */}
             </Row>
           </div>
-          <Row xs={6} lg={5}>
+          <Row xs={2} lg={4}>
             {/* Trading Accounts */}
             <Col className="mb-4">
               <h3 className={styles.footerHeading}>Trading Accounts</h3>
               <ul className={styles.footerLinks}>
                 <li>
-                  <a href="https://abet.leosagitrades.com/account-types/micro/">
+                  <Link onClick={handleClick} to="/account-types/micro/">
                     Micro
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/account-types/raw-spread/">
+                  <Link onClick={handleClick} to="/account-types/raw-spread/">
                     Raw Spread
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/account-types/standard/">
+                  <Link onClick={handleClick} to="/account-types/standard/">
                     Standard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/account-types/prime/">
+                  <Link onClick={handleClick} to="/account-types/prime/">
                     Prime
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </Col>
@@ -148,23 +159,32 @@ const Footer = () => {
               <h3 className={styles.footerHeading}>Trading Instruments</h3>
               <ul className={styles.footerLinks}>
                 <li>
-                  <a href="https://abet.leosagitrades.com/forex/">Forex</a>
+                  <Link onClick={handleClick} to="/account-types/forex/">
+                    Forex
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/indices/">Indices</a>
+                  <Link onClick={handleClick} to="/account-types/indices/">
+                    Indices
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/energies/">
+                  <Link onClick={handleClick} to="/account-types/energies/">
                     Energies
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/metals/">Metals</a>
+                  <Link onClick={handleClick} to="/account-types/metals/">
+                    Metals
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/cryptocurrency/">
+                  <Link
+                    onClick={handleClick}
+                    to="/account-types/cryptocurrency/"
+                  >
                     Cryptocurrency
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </Col>
@@ -174,38 +194,25 @@ const Footer = () => {
               <h3 className={styles.footerHeading}>Trading Conditions</h3>
               <ul className={styles.footerLinks}>
                 <li>
-                  <a href="https://abet.leosagitrades.com/execution-policy/">
+                  <Link
+                    onClick={handleClick}
+                    to="/account-types/execution-policy/"
+                  >
                     Execution Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/spreads/">Spreads</a>
+                  <Link onClick={handleClick} to="/account-types/spreads/">
+                    Spreads
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/margin-leverage/">
+                  <Link
+                    onClick={handleClick}
+                    to="/account-types/margin-leverage/"
+                  >
                     Margin and Leverage
-                  </a>
-                </li>
-              </ul>
-            </Col>
-
-            {/* About ABET */}
-            <Col className="mb-4">
-              <h3 className={styles.footerHeading}>About ABET</h3>
-              <ul className={styles.footerLinks}>
-                <li>
-                  <a href="https://abet.leosagitrades.com/about-us/">About</a>
-                </li>
-                <li>
-                  <a href="https://abet.leosagitrades.com/contact-us/">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="https://wa.me/+447548718055">Help Center</a>
-                </li>
-                <li>
-                  <a href="https://abet.leosagitrades.com/faqs">FAQs</a>
+                  </Link>
                 </li>
               </ul>
             </Col>
@@ -215,39 +222,39 @@ const Footer = () => {
               <h3 className={styles.footerHeading}>MT5 Platforms</h3>
               <ul className={styles.footerLinks}>
                 <li>
-                  <a href="https://abet.leosagitrades.com/meta-trader-5/">
+                  <Link onClick={handleClick} to="/meta-trader-5/">
                     MT5 for PC
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/meta-trader-5/">
+                  <Link onClick={handleClick} to="/meta-trader-5/">
                     MT5 for Mac
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/meta-trader-5/">
+                  <Link onClick={handleClick} to="/meta-trader-5/">
                     MT5 WebTrader
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/meta-trader-5/">
+                  <Link onClick={handleClick} to="/meta-trader-5/">
                     MT5 iPad
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/meta-trader-5/">
+                  <Link onClick={handleClick} to="/meta-trader-5/">
                     MT5 iPhone
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/meta-trader-5/">
+                  <Link onClick={handleClick} to="/meta-trader-5/">
                     MT5 for Android
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://abet.leosagitrades.com/meta-trader-5/">
+                  <Link onClick={handleClick} to="/meta-trader-5/">
                     MT5 for Android Tablet
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </Col>
@@ -257,9 +264,9 @@ const Footer = () => {
           <div className={styles.legalLinks}>
             <ul>
               <li>
-                <a href="https://abet.leosagitrades.com/privacy-policy">
+                <Link onClick={handleClick} to="/privacy-policy">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="https://abet.leosagitrades.com/legal-documents">

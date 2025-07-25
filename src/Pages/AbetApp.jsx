@@ -1,12 +1,12 @@
 import React from "react";
 import Comming from "../Components/Comming";
 
-const Platforms = () => {
+const AbetApp = () => {
   return (
-    <div>
+    <>
       <Comming />
-    </div>
+    </>
   );
 };
 
-export default Platforms;
+export default AbetApp;

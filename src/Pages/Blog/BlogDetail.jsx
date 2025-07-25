@@ -25,8 +25,7 @@ const BlogDetail = () => {
     getBLogDetail();
   }, [id]);
 
-
-  const tag = []
+  const tag = [];
 
   return (
     <>
@@ -49,26 +48,23 @@ const BlogDetail = () => {
               <h5>{blog.date}</h5>
             </div>
           </div>
-          <div>
-            {/* social media icons */}
-          </div>
+          <div>{/* social media icons */}</div>
         </div>
         <div>
-          <img src={blog.iamge} alt={blog.title}/>
+          <img src={blog.iamge} alt={blog.title} />
           <p>{blog.long_description}</p>
         </div>
         <div>
           <div>
-             <img src="/image" alt="image"/>
-             <div>
+            <img src="/image" alt="image" />
+            <div>
               <h1>NewsLetter</h1>
               <h6>Keep in touch with our news & offers</h6>
               <div>
                 <input type="email" placeholder="Enter your email" />
                 <button>Subscribe</button>
               </div>
-             </div>
-
+            </div>
           </div>
         </div>
       </div>

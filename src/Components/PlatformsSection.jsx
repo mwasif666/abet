@@ -1,8 +1,15 @@
 import React from "react";
 import { FaLaptop } from "react-icons/fa";
 import styles from "./PlatformsSection.module.css";
+import { Link } from "react-router-dom";
 
 const PlatformsSection = () => {
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className={`container ${styles.platformsContainer}`}>
       <div className="row">
@@ -25,15 +32,16 @@ const PlatformsSection = () => {
 
             {/* Desktop Button */}
             <div className={`d-none d-md-block ${styles.buttonWrapper}`}>
-              <a
-                href="https://abet.leosagitrades.com/meta-trader-5/"
+              <Link
+                to="/meta-trader-5"
+                onClick={handleClick}
                 className={`btn ${styles.platformButton}`}
               >
                 <span className={styles.buttonContent}>
                   <FaLaptop className={styles.buttonIcon} />
                   <span>View Our Platforms</span>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

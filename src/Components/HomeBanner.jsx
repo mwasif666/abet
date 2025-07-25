@@ -3,13 +3,8 @@ import styles from "./HomeBanner.module.css";
 
 const HomeBanner = () => {
   return (
-    <div
-      className="container"
-      style={{
-        height: "450px",
-      }}
-    >
-      <div className="row d-flex align-items-center h-100">
+    <div className="container">
+      <div className={`row d-flex align-items-center h-100 ${styles.reverse}`}>
         <div className="col-lg-6">
           <div className={styles.contant_banner}>
             <h5>Welcome to ABET Global</h5>

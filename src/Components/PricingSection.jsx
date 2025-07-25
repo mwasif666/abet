@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
 import styles from "./PricingSection.module.css";
+import { Link } from "react-router-dom";
 
 const PackagesTable = () => {
   const packages = [
@@ -134,11 +135,13 @@ const PackagesTable = () => {
                   </ul>
                 </div>
                 <div className={styles.cardFooter}>
-                  <button
-                    className={`btn btn-primary btn-block ${styles.ctaButton}`}
-                  >
-                    Start Trading <FaArrowRight className="ml-2" />
-                  </button>
+                  <Link to="https://secure.abetglobal.com/account/register">
+                    <button
+                      className={`btn btn-primary btn-block ${styles.ctaButton}`}
+                    >
+                      Start Trading <FaArrowRight className="ml-2" />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
