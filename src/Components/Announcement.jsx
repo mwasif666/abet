@@ -59,7 +59,7 @@ const AnnouncementsMarquee = () => {
             {renderItems.map((announcement, index) => (
               <div key={index} className={styles.tickerItem} onClick={()=>handleBlogRedirect(announcement.id)}>
                 <span className={styles.tickerPostTitle}>
-                  No announcements available
+                  {announcement.title}
                 </span>
                 {announcement.date && (
                   <span className={styles.tickerPostDate}>
