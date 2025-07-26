@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./LegalDocuments.module.css";
+import styles from "../style/LegalDocuments.module.css";
 import {
   FaFileContract,
   FaExclamationTriangle,

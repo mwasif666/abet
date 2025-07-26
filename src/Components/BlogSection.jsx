@@ -94,7 +94,7 @@ const BlogSection = () => {
                       <p
                         className={styles.blogExcerpt}
                         dangerouslySetInnerHTML={{
-                          __html: truncateDescription(post.description),
+                          __html:post?.long_description.length > 300 ? post?.long_description?.slice(0, 300) + "..." : post?.long_description,
                         }}
                       ></p>
                     </div>
