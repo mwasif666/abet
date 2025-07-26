@@ -10,6 +10,7 @@ import {
   FaRegClock,
 } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
+import Logo from "../../assets/logo.png";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -81,19 +82,14 @@ const BlogDetail = () => {
 
         <h1 className={styles.blogTitle}>{blog.title}</h1>
 
-        <div
-          className={styles.blogExcerpt}
-         
-        >
-          {blog.short_description}
-      </div>
+        <div className={styles.blogExcerpt}>{blog.short_description}</div>
       </div>
 
       {/* Author Info */}
       <div className={styles.authorSection}>
         <div className={styles.authorInfo}>
           <div className={styles.authorAvatar}>
-            <img src="/images/abet-logo.png" alt="ABET Global" />
+            <img src={Logo} alt="ABET Global" />
           </div>
           <div>
             <h5 className={styles.authorName}>
@@ -140,7 +136,7 @@ const BlogDetail = () => {
       </div>
 
       {/* Newsletter */}
-      <div className={styles.newsletterSection}>
+      {/* <div className={styles.newsletterSection}>
         <div className={styles.newsletterCard}>
           <div className={styles.newsletterIcon}>
             <FiMail />
@@ -160,7 +156,7 @@ const BlogDetail = () => {
             </form>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
