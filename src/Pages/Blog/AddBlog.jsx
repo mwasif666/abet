@@ -1,13 +1,13 @@
-import axios from "axios";
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { EditorContent, useEditor } from "@tiptap/react";
+import { Container, Card, Form, Button, Spinner, Modal } from "react-bootstrap";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
-import { Container, Card, Form, Button, Spinner, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
+import axios from "axios";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
@@ -24,7 +24,8 @@ const AddBlog = () => {
   const [blog, setBlog] = useState({
     title: "",
     url: "",
-    description: "",
+    short_description: "",
+    long_description: "",
     imageFile: "",
   });
 
@@ -90,7 +91,8 @@ const AddBlog = () => {
         setBlog({
           title: data.title || "",
           url: data.url || "",
-          description: data.description || "",
+          short_description: data.short_description || "",
+          long_description: data.long_description || "",
           imageFile: data.original_name || "",
         });
 
@@ -131,11 +133,11 @@ const AddBlog = () => {
     const form = event.currentTarget;
     const title = form.elements.formBasicTitle.value;
     const url = form.elements.formBasicUrl.value;
-    const description = form.elements.formShortDescription.value;
     const imageFile = form.elements.formImage.files[0];
+    const shortDescription = form.elements.formShortDescription.value;
     const longDescription = editor?.getHTML() || "";
 
-    if (!title || !url || !description || (!id && !imageFile)) {
+    if (!title || !url || !shortDescription || !longDescription || (!id && !imageFile)) {
       showErrorAlert("All required fields must be filled.");
       setSubmitting(false);
       return;
@@ -144,7 +146,7 @@ const AddBlog = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("url", url);
-    formData.append("description", description);
+    formData.append("short_description", shortDescription);
     formData.append("long_description", longDescription);
     if (imageFile) formData.append("image", imageFile);
 
@@ -173,7 +175,7 @@ const AddBlog = () => {
           },
         }
       );
-      if (response.status === 200) {
+      if (response) {
         showSuccessAlert("Blog added successfully!");
         formRef.current.reset();
         editor?.commands.clearContent();
@@ -298,7 +300,7 @@ const AddBlog = () => {
                 as="textarea"
                 rows={3}
                 placeholder="Enter a brief description"
-                defaultValue={blog.description}
+                defaultValue={blog.short_description}
                 id="formShortDescription"
                 required
               />

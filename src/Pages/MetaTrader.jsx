@@ -1,6 +1,6 @@
 import Accordion from "react-bootstrap/Accordion";
 import Accordion5 from "../Components/Accordtion5";
-import styles from "./MetaTrader.module.css";
+import styles from "../style/MetaTrader.module.css";
 
 const deviceData = [
   { image: "/webtrader.png", name: "webtrader" },

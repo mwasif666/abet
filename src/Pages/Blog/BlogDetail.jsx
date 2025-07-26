@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import styles from "./BlogDetail.module.css";
+import styles from "../../style/BlogDetail.module.css";
 import {
   FaFacebookF,
   FaTwitter,
@@ -16,7 +16,7 @@ const BlogDetail = () => {
   const [blog, setBlog] = useState({
     title: "",
     url: "",
-    description: "",
+    short_description: "",
     long_description: "",
     encoded_name: "",
     created_at: "",
@@ -34,9 +34,9 @@ const BlogDetail = () => {
         setBlog({
           title: blogData.title || "",
           url: blogData.url || "",
-          description: blogData.description || "",
+          short_description: blogData.short_description || "",
           long_description:
-            blogData.long_description || blogData.description || "",
+            blogData.long_description || blogData.short_description || "",
           encoded_name: blogData.encoded_name || "",
           created_at: blogData.created_at || "",
         });
@@ -83,8 +83,10 @@ const BlogDetail = () => {
 
         <div
           className={styles.blogExcerpt}
-          dangerouslySetInnerHTML={{ __html: blog.description }}
-        />
+         
+        >
+          {blog.short_description}
+      </div>
       </div>
 
       {/* Author Info */}
