@@ -14,9 +14,10 @@ const BlogSection = () => {
       let response = await axios.get(
         "https://api.leosagitrades.com/public/blogs_list"
       );
-      setBlog(response.data.data);
+      setBlog(response.data.data || []);
     } catch (error) {
       console.error("Error fetching blog data:", error);
+      setBlog([]);
     } finally {
       setLoading(false);
     }
@@ -28,6 +29,14 @@ const BlogSection = () => {
 
   const handleBlogRedirect = (id) => {
     navigate(`/blog-details/${id}`);
+  };
+
+  const truncateDescription = (description) => {
+    if (!description) return "";
+    const strippedDescription = description.replace(/<[^>]*>/g, "");
+    return strippedDescription.length > 200
+      ? strippedDescription.slice(0, 200) + "..."
+      : strippedDescription;
   };
 
   return (
@@ -53,7 +62,7 @@ const BlogSection = () => {
               <h4>Loading...</h4>
             </div>
           ) : blog.length > 0 ? (
-            blog?.map((post) => (
+            blog.map((post) => (
               <div
                 key={post.id}
                 className="col-lg-4 col-md-6 mb-4"
@@ -77,14 +86,15 @@ const BlogSection = () => {
                             : styles.blogCategory
                         }`}
                       >
-                        {post.category}
+                        {post.category || "Blog"}
                       </span>
-                      <h4 className={styles.blogTitle}>{post.title}</h4>
-
+                      <h4 className={styles.blogTitle}>
+                        {post.title || "Untitled Blog"}
+                      </h4>
                       <p
                         className={styles.blogExcerpt}
                         dangerouslySetInnerHTML={{
-                          __html: post.description.slice(0, 200) + "...",
+                          __html: truncateDescription(post.description),
                         }}
                       ></p>
                     </div>

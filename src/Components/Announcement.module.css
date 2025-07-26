@@ -1,61 +1,88 @@
 .tickerContainer {
-  border-bottom: 1px solid #dee2e6;
+  background-color: transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .tickerHeader {
   background-color: transparent;
   color: var(--main-color);
-  padding: 0.5rem 1rem;
-  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 4px;
+  margin-right: 15px;
 }
 
 .tickerTitle {
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 14px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .tickerMarqueeContainer {
   overflow: hidden;
   white-space: nowrap;
-  position: relative;
+  padding: 8px 0;
 }
 
 .tickerMarquee {
-  display: inline-flex;
+  display: inline-block;
   white-space: nowrap;
-  animation: marquee 300s linear infinite;
-  will-change: transform;
-  padding-left: 20vh;
+  animation: scroll 60s linear infinite;
 }
 
 .tickerItem {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 2rem;
+  display: inline-block;
+  margin-right: 30px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tickerItem:hover {
+  color: var(--main-color);
 }
 
 .tickerPostTitle {
   font-weight: 500;
-  margin-right: 0.5rem;
+  margin-right: 8px;
 }
 
 .tickerPostDate {
   color: #6c757d;
-  font-size: 0.9rem;
-  margin-right: 1rem;
+  font-size: 0.85em;
+  margin-right: 8px;
 }
 
 .itemSeparator {
-  color: #6c757d;
-  font-weight: bold;
+  color: #dee2e6;
+  margin-left: 8px;
 }
 
-@keyframes marquee {
+@keyframes scroll {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .tickerHeader {
+    margin-right: 10px;
+    padding: 6px 10px;
+  }
+
+  .tickerTitle {
+    font-size: 12px;
+  }
+
+  .tickerItem {
+    margin-right: 20px;
+  }
+
+  .tickerMarquee {
+    animation: scroll 40s linear infinite;
   }
 }

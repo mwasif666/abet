@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./Announcement.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ const AnnouncementsMarquee = () => {
   const navigate = useNavigate();
   const [blog, setBlog] = useState([]);
   const [loading, setLoading] = useState(true);
+  const marqueeRef = useRef(null);
 
   useEffect(() => {
     fetchBlog();
@@ -31,15 +32,27 @@ const AnnouncementsMarquee = () => {
     navigate(`/blog-details/${id}`);
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   if (loading) {
     return <div className="text-center">Loading...</div>;
   }
 
-  const announcements = blog.length > 0
-    ? blog
-    : [{ title: "No Announcement found", date: "", id: null }];
+  const announcements =
+    blog.length > 0
+      ? blog
+      : [{ title: "No Announcements found", date: "", id: null }];
 
-  const duplicatedAnnouncements = new Array(10).fill(announcements).flat();
+  // Duplicate announcements to create seamless loop
+  const duplicatedAnnouncements = [
+    ...announcements,
+    ...announcements,
+    ...announcements,
+  ];
 
   return (
     <div className={`${styles.tickerContainer} container py-2`}>
@@ -48,10 +61,10 @@ const AnnouncementsMarquee = () => {
           <span className={styles.tickerTitle}>Announcements</span>
         </div>
         <div className={`${styles.tickerMarqueeContainer} col`}>
-          <div className={styles.tickerMarquee}>
+          <div className={styles.tickerMarquee} ref={marqueeRef}>
             {duplicatedAnnouncements.map((announcement, index) => (
               <div
-                key={index}
+                key={`${announcement.id || "empty"}-${index}`}
                 className={styles.tickerItem}
                 onClick={() => handleBlogRedirect(announcement.id)}
               >
@@ -60,7 +73,7 @@ const AnnouncementsMarquee = () => {
                 </span>
                 {announcement.date && (
                   <span className={styles.tickerPostDate}>
-                    {announcement.date}
+                    {formatDate(announcement.date)}
                   </span>
                 )}
                 <span className={styles.itemSeparator}>•</span>
