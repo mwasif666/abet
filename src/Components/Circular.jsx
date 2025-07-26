@@ -1,7 +1,7 @@
-// CircularAnimation.js
 import React from "react";
-import styles from "./CircularAnimation.module.css";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import styles from "./CircularAnimation.module.css";
 
 const CircularAnimation = () => {
   const points = [
@@ -14,14 +14,35 @@ const CircularAnimation = () => {
     { id: 7, line1: "LEVERAGED", line2: "TRANSACTIONS" },
     { id: 8, line1: "STATE OF THE ART", line2: "TECHNOLOGY" },
   ];
+
   const handleClick = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+
+  // Simple fade and slide up animation
+  const fadeUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      className={styles.wrapper}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={fadeUp}
+    >
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
@@ -103,7 +124,7 @@ const CircularAnimation = () => {
               <p>
                 We stand out in the capital markets because of our
                 state-of-the-art technology infrastructure. Our goal is to
-                provide innovative solutions that meet the demands of today’s
+                provide innovative solutions that meet the demands of today's
                 investors.
                 <br />
                 Our clients have easy access to real-time financial data, market
@@ -122,7 +143,7 @@ const CircularAnimation = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

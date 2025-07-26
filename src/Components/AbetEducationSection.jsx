@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   FaBookOpen,
   FaBook,
@@ -37,10 +38,110 @@ const AbetEducationSection = () => {
     },
   ];
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const itemLeft = {
+    hidden: {
+      x: -100,
+      opacity: 0,
+      scale: 0.9,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 15,
+        duration: 0.8,
+      },
+    },
+    hover: {
+      y: -10,
+      scale: 1.05,
+      boxShadow: "0 15px 30px rgba(0,0,0,0.12)",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 15,
+      },
+    },
+  };
+
+  const itemRight = {
+    hidden: {
+      x: 100,
+      opacity: 0,
+      scale: 0.9,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 15,
+        duration: 0.8,
+      },
+    },
+    hover: {
+      y: -10,
+      scale: 1.05,
+      boxShadow: "0 15px 30px rgba(0,0,0,0.12)",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 15,
+      },
+    },
+  };
+
+  const icon = {
+    hover: {
+      rotate: [0, 10, -5, 0],
+      scale: 1.2,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  };
+
+  const header = {
+    hidden: { y: -50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+        duration: 0.8,
+      },
+    },
+  };
+
   return (
-    <section className={styles.educationSection}>
+    <motion.section
+      className={styles.educationSection}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={container}
+    >
       <div className="container">
-        <div className={styles.header}>
+        <motion.div className={styles.header} variants={header}>
           <h2 className={styles.mainTitle}>ABET Global Education</h2>
           <div className={styles.description}>
             <p>Comprehensive Financial Education and Training Resources</p>
@@ -50,35 +151,42 @@ const AbetEducationSection = () => {
               videos.
             </p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={`row row-cols-lg-5 row-cols-2 ${styles.educationGrid}`}>
+        <motion.div
+          className={`row row-cols-lg-5 row-cols-2 ${styles.educationGrid}`}
+          variants={container}
+        >
           {educationItems.map((item, index) => (
-            <div key={index} className={`col ${styles.educationItem}`}>
-              <div className={styles.iconWrapper}>{item.icon}</div>
+            <motion.div
+              key={index}
+              className={`col ${styles.educationItem}`}
+              variants={index % 2 === 0 ? itemLeft : itemRight}
+              whileHover="hover"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <motion.div
+                className={styles.iconWrapper}
+                variants={icon}
+                whileHover="hover"
+              >
+                {item.icon}
+              </motion.div>
               <h3 className={styles.itemTitle}>
-                {item.link ? (
-                  <a className={styles.itemLink}>
-                    {item.title.split(" ").map((word, i) => (
-                      <React.Fragment key={i}>{word}</React.Fragment>
-                    ))}
-                  </a>
-                ) : (
-                  <>
-                    {item.title.split(" ").map((word, i) => (
-                      <React.Fragment key={i}>
-                        {word}
-                        <br />
-                      </React.Fragment>
-                    ))}
-                  </>
-                )}
+                {item.title.split(" ").map((word, i) => (
+                  <React.Fragment key={i}>
+                    {word}
+                    <br />
+                  </React.Fragment>
+                ))}
               </h3>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

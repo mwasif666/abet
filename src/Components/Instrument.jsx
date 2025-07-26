@@ -1,5 +1,5 @@
-// InstrumentsSection.jsx
 import React from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styles from "./Instrument.module.css";
 
@@ -44,6 +44,46 @@ const InstrumentsSection = () => {
     },
   ];
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+    hover: {
+      y: -5,
+      transition: { duration: 0.2 },
+    },
+  };
+
+  const section = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
   // Function to handle click and scroll to top
   const handleClick = () => {
     window.scrollTo({
@@ -53,37 +93,71 @@ const InstrumentsSection = () => {
   };
 
   return (
-    <section className={`${styles.instruments} py-5`}>
+    <motion.section
+      className={`${styles.instruments} py-5`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={section}
+    >
       <div className="container">
-        <div className="text-center mb-5">
-          <h2 className={styles.sectionTitle}>Instruments</h2>
-          <p className={styles.sectionDescription}>
+        <motion.div
+          className="text-center mb-5"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.h2 className={styles.sectionTitle} variants={item}>
+            Instruments
+          </motion.h2>
+          <motion.p className={styles.sectionDescription} variants={item}>
             Worldwide Markets, Your Trading Playground! Gain access to a
             multitude of markets to find your next trade.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="row g-4 d-flex justify-content-center">
+        <motion.div
+          className="row g-4 d-flex justify-content-center"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {instruments.map((instrument, index) => (
-            <div key={index} className="col-md-4 col-sm-6">
+            <motion.div
+              key={index}
+              className="col-md-4 col-sm-6"
+              variants={item}
+              whileHover="hover"
+            >
               <Link
                 to={instrument.path}
                 className="text-decoration-none"
                 onClick={handleClick}
               >
-                <div className={`${styles.instrumentCard} h-100 p-4`}>
-                  <div className={styles.instrumentIcon}>{instrument.icon}</div>
+                <motion.div
+                  className={`${styles.instrumentCard} h-100 p-4`}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <motion.div
+                    className={styles.instrumentIcon}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    {instrument.icon}
+                  </motion.div>
                   <h4 className={styles.instrumentTitle}>{instrument.title}</h4>
                   <p className={styles.instrumentDescription}>
                     {instrument.description}
                   </p>
-                </div>
+                </motion.div>
               </Link>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

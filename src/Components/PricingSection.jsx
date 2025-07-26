@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
 import styles from "./PricingSection.module.css";
 import { Link } from "react-router-dom";
@@ -103,16 +104,65 @@ const PackagesTable = () => {
     },
   ];
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const title = {
+    hidden: { y: -20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <div className={styles.packagesContainer}>
-      <div className={`container py-5 ${styles.container}`}>
-        <h2 className={`text-center mb-5 ${styles.mainHeading}`}>
+      <motion.div
+        className={`container py-5 ${styles.container}`}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={container}
+      >
+        <motion.h2
+          className={`text-center mb-5 ${styles.mainHeading}`}
+          variants={title}
+        >
           Account Choice, Your Trading Power!
-        </h2>
+        </motion.h2>
 
-        <div className="row">
+        <motion.div className="row" variants={container}>
           {packages.map((pkg, index) => (
-            <div key={index} className="col-lg-3 col-md-6 mb-4">
+            <motion.div
+              key={index}
+              className="col-lg-3 col-md-6 mb-4"
+              variants={item}
+            >
               <div
                 className={`${styles.packageCard} ${
                   pkg.highlight ? styles.highlight : ""
@@ -144,10 +194,10 @@ const PackagesTable = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

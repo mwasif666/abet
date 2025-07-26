@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styles from "./BenefitsSection.module.css";
 
 // SVG Icons for Deposit, Withdrawal, and Instruments
@@ -193,36 +194,100 @@ const BenefitsHome = () => {
     },
   ];
 
-  return (
-    <section className={`${styles.benefits} py-5`}>
-      <div className="container">
-        <div className="text-center mb-5">
-          <h2 className={styles.sectionTitle}>Benefits</h2>
-          <h3 className={styles.sectionSubtitle}>
-            Unbeatable Trading Features at Your Fingertips
-          </h3>
-          <p className={styles.sectionDescription}>
-            Taking control of your orders, risk management, and market trend
-            analysis is all made possible by our user-friendly interface. You
-            can easily take charge of your trades
-          </p>
-        </div>
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
-        <div className="row row-cols-lg-6 row-cols-2 g-4">
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const sectionVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <motion.section
+      className={`${styles.benefits} py-5`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={sectionVariants}
+    >
+      <div className="container">
+        <motion.div
+          className="text-center mb-5"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.h2 className={styles.sectionTitle} variants={itemVariants}>
+            Benefits
+          </motion.h2>
+          <motion.h3 className={styles.sectionSubtitle} variants={itemVariants}>
+            Unbeatable Trading Features at Your Fingertips
+          </motion.h3>
+          <motion.p
+            className={styles.sectionDescription}
+            variants={itemVariants}
+          >
+            Taking control of your orders, risk management, and market trend
+            analysis is all made possible by our user-friendly interface.
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          className="row row-cols-lg-6 row-cols-2 g-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {benefits.map((benefit, index) => (
-            <div key={index} className="col p-0">
+            <motion.div key={index} className="col p-0" variants={itemVariants}>
               <div className={`${styles.benefitCard} h-100 py-3`}>
-                <div className={styles.benefitIcon}>{benefit.icon}</div>
+                <motion.div
+                  className={styles.benefitIcon}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  {benefit.icon}
+                </motion.div>
                 <h4 className={styles.benefitTitle}>{benefit.title}</h4>
                 <p className={styles.benefitDescription}>
                   {benefit.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
