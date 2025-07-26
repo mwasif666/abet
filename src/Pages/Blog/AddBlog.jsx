@@ -152,7 +152,7 @@ const AddBlog = () => {
 
     try {
       if (id) {
-        formData.append("id", id);
+        formData.append("blog_id", id);
         await updateBlog(formData);
       } else {
         await addBlog(formData);
@@ -181,7 +181,7 @@ const AddBlog = () => {
         editor?.commands.clearContent();
       }
     } catch (error) {
-      showErrorAlert("Failed to add blog. Please try again.");
+      showErrorAlert(error?.response?.data?.errors?.url ||  "Failed to add blog. Please try again.");
       throw error;
     }
   };
