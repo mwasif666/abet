@@ -1,7 +1,8 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { FaLaptop } from "react-icons/fa";
-import styles from "./PlatformsSection.module.css";
 import { Link } from "react-router-dom";
+import styles from "./PlatformsSection.module.css";
 
 const PlatformsSection = () => {
   const handleClick = () => {
@@ -10,25 +11,85 @@ const PlatformsSection = () => {
       behavior: "smooth",
     });
   };
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const contentVariants = {
+    hidden: { x: -50, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { x: 50, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: 0.4,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.2 },
+    },
+  };
+
   return (
-    <div className={`container ${styles.platformsContainer}`}>
+    <motion.div
+      className={`container ${styles.platformsContainer}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+    >
       <div className="row">
         {/* Left Column - Content */}
-        <div className="col-lg-6 col-md-12">
+        <motion.div className="col-lg-6 col-md-12" variants={contentVariants}>
           <div className={styles.contentWrapper}>
-            <h2 className={styles.mainHeading}>
+            <motion.h2 className={styles.mainHeading}>
               Experience Superior Trading Platforms with Advanced Technology
-            </h2>
+            </motion.h2>
 
-            <p className={styles.description}>
+            <motion.p className={styles.description}>
               Explore our trading platforms designed with cutting-edge
               technology, ensuring secure management of your investments in
               Forex, Stocks, Metals & Commodities and Indices markets. Enjoy
               ease of use and enhanced functionality for a seamless trading
               experience.
-            </p>
+            </motion.p>
 
-            <h2 className={styles.subHeading}>MetaTrader 5</h2>
+            <motion.h2 className={styles.subHeading}>MetaTrader 5</motion.h2>
 
             {/* Desktop Button */}
             <div className={`d-none d-md-block ${styles.buttonWrapper}`}>
@@ -37,27 +98,33 @@ const PlatformsSection = () => {
                 onClick={handleClick}
                 className={`btn ${styles.platformButton}`}
               >
-                <span className={styles.buttonContent}>
+                <motion.span
+                  className={styles.buttonContent}
+                  variants={buttonVariants}
+                  whileHover="hover"
+                >
                   <FaLaptop className={styles.buttonIcon} />
                   <span>View Our Platforms</span>
-                </span>
+                </motion.span>
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column - Image */}
-        <div className="col-lg-6 col-md-12">
+        <motion.div className="col-lg-6 col-md-12" variants={imageVariants}>
           <div className={styles.imageWrapper}>
-            <img
+            <motion.img
               src="./computer.png"
               alt="MetaTrader 5 Platform"
               className={styles.platformImage}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

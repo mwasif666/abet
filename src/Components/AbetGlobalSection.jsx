@@ -1,7 +1,8 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
-import styles from "./AbetGlobalSection.module.css";
 import { Link } from "react-router-dom";
+import styles from "./AbetGlobalSection.module.css";
 
 const AbetGlobalSection = () => {
   const handleClick = () => {
@@ -11,38 +12,111 @@ const AbetGlobalSection = () => {
     });
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { x: -50, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const contentVariants = {
+    hidden: { x: 50, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: 0.4,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.2 },
+    },
+  };
+
   return (
-    <section className={`${styles.sectionContainer}`}>
+    <motion.section
+      className={`${styles.sectionContainer}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+    >
       <div className="container">
         <div className="row">
           {/* Left Column - Spacer */}
-          <div className="col-lg-4">
+          <motion.div className="col-lg-4" variants={imageVariants}>
             <div className={styles.spacerColumn}>
-              <img src="./phonr.png" alt="" />
+              <motion.img
+                src="./phonr.png"
+                alt=""
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              />
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column - Content */}
-          <div className="col-lg-8 col-12">
+          <motion.div className="col-lg-8 col-12" variants={contentVariants}>
             <div className={styles.contentWrapper}>
               <div className="row">
-                <div className={`col-lg-8 col-12" ${styles.contentGlobal}`}>
-                  <h2 className={styles.sectionHeading}>
+                <div className={`col-lg-8 col-12 ${styles.contentGlobal}`}>
+                  <motion.h2 className={styles.sectionHeading}>
                     Your Doorway to Excellent Diversified Trading is ABET
                     Global.
-                  </h2>
+                  </motion.h2>
 
-                  <div className={styles.spacer}></div>
+                  <motion.div
+                    className={styles.spacer}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  />
 
-                  <p className={styles.sectionDescription}>
+                  <motion.p className={styles.sectionDescription}>
                     ABET Global, is the pinnacle of trading brokerage services
                     that goes beyond traditional limits. ABET Global offers a
                     platform where sophistication and expertise combine,
                     redefining the trading experience rather than just
                     facilitating trading.
-                  </p>
+                  </motion.p>
 
-                  <div className={styles.buttonWrapper}>
+                  <motion.div
+                    className={styles.buttonWrapper}
+                    variants={buttonVariants}
+                  >
                     <Link
                       to="/AbetApp"
                       onClick={handleClick}
@@ -53,14 +127,14 @@ const AbetGlobalSection = () => {
                         <span>View More</span>
                       </span>
                     </Link>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

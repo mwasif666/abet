@@ -8,7 +8,7 @@ const HomeBanner = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContent(true);
-    }, 3000); // 3-second delay before animations start
+    }, 2000); // 3-second delay before animations start
 
     return () => clearTimeout(timer);
   }, []);
@@ -94,7 +94,7 @@ const HomeBanner = () => {
                     ? {
                         color: ["#ffffff", "#4dff4d", "#ffffff"],
                         transition: {
-                          duration: 3,
+                          duration: 1,
                           repeat: Infinity,
                           repeatType: "reverse",
                         },
