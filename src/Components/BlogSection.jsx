@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./BlogSection.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,8 @@ const BlogSection = () => {
   const navigate = useNavigate();
   const [blog, setBlog] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [visiblePosts, setVisiblePosts] = useState(6);
+  const [allPostsLoaded, setAllPostsLoaded] = useState(false);
 
   const fetchBlog = async () => {
     setLoading(true);
@@ -14,7 +16,12 @@ const BlogSection = () => {
       let response = await axios.get(
         "https://api.leosagitrades.com/public/blogs_list"
       );
-      setBlog(response.data.data || []);
+      // Sort posts by date (newest first)
+      const sortedBlogs = (response.data.data || []).sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+      setBlog(sortedBlogs);
+      setAllPostsLoaded(sortedBlogs.length <= 6);
     } catch (error) {
       console.error("Error fetching blog data:", error);
       setBlog([]);
@@ -31,12 +38,17 @@ const BlogSection = () => {
     navigate(`/blog-details/${id}`);
   };
 
-  const truncateDescription = (description) => {
-    if (!description) return "";
-    const strippedDescription = description.replace(/<[^>]*>/g, "");
-    return strippedDescription.length > 200
-      ? strippedDescription.slice(0, 200) + "..."
-      : strippedDescription;
+  const loadMorePosts = () => {
+    const newVisiblePosts = visiblePosts + 6;
+    setVisiblePosts(newVisiblePosts);
+    if (newVisiblePosts >= blog.length) {
+      setAllPostsLoaded(true);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   return (
@@ -62,7 +74,7 @@ const BlogSection = () => {
               <h4>Loading...</h4>
             </div>
           ) : blog.length > 0 ? (
-            blog.map((post) => (
+            blog.slice(0, visiblePosts).map((post) => (
               <div
                 key={post.id}
                 className="col-lg-4 col-md-6 mb-4"
@@ -79,24 +91,16 @@ const BlogSection = () => {
                       />
                     </div>
                     <div className={styles.blogContent}>
-                      <span
-                        className={`${styles.blogCategory} ${
-                          post.category === "News"
-                            ? styles.newsCategory
-                            : styles.blogCategory
-                        }`}
-                      >
-                        {post.category || "Blog"}
+                      <span className={styles.blogCategory}>
+                        {formatDate(post.created_at)}
                       </span>
                       <h4 className={styles.blogTitle}>
                         {post.title || "Untitled Blog"}
                       </h4>
-                      <p
-                        className={styles.blogExcerpt}
-                        dangerouslySetInnerHTML={{
-                          __html:post?.long_description.length > 300 ? post?.long_description?.slice(0, 300) + "..." : post?.long_description,
-                        }}
-                      ></p>
+
+                      <p className={styles.blogExcerpt}>
+                        {post.short_description || "No description available"}
+                      </p>
                     </div>
                   </a>
                 </div>
@@ -109,9 +113,16 @@ const BlogSection = () => {
           )}
         </div>
 
-        <div className="text-center mt-4">
-          <a className={`${styles.readMoreBtn} btn btn-primary`}>Read More</a>
-        </div>
+        {!loading && blog.length > 0 && !allPostsLoaded && (
+          <div className="text-center mt-4">
+            <button
+              className={`${styles.readMoreBtn} btn btn-primary`}
+              onClick={loadMorePosts}
+            >
+              Read More
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

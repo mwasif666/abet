@@ -11,6 +11,10 @@
 .contactInfo {
   display: flex;
   align-items: center;
+  color: white !important;
+}
+.contactInfo a {
+  color: white !important;
 }
 
 .contactIcon {

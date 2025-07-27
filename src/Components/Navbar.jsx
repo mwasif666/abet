@@ -12,6 +12,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { FiSearch, FiPhone, FiChevronLeft } from "react-icons/fi";
 import Logo from "../assets/logo.png";
+import LogoWhite from "../assets/logowhite.png";
 import { IoLogoWindows } from "react-icons/io5";
 import { MdOutlineDesktopMac } from "react-icons/md";
 
@@ -266,9 +267,20 @@ const CustomNavbar = () => {
         <Container className="d-flex justify-content-between align-items-center">
           <div className={styles.contactInfo}>
             <span className="me-3">
-              <FiPhone className={styles.contactIcon} /> +447548718055
+              <a
+                href="https://wa.me/447548718055"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.phoneLink}
+              >
+                <FiPhone className={styles.contactIcon} /> +447548718055
+              </a>
             </span>
-            <span>24/5 LIVE SUPPORT</span>
+            <span>
+              <Link to="/contact" className={styles.contactLink}>
+                Contact Us 24/5
+              </Link>
+            </span>
           </div>
           <div className={styles.topLinks}>
             <Link to="/transfers" className={styles.topLink}>
@@ -315,7 +327,7 @@ const CustomNavbar = () => {
                 id="offcanvasNavbarLabel"
                 className={styles.offcanvasTitle}
               >
-                <img src="./logowhite.png" alt="ABET Global" />
+                <img src={LogoWhite} alt="ABET Global" />
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
@@ -447,7 +459,7 @@ const CustomNavbar = () => {
               <div className="col-md-3">
                 <div className={styles.megaMenuColumn}>
                   <img
-                    src="https://abet.leosagitrades.com/wp-content/uploads/2024/06/Logo-Icons-Black-250x90-1.png"
+                    src={Logo}
                     alt="ABET Global"
                     className={styles.megaMenuLogo}
                   />

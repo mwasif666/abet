@@ -19,7 +19,11 @@ const AnnouncementsMarquee = () => {
       const response = await axios.get(
         "https://api.leosagitrades.com/public/blogs_list"
       );
-      setBlog(response.data.data || []);
+      // Sort by created_at date (newest first)
+      const sortedBlogs = (response.data.data || []).sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+      setBlog(sortedBlogs);
     } catch (error) {
       console.error("Error fetching blog data:", error);
     } finally {
@@ -39,26 +43,22 @@ const AnnouncementsMarquee = () => {
   };
 
   if (loading) {
-    return <div className="text-center">Loading...</div>;
+    return <div className="text-center">Loading announcements...</div>;
   }
 
   const announcements =
     blog.length > 0
       ? blog
-      : [{ title: "No Announcements found", date: "", id: null }];
+      : [{ title: "No announcements found", created_at: "", id: null }];
 
   // Duplicate announcements to create seamless loop
-  const duplicatedAnnouncements = [
-    ...announcements,
-    ...announcements,
-    ...announcements,
-  ];
+  const duplicatedAnnouncements = [...announcements, ...announcements];
 
   return (
     <div className={`${styles.tickerContainer} container py-2`}>
       <div className="row align-items-center">
         <div className={`${styles.tickerHeader} col-auto`}>
-          <span className={styles.tickerTitle}>Announcements</span>
+          <span className={styles.tickerTitle}>ANNOUNCEMENTS</span>
         </div>
         <div className={`${styles.tickerMarqueeContainer} col`}>
           <div className={styles.tickerMarquee} ref={marqueeRef}>
@@ -71,9 +71,9 @@ const AnnouncementsMarquee = () => {
                 <span className={styles.tickerPostTitle}>
                   {announcement.title}
                 </span>
-                {announcement.date && (
+                {announcement.created_at && (
                   <span className={styles.tickerPostDate}>
-                    {formatDate(announcement.date)}
+                    {formatDate(announcement.created_at)}
                   </span>
                 )}
                 <span className={styles.itemSeparator}>•</span>

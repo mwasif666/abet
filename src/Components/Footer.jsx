@@ -273,9 +273,7 @@ const Footer = () => {
                   Legal Documents
                 </Link>
               </li>
-              <li>
-                <a href="https://abet.leosagitrades.com/blogs">Blogs</a>
-              </li>
+
               <li>
                 <Link onClick={handleClick} to="/risk">
                   Risk Disclosure
