@@ -40,6 +40,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import LegalDocuments from "./Pages/LegalDocuments";
 import RiskDisclosure from "./Components/Risk";
 import BlogDetail from "./Pages/Blog/BlogDetail";
+import BecomePartner from "./Pages/BecomePartner";
 
 const Preloader = () => {
   return (
@@ -117,6 +118,7 @@ const AppWrapper = () => {
           <Route path="/legal-documents" element={<LegalDocuments />} />
           <Route path="/risk" element={<RiskDisclosure />} />
           <Route path="/blog-details/:id" element={<BlogDetail />} />
+          <Route path="/partner" element={<BecomePartner />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

@@ -25,9 +25,9 @@ const AbetGlobalSection = () => {
   };
 
   const imageVariants = {
-    hidden: { x: -50, opacity: 0 },
+    hidden: { y: -50, opacity: 0 },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.8,
@@ -37,9 +37,9 @@ const AbetGlobalSection = () => {
   };
 
   const contentVariants = {
-    hidden: { x: 50, opacity: 0 },
+    hidden: { y: -50, opacity: 0 },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.8,

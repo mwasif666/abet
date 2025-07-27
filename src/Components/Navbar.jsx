@@ -441,6 +441,9 @@ const CustomNavbar = () => {
                 >
                   Refer a Friend
                 </Nav.Link>
+                <Nav.Link as={NavLink} to="/partner" className={styles.navLink}>
+                  Become a Partner
+                </Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

@@ -9,6 +9,8 @@ import {
 } from "react-icons/fa";
 import Logo from "../assets/logowhite.png";
 import { Link } from "react-router-dom";
+import Play from "../assets/play.png";
+import App from "../assets/app.png";
 
 const Footer = () => {
   const handleClick = () => {
@@ -109,17 +111,13 @@ const Footer = () => {
                 <div className={styles.appButtons}>
                   <a href="#">
                     <img
-                      src="https://abet.leosagitrades.com/wp-content/uploads/2024/06/Download-Buttons-06.png"
+                      src={Play}
                       alt="Download App"
                       className="img-fluid mb-2"
                     />
                   </a>
                   <a href="#">
-                    <img
-                      src="https://abet.leosagitrades.com/wp-content/uploads/2024/06/Download-Buttons-05.png"
-                      alt="Download App"
-                      className="img-fluid"
-                    />
+                    <img src={App} alt="Download App" className="img-fluid" />
                   </a>
                 </div>
               </div>
