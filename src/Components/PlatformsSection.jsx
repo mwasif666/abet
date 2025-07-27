@@ -25,9 +25,9 @@ const PlatformsSection = () => {
   };
 
   const contentVariants = {
-    hidden: { x: -50, opacity: 0 },
+    hidden: { y: -50, opacity: 0 },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.8,
@@ -37,13 +37,14 @@ const PlatformsSection = () => {
   };
 
   const imageVariants = {
-    hidden: { x: 50, opacity: 0 },
+    hidden: { y: -50, opacity: 0 },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.8,
         ease: "easeOut",
+        delay: 0.2, // slight delay for the image
       },
     },
   };
