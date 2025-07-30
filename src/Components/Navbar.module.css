@@ -352,10 +352,11 @@
     margin-left: 0;
     margin-top: 10px;
     width: 50%;
+    justify-content: end;
   }
   .searchInput {
-    max-width: 150px !important;
-    width: 150px !important;
+    max-width: auto;
+    width: 120px;
   }
 }
 /* Mobile Mega Menu Styles */

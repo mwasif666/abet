@@ -42,9 +42,25 @@
   }
   .reverse {
     text-align: center;
-    height: 70vh !important;
+    height: 100% !important;
+  }
+  .contant_banner a {
+    font-size: 1rem;
+    margin-bottom: 20px;
   }
 }
+/* @media all and (min-width: px) and (max-width: 991px) {
+  .contant_banner h1 {
+    font-size: 2rem;
+  }
+  .contant_banner h4 {
+    font-size: 1.4rem;
+  }
+  .reverse {
+    text-align: center;
+    height: 70vh !important;
+  }
+} */
 @media all and (min-width: 992px) and (max-width: 1200px) {
   .contant_banner h1 {
     font-size: 2.5rem;
