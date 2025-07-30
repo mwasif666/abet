@@ -43,38 +43,36 @@ const Prime = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className={`mx-auto ${styles.navMenu}`}>
                     <NavLink
-                      to="/account-types/micro"
+                      to="/micro"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/micro") ? styles.active : ""
+                        isActive("/micro") ? styles.active : ""
                       }`}
                     >
                       Micro
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/raw-spread"
+                      to="/raw-spread"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/raw-spread")
-                          ? styles.active
-                          : ""
+                        isActive("/raw-spread") ? styles.active : ""
                       }`}
                     >
                       Raw Spread
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/standard"
+                      to="/standard"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/standard") ? styles.active : ""
+                        isActive("/standard") ? styles.active : ""
                       }`}
                     >
                       Standard
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/prime/"
+                      to="/prime/"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/prime/") ? styles.active : ""
+                        isActive("/prime/") ? styles.active : ""
                       }`}
                     >
                       Prime

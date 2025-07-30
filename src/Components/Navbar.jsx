@@ -57,22 +57,22 @@ const CustomNavbar = () => {
             <h3 className={styles.mobileMegaMenuTitle}>Account Type</h3>
             <ul className={styles.mobileMegaMenuList}>
               <li>
-                <Link to="/account-types/micro" onClick={handleClose}>
+                <Link to="/micro" onClick={handleClose}>
                   Micro
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/raw-spread" onClick={handleClose}>
+                <Link to="/raw-spread" onClick={handleClose}>
                   Raw Spread
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/standard" onClick={handleClose}>
+                <Link to="/standard" onClick={handleClose}>
                   Standard
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/prime" onClick={handleClose}>
+                <Link to="/prime" onClick={handleClose}>
                   Prime
                 </Link>
               </li>
@@ -82,27 +82,27 @@ const CustomNavbar = () => {
             <h3 className={styles.mobileMegaMenuTitle}>Instruments</h3>
             <ul className={styles.mobileMegaMenuList}>
               <li>
-                <Link to="/account-types/forex" onClick={handleClose}>
+                <Link to="/forex" onClick={handleClose}>
                   Forex
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/indices" onClick={handleClose}>
+                <Link to="/indices" onClick={handleClose}>
                   Indices
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/energies" onClick={handleClose}>
+                <Link to="/energies" onClick={handleClose}>
                   Energies
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/metals" onClick={handleClose}>
+                <Link to="/metals" onClick={handleClose}>
                   Metals
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/cryptocurrency" onClick={handleClose}>
+                <Link to="/cryptocurrency" onClick={handleClose}>
                   Cryptocurrency
                 </Link>
               </li>
@@ -112,20 +112,17 @@ const CustomNavbar = () => {
             <h3 className={styles.mobileMegaMenuTitle}>Trading Conditions</h3>
             <ul className={styles.mobileMegaMenuList}>
               <li>
-                <Link
-                  to="/account-types/execution-policy"
-                  onClick={handleClose}
-                >
+                <Link to="/execution-policy" onClick={handleClose}>
                   Execution Policy
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/spreads" onClick={handleClose}>
+                <Link to="/spreads" onClick={handleClose}>
                   Spreads
                 </Link>
               </li>
               <li>
-                <Link to="/account-types/margin-leverage" onClick={handleClose}>
+                <Link to="/margin-leverage" onClick={handleClose}>
                   Margin & Leverage
                 </Link>
               </li>
@@ -197,10 +194,7 @@ const CustomNavbar = () => {
                   className={styles.images_megamenu}
                   alt=""
                 />
-                <Link
-                  to="/account-types/execution-policy"
-                  onClick={handleClose}
-                >
+                <Link to="/execution-policy" onClick={handleClose}>
                   MT5 for IPad
                 </Link>
               </li>
@@ -210,7 +204,7 @@ const CustomNavbar = () => {
                   className={styles.images_megamenu}
                   alt=""
                 />
-                <Link to="/account-types/spreads" onClick={handleClose}>
+                <Link to="/spreads" onClick={handleClose}>
                   MT5 for Android
                 </Link>
               </li>
@@ -495,28 +489,22 @@ const CustomNavbar = () => {
                   </h3>
                   <ul className={styles.megaMenuList}>
                     <li>
-                      <Link to="/account-types/micro" onClick={closeMegaMenu}>
+                      <Link to="/micro" onClick={closeMegaMenu}>
                         Micro
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to="/account-types/raw-spread"
-                        onClick={closeMegaMenu}
-                      >
+                      <Link to="/raw-spread" onClick={closeMegaMenu}>
                         Raw Spread
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to="/account-types/standard"
-                        onClick={closeMegaMenu}
-                      >
+                      <Link to="/standard" onClick={closeMegaMenu}>
                         Standard
                       </Link>
                     </li>
                     <li>
-                      <Link to="/account-types/prime" onClick={closeMegaMenu}>
+                      <Link to="/prime" onClick={closeMegaMenu}>
                         Prime
                       </Link>
                     </li>
@@ -528,33 +516,27 @@ const CustomNavbar = () => {
                   <h3 className={styles.megaMenuTitle}>Instruments</h3>
                   <ul className={styles.megaMenuList}>
                     <li>
-                      <Link to="/account-types/forex" onClick={closeMegaMenu}>
+                      <Link to="/forex" onClick={closeMegaMenu}>
                         Forex
                       </Link>
                     </li>
                     <li>
-                      <Link to="/account-types/indices" onClick={closeMegaMenu}>
+                      <Link to="/indices" onClick={closeMegaMenu}>
                         Indices
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to="/account-types/energies"
-                        onClick={closeMegaMenu}
-                      >
+                      <Link to="/energies" onClick={closeMegaMenu}>
                         Energies
                       </Link>
                     </li>
                     <li>
-                      <Link to="/account-types/metals" onClick={closeMegaMenu}>
+                      <Link to="/metals" onClick={closeMegaMenu}>
                         Metals
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to="/account-types/cryptocurrency"
-                        onClick={closeMegaMenu}
-                      >
+                      <Link to="/cryptocurrency" onClick={closeMegaMenu}>
                         Cryptocurrency
                       </Link>
                     </li>
@@ -566,23 +548,17 @@ const CustomNavbar = () => {
                   <h3 className={styles.megaMenuTitle}>Trading Conditions</h3>
                   <ul className={styles.megaMenuList}>
                     <li>
-                      <Link
-                        to="/account-types/execution-policy"
-                        onClick={closeMegaMenu}
-                      >
+                      <Link to="/execution-policy" onClick={closeMegaMenu}>
                         Execution Policy
                       </Link>
                     </li>
                     <li>
-                      <Link to="/account-types/spreads" onClick={closeMegaMenu}>
+                      <Link to="/spreads" onClick={closeMegaMenu}>
                         Spreads
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to="/account-types/margin-leverage"
-                        onClick={closeMegaMenu}
-                      >
+                      <Link to="/margin-leverage" onClick={closeMegaMenu}>
                         Margin & Leverage
                       </Link>
                     </li>
@@ -693,10 +669,7 @@ const CustomNavbar = () => {
                         className={styles.images_megamenu}
                         alt=""
                       />
-                      <Link
-                        to="/account-types/execution-policy"
-                        onClick={closeMegaMenu}
-                      >
+                      <Link to="/execution-policy" onClick={closeMegaMenu}>
                         MT5 for IPad
                       </Link>
                     </li>
@@ -706,7 +679,7 @@ const CustomNavbar = () => {
                         className={styles.images_megamenu}
                         alt=""
                       />
-                      <Link to="/account-types/spreads" onClick={closeMegaMenu}>
+                      <Link to="/spreads" onClick={closeMegaMenu}>
                         MT5 for Android
                       </Link>
                     </li>

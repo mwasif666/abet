@@ -35,31 +35,27 @@ const Spreads = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className={`mx-auto ${styles.navMenu}`}>
                     <NavLink
-                      to="/account-types/execution-policy"
+                      to="/execution-policy"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/execution-policy")
-                          ? styles.active
-                          : ""
+                        isActive("/execution-policy") ? styles.active : ""
                       }`}
                     >
                       Execution Policy
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/spreads"
+                      to="/spreads"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/spreads") ? styles.active : ""
+                        isActive("/spreads") ? styles.active : ""
                       }`}
                     >
                       Spreads
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/margin-leverage"
+                      to="/margin-leverage"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/margin-leverage")
-                          ? styles.active
-                          : ""
+                        isActive("/margin-leverage") ? styles.active : ""
                       }`}
                     >
                       Margin & Leverage
@@ -180,44 +176,32 @@ const Spreads = () => {
               <p className="d-flex flex-column gap-2">
                 <span>
                   To view Abet Spreads / Conditions for Forex
-                  <Link
-                    to="/account-types/forex"
-                    className="ms-2 text-decoration-none"
-                  >
+                  <Link to="/forex" className="ms-2 text-decoration-none">
                     Click Here <FaArrowRight className="ms-1" />
                   </Link>
                 </span>
                 <span>
                   To view Abet Spreads / Conditions for Indices
-                  <Link
-                    to="/account-types/indices"
-                    className="ms-2 text-decoration-none"
-                  >
+                  <Link to="/indices" className="ms-2 text-decoration-none">
                     Click Here <FaArrowRight className="ms-1" />
                   </Link>
                 </span>
                 <span>
                   To view Abet Spreads / Conditions for Energies
-                  <Link
-                    to="/account-types/energies"
-                    className="ms-2 text-decoration-none"
-                  >
+                  <Link to="/energies" className="ms-2 text-decoration-none">
                     Click Here <FaArrowRight className="ms-1" />
                   </Link>
                 </span>
                 <span>
                   To view Abet Spreads / Conditions for Metals
-                  <Link
-                    to="/account-types/metals"
-                    className="ms-2 text-decoration-none"
-                  >
+                  <Link to="/metals" className="ms-2 text-decoration-none">
                     Click Here <FaArrowRight className="ms-1" />
                   </Link>
                 </span>
                 <span>
                   To view Abet Spreads / Conditions for Cryptocurrency
                   <Link
-                    to="/account-types/cryptocurrency"
+                    to="/cryptocurrency"
                     className="ms-2 text-decoration-none"
                   >
                     Click Here <FaArrowRight className="ms-1" />

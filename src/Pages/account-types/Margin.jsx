@@ -36,31 +36,27 @@ const Margin = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className={`mx-auto ${styles.navMenu}`}>
                     <NavLink
-                      to="/account-types/execution-policy"
+                      to="/execution-policy"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/execution-policy")
-                          ? styles.active
-                          : ""
+                        isActive("/execution-policy") ? styles.active : ""
                       }`}
                     >
                       Execution Policy
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/spreads"
+                      to="/spreads"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/spreads") ? styles.active : ""
+                        isActive("/spreads") ? styles.active : ""
                       }`}
                     >
                       Spreads
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/margin-leverage"
+                      to="/margin-leverage"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/margin-leverage")
-                          ? styles.active
-                          : ""
+                        isActive("/margin-leverage") ? styles.active : ""
                       }`}
                     >
                       Margin & Leverage

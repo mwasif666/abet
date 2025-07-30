@@ -37,46 +37,44 @@ const Cryptocurrency = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className={`mx-auto ${styles.navMenu}`}>
                     <NavLink
-                      to="/account-types/forex"
+                      to="/forex"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/forex") ? styles.active : ""
+                        isActive("/forex") ? styles.active : ""
                       }`}
                     >
                       Forex
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/indices"
+                      to="/indices"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/indice") ? styles.active : ""
+                        isActive("/indice") ? styles.active : ""
                       }`}
                     >
                       Indices
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/energies"
+                      to="/energies"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/energies") ? styles.active : ""
+                        isActive("/energies") ? styles.active : ""
                       }`}
                     >
                       Energies
                     </NavLink>
 
                     <NavLink
-                      to="/account-types/metals"
+                      to="/metals"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/metals") ? styles.active : ""
+                        isActive("/metals") ? styles.active : ""
                       }`}
                     >
                       Metals
                     </NavLink>
                     <NavLink
-                      to="/account-types/cryptocurrency"
+                      to="/cryptocurrency"
                       className={`${styles.navLink} ${
-                        isActive("/account-types/cryptocurrency")
-                          ? styles.active
-                          : ""
+                        isActive("/cryptocurrency") ? styles.active : ""
                       }`}
                     >
                       Cryptocurrency

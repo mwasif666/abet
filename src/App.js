@@ -89,24 +89,18 @@ const AppWrapper = () => {
           <Route path="/about" element={<About />} />
           <Route path="/partnership" element={<Partnership />} />
           <Route path="/transfers" element={<Transfers />} />
-          <Route path="/account-types/micro" element={<Micro />} />
-          <Route path="/account-types/raw-spread" element={<RawSpread />} />
-          <Route path="/account-types/standard" element={<Standard />} />
-          <Route path="/account-types/forex" element={<Forex />} />
-          <Route path="/account-types/indices" element={<Indices />} />
-          <Route path="/account-types/energies" element={<Energies />} />
-          <Route path="/account-types/metals" element={<Metals />} />
-          <Route
-            path="/account-types/cryptocurrency"
-            element={<Cryptocurrency />}
-          />
-          <Route path="/account-types/prime" element={<Prime />} />
-          <Route
-            path="/account-types/execution-policy"
-            element={<Execution />}
-          />
-          <Route path="/account-types/spreads" element={<Spreads />} />
-          <Route path="/account-types/margin-leverage" element={<Margin />} />
+          <Route path="/micro" element={<Micro />} />
+          <Route path="/raw-spread" element={<RawSpread />} />
+          <Route path="/standard" element={<Standard />} />
+          <Route path="/forex" element={<Forex />} />
+          <Route path="/indices" element={<Indices />} />
+          <Route path="/energies" element={<Energies />} />
+          <Route path="/metals" element={<Metals />} />
+          <Route path="/cryptocurrency" element={<Cryptocurrency />} />
+          <Route path="/prime" element={<Prime />} />
+          <Route path="/execution-policy" element={<Execution />} />
+          <Route path="/spreads" element={<Spreads />} />
+          <Route path="/margin-leverage" element={<Margin />} />
           <Route path="/refer-a-friend" element={<ReferFriend />} />
           <Route path="/meta-trader-5" element={<MetaTrader />} />
           <Route path="/benefithome" element={<BenefitsHome />} />
