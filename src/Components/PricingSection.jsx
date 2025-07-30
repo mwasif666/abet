@@ -156,11 +156,14 @@ const PackagesTable = () => {
           Account Choice, Your Trading Power!
         </motion.h2>
 
-        <motion.div className="row" variants={container}>
+        <motion.div
+          className="row d-flex justify-content-center"
+          variants={container}
+        >
           {packages.map((pkg, index) => (
             <motion.div
               key={index}
-              className="col-lg-3 col-md-6 mb-4"
+              className="col-xl-3 col-lg-4 col-md-6 mb-4 "
               variants={item}
             >
               <div

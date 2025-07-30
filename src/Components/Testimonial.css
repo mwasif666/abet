@@ -2,3 +2,33 @@
   color: var(--main-color);
   font-weight: 700;
 }
+.testimonialimage {
+  width: 100%;
+}
+/* Add these styles to your Testimonial.css file */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0 !important;
+  border-radius: 100% !important;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  filter: none !important;
+}
+
+.carousel-control-prev {
+  left: -20px;
+}
+
+.carousel-control-next {
+  right: -20px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-size: 20px;
+  width: 20px;
+  height: 20px;
+}

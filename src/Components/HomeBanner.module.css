@@ -33,7 +33,7 @@
 .reverse {
   height: 450px;
 }
-@media all and (min-width: 300px) and (max-width: 768px) {
+@media all and (min-width: 300px) and (max-width: 991px) {
   .contant_banner h1 {
     font-size: 2rem;
   }
@@ -43,5 +43,20 @@
   .reverse {
     text-align: center;
     height: 100vh !important;
+  }
+}
+@media all and (min-width: 992px) and (max-width: 1200px) {
+  .contant_banner h1 {
+    font-size: 2.5rem;
+  }
+  .contant_banner h4 {
+    font-size: 1.4rem;
+  }
+  .reverse {
+    padding-top: 30px;
+  }
+  .contant_banner a {
+    font-size: 1rem;
+    margin-bottom: 20px;
   }
 }

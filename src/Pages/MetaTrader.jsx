@@ -40,7 +40,7 @@ const MetaTrader = () => {
         </div>
 
         <div className={`row ${styles.metaimagediv}`}>
-          <div className="col-lg-6 d-flex align-items-center">
+          <div className="col-xl-6 col-12 d-flex align-items-center">
             <div>
               <h2>
                 Experience Superior Trading <br /> Platforms with Advanced
@@ -55,7 +55,7 @@ const MetaTrader = () => {
               </p>
             </div>
           </div>
-          <div className="col-lg-6">
+          <div className="col-xl-6 col-12">
             <div>
               <img
                 src="/webterminal_metatrader_medium.png"
@@ -66,10 +66,10 @@ const MetaTrader = () => {
         </div>
 
         <div className="my-5">
-          <div className="row row-cols-8">
+          <div className="row row-cols-xl-8 row-cols-lg-4 row-cols-2">
             {deviceData.map((deviceData, index) => (
               <div className="col">
-                <div key={index}>
+                <div key={index} className={styles.meta_images}>
                   <img
                     src={deviceData.image}
                     alt={deviceData.name}

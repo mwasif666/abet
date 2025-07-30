@@ -418,3 +418,32 @@
     display: none !important;
   }
 }
+@media all and (min-width: 992px) and (max-width: 1200px) {
+  .navLink {
+    font-size: 12px !important;
+  }
+  .brand img,
+  .offcanvasTitle img {
+    width: 110px;
+  }
+  .megaMenu {
+    left: 5%;
+    width: 900px;
+  }
+  .megaMenuTitle {
+    font-size: 16px;
+  }
+  .megaMenuContent {
+    font-size: 12px;
+  }
+  .megaMenuLogo {
+    width: 110px;
+  }
+  .megaMenuButton {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .megaMenuList a {
+    font-size: 14px;
+  }
+}

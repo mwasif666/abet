@@ -144,3 +144,8 @@
     margin-bottom: 20px;
   }
 }
+@media all and (min-width: 769px) and (max-width: 991px) {
+  .packagesContainer .container {
+    padding: 0 !important;
+  }
+}

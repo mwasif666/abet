@@ -169,6 +169,7 @@
 @media (max-width: 767.98px) {
   .platformsContainer {
     padding: 2rem 0;
+    overflow: hidden;
   }
 
   .mainHeading {

@@ -1,6 +1,12 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import { FaQuoteLeft, FaStar, FaRegStar } from "react-icons/fa";
+import {
+  FaQuoteLeft,
+  FaStar,
+  FaRegStar,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 import {
   ZA,
   AE,
@@ -141,7 +147,12 @@ export default function Testimonial() {
       <div className="row">
         <h1 className="mb-5 text-center">Testimonial</h1>
         <div className="col-lg-6 d-flex align-items-center">
-          <Carousel indicators={false} variant="dark">
+          <Carousel
+            indicators={false}
+            variant="dark"
+            prevIcon={<FaChevronLeft className="text-dark" size={24} />}
+            nextIcon={<FaChevronRight className="text-dark" size={24} />}
+          >
             {testimonials.map((testimonial) => (
               <Carousel.Item key={testimonial.id}>
                 <div className="testimonial-box text-center p-4">
@@ -179,7 +190,11 @@ export default function Testimonial() {
           </Carousel>
         </div>
         <div className="col-lg-6 d-lg-block d-none">
-          <img src="./testimonialback.png" alt="" />
+          <img
+            src="./testimonialback.png"
+            className="testimonialimage"
+            alt=""
+          />
         </div>
       </div>
     </div>

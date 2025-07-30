@@ -483,7 +483,9 @@ const CustomNavbar = () => {
               </div>
               <div className="col-md-3">
                 <div className={styles.megaMenuColumn}>
-                  <h3 className={styles.megaMenuTitle}>Account Type</h3>
+                  <h3 className={styles.megaMenuTitle}>
+                    <Link to="/account-type">Account Type</Link>
+                  </h3>
                   <ul className={styles.megaMenuList}>
                     <li>
                       <Link to="/account-types/micro" onClick={closeMegaMenu}>
@@ -597,7 +599,7 @@ const CustomNavbar = () => {
               <div className="col-md-3">
                 <div className={styles.megaMenuColumn}>
                   <img
-                    src="https://abet.leosagitrades.com/wp-content/uploads/2024/06/Logo-Icons-Black-250x90-1.png"
+                    src={Logo}
                     alt="ABET Global"
                     className={styles.megaMenuLogo}
                   />

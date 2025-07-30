@@ -2,17 +2,13 @@ import React from "react";
 import styles from "../style/Referfriend.module.css";
 import Accordion from "react-bootstrap/Accordion";
 import { Container } from "react-bootstrap";
+import Refer from "../assets/Refer-Friends-1.png";
 
 const ReferFriend = () => {
   return (
     <>
       <Container>
-        <div
-          className="container"
-          style={{
-            height: "700px",
-          }}
-        >
+        <div className={styles.referbanner}>
           <div className="row d-flex align-items-center h-100">
             <div className="col-lg-6">
               <div className={styles.contant_banner}>
@@ -38,7 +34,7 @@ const ReferFriend = () => {
             <div className="col-lg-6">
               <div className={styles.video}>
                 <img
-                  src="/Refer-Friends-1.png"
+                  src={Refer}
                   alt="Refer a Friend"
                   style={{ width: "100%", height: "auto" }}
                 />

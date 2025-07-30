@@ -124,4 +124,20 @@
   .contant_banner h1 {
     font-size: 2rem;
   }
+  .cardBody {
+    align-items: center;
+    text-align: center;
+  }
+}
+@media all and (min-width: 769px) and (max-width: 992px) {
+  .contant_banner {
+    padding-top: 60px;
+  }
+  .contant_banner h1 {
+    font-size: 2rem;
+  }
+  .cardBody {
+    align-items: center;
+    text-align: center;
+  }
 }
