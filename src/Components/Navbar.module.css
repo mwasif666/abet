@@ -43,7 +43,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
-  min-width: 200px;
+  width: 200px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
@@ -221,6 +221,14 @@
   .offcanvas {
     width: 100% !important;
   }
+  .searchForm {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 50%;
+  }
+  .searchInput {
+    max-width: 150px !important;
+  }
 }
 /* Mega Menu */
 
@@ -335,7 +343,19 @@
     width: 50%;
   }
   .searchInput {
-    max-width: 150px;
+    max-width: 150px !important;
+  }
+}
+
+@media all and (min-width: 300px) and (max-width: 992px) {
+  .searchForm {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 50%;
+  }
+  .searchInput {
+    max-width: 150px !important;
+    width: 150px !important;
   }
 }
 /* Mobile Mega Menu Styles */
