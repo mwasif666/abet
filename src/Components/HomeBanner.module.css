@@ -42,7 +42,7 @@
   }
   .reverse {
     text-align: center;
-    height: 100vh !important;
+    height: 70vh !important;
   }
 }
 @media all and (min-width: 992px) and (max-width: 1200px) {

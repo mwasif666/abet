@@ -264,39 +264,46 @@ const CustomNavbar = () => {
     <>
       {/* Top Contact Bar */}
       <div className={styles.topContactBar}>
-        <Container className="d-flex justify-content-between align-items-center">
-          <div className={styles.contactInfo}>
-            <span className="me-3">
-              <a
-                href="https://wa.me/447548718055"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.phoneLink}
-              >
-                <FiPhone className={styles.contactIcon} /> +447548718055
-              </a>
-            </span>
-            <span>
-              <Link to="/contact" className={styles.contactLink}>
-                Contact Us 24/5
-              </Link>
-            </span>
+        <Container className="row ">
+          <div className="col-lg-6 col-12">
+            <div className={styles.contactInfo}>
+              <span className="me-3">
+                <a
+                  href="https://wa.me/447548718055"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.phoneLink}
+                >
+                  <FiPhone className={styles.contactIcon} /> +447548718055
+                </a>
+              </span>
+              <span>
+                <Link to="/contact" className={styles.contactLink}>
+                  Contact Us 24/5
+                </Link>
+              </span>
+            </div>
           </div>
-          <div className={styles.topLinks}>
-            <Link to="/transfers" className={styles.topLink}>
-              Transfers and payments
-            </Link>
-            <Form className={`d-flex ${styles.searchForm}`}>
-              <FormControl
-                type="search"
-                placeholder="Search..."
-                className={styles.searchInput}
-                aria-label="Search"
-              />
-              <Button variant="outline-light" className={styles.searchButton}>
-                <FiSearch />
-              </Button>
-            </Form>
+          <div className="col-lg-6 col-12">
+            <div className={styles.topLinks}>
+              <a
+                href="https://secure.abetglobal.com/"
+                className={styles.topLink}
+              >
+                Transfers and payments
+              </a>
+              <Form className={`d-flex ${styles.searchForm}`}>
+                <FormControl
+                  type="search"
+                  placeholder="Search..."
+                  className={styles.searchInput}
+                  aria-label="Search"
+                />
+                <Button variant="outline-light" className={styles.searchButton}>
+                  <FiSearch />
+                </Button>
+              </Form>
+            </div>
           </div>
         </Container>
       </div>

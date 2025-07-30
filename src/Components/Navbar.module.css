@@ -11,6 +11,7 @@
 .contactInfo {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   color: white !important;
 }
 .contactInfo a {
@@ -24,6 +25,7 @@
 .topLinks {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .topLink {
@@ -193,9 +195,9 @@
 
 /* Responsive Styles */
 @media (max-width: 992px) {
-  .topContactBar {
+  /* .topContactBar {
     display: none;
-  }
+  } */
 
   .navLinks {
     margin-top: 20px;
@@ -317,20 +319,20 @@
     display: none;
   } */
 
-  .topLinks {
+  /* .topLinks {
     flex-direction: column;
     align-items: flex-end;
-  }
+  } */
 
   .topLink {
     margin-right: 0;
-    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   .searchForm {
     margin-left: 0;
     margin-top: 10px;
-    width: 100%;
+    width: 40%;
   }
 }
 /* Mobile Mega Menu Styles */
