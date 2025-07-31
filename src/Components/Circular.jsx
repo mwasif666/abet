@@ -90,11 +90,11 @@ const CircularAnimation = () => {
                 <circle cx="90" cy="149" r="4" fill="#BC202E" />
                 <circle cx="231" cy="71.7" r="4" fill="#BC202E" />
                 <circle cx="234.22" cy="303.88" r="4" fill="#BC202E" />
-                <circle cx="391.482" cy="86.45" r="4" fill="#BC202E" />
-                <circle cx="60" cy="208.27" r="4" fill="#BC202E" />
-                <circle cx="385.12" cy="208.27" r="4" fill="#BC202E" />
-                <circle cx="50.04" cy="288.55" r="4" fill="#BC202E" />
-                <circle cx="392.566" cy="286.69" r="4" fill="#BC202E" />
+                <circle cx="399.482" cy="120.45" r="4" fill="#BC202E" />
+                <circle cx="53" cy="220.27" r="4" fill="#BC202E" />
+                <circle cx="389.12" cy="220.27" r="4" fill="#BC202E" />
+                <circle cx="130.04" cy="320.55" r="4" fill="#BC202E" />
+                <circle cx="352.566" cy="316.69" r="4" fill="#BC202E" />
               </svg>
 
               <div className={styles.points}>
