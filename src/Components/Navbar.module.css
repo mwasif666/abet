@@ -11,7 +11,9 @@
 .contactInfo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
+  margin-top: 10px;
+  /* justify-content: space-between; */
   color: white !important;
 }
 .contactInfo a {
@@ -25,7 +27,8 @@
 .topLinks {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
+  /* justify-content: space-between; */
 }
 
 .topLink {
@@ -210,6 +213,19 @@
   .brand img {
     width: 100px;
   }
+  .contactInfo {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+    color: white !important;
+  }
+
+  .topLinks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 576px) {
@@ -224,10 +240,7 @@
   .searchForm {
     margin-left: 0;
     margin-top: 10px;
-    width: 50%;
-  }
-  .searchInput {
-    max-width: 150px !important;
+    width: 60%;
   }
 }
 /* Mega Menu */
@@ -335,15 +348,6 @@
   .topLink {
     margin-right: 0;
     margin-top: 10px;
-  }
-
-  .searchForm {
-    margin-left: 0;
-    margin-top: 10px;
-    width: 50%;
-  }
-  .searchInput {
-    max-width: 150px !important;
   }
 }
 

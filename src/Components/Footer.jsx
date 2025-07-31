@@ -130,22 +130,22 @@ const Footer = () => {
               <h3 className={styles.footerHeading}>Trading Accounts</h3>
               <ul className={styles.footerLinks}>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/micro/">
+                  <Link onClick={handleClick} to="/micro/">
                     Micro
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/raw-spread/">
+                  <Link onClick={handleClick} to="/raw-spread/">
                     Raw Spread
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/standard/">
+                  <Link onClick={handleClick} to="/standard/">
                     Standard
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/prime/">
+                  <Link onClick={handleClick} to="/prime/">
                     Prime
                   </Link>
                 </li>
@@ -157,30 +157,27 @@ const Footer = () => {
               <h3 className={styles.footerHeading}>Trading Instruments</h3>
               <ul className={styles.footerLinks}>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/forex/">
+                  <Link onClick={handleClick} to="/forex/">
                     Forex
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/indices/">
+                  <Link onClick={handleClick} to="/indices/">
                     Indices
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/energies/">
+                  <Link onClick={handleClick} to="/energies/">
                     Energies
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/metals/">
+                  <Link onClick={handleClick} to="/metals/">
                     Metals
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    onClick={handleClick}
-                    to="/account-types/cryptocurrency/"
-                  >
+                  <Link onClick={handleClick} to="/cryptocurrency/">
                     Cryptocurrency
                   </Link>
                 </li>
@@ -192,23 +189,17 @@ const Footer = () => {
               <h3 className={styles.footerHeading}>Trading Conditions</h3>
               <ul className={styles.footerLinks}>
                 <li>
-                  <Link
-                    onClick={handleClick}
-                    to="/account-types/execution-policy/"
-                  >
+                  <Link onClick={handleClick} to="/execution-policy/">
                     Execution Policy
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={handleClick} to="/account-types/spreads/">
+                  <Link onClick={handleClick} to="/spreads/">
                     Spreads
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    onClick={handleClick}
-                    to="/account-types/margin-leverage/"
-                  >
+                  <Link onClick={handleClick} to="/margin-leverage/">
                     Margin and Leverage
                   </Link>
                 </li>

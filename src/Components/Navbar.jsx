@@ -258,45 +258,50 @@ const CustomNavbar = () => {
     <>
       {/* Top Contact Bar */}
       <div className={styles.topContactBar}>
-        <Container className="row ">
-          <div className="col-lg-6 col-12">
-            <div className={styles.contactInfo}>
-              <span className="me-3">
-                <a
-                  href="https://wa.me/447548718055"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.phoneLink}
-                >
-                  <FiPhone className={styles.contactIcon} /> +447548718055
-                </a>
-              </span>
-              <span>
-                <Link to="/contact" className={styles.contactLink}>
-                  Contact Us 24/5
-                </Link>
-              </span>
+        <Container>
+          <div className="row ">
+            <div className="col-lg-6 col-12">
+              <div className={styles.contactInfo}>
+                <span className="me-3">
+                  <a
+                    href="https://wa.me/447548718055"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.phoneLink}
+                  >
+                    <FiPhone className={styles.contactIcon} /> +447548718055
+                  </a>
+                </span>
+                <span>
+                  <Link to="/contact" className={styles.contactLink}>
+                    Contact Us 24/5
+                  </Link>
+                </span>
+              </div>
             </div>
-          </div>
-          <div className="col-lg-6 col-12">
-            <div className={styles.topLinks}>
-              <a
-                href="https://secure.abetglobal.com/"
-                className={styles.topLink}
-              >
-                Transfers and payments
-              </a>
-              <Form className={`d-flex ${styles.searchForm}`}>
-                <FormControl
-                  type="search"
-                  placeholder="Search..."
-                  className={styles.searchInput}
-                  aria-label="Search"
-                />
-                <Button variant="outline-light" className={styles.searchButton}>
-                  <FiSearch />
-                </Button>
-              </Form>
+            <div className="col-lg-6 col-12">
+              <div className={styles.topLinks}>
+                <a
+                  href="https://secure.abetglobal.com/"
+                  className={styles.topLink}
+                >
+                  Transfers and payments
+                </a>
+                <Form className={`d-flex ${styles.searchForm}`}>
+                  <FormControl
+                    type="search"
+                    placeholder="Search..."
+                    className={styles.searchInput}
+                    aria-label="Search"
+                  />
+                  <Button
+                    variant="outline-light"
+                    className={styles.searchButton}
+                  >
+                    <FiSearch />
+                  </Button>
+                </Form>
+              </div>
             </div>
           </div>
         </Container>
