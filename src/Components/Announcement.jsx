@@ -57,7 +57,9 @@ const AnnouncementsMarquee = () => {
   return (
     <div className={`${styles.tickerContainer} container py-2`}>
       <div className="row align-items-center">
-        <div className={`${styles.tickerHeader} col-auto`}>
+        <div
+          className={`${styles.tickerHeader} col-lg-auto col-12 text-center`}
+        >
           <span className={styles.tickerTitle}>ANNOUNCEMENTS</span>
         </div>
         <div className={`${styles.tickerMarqueeContainer} col`}>

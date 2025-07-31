@@ -60,6 +60,9 @@ const MetaTrader = () => {
               <img
                 src="/webterminal_metatrader_medium.png"
                 alt="webterminal_metatrader_medium"
+                style={{
+                  width: "100%",
+                }}
               />
             </div>
           </div>

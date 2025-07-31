@@ -4,6 +4,7 @@ import { Container, Row, Col, Button, Nav, Navbar } from "react-bootstrap";
 import RawSpreadTable from "./PriceSection";
 import Phone from "../../assets/phone.png";
 import { NavLink, useLocation } from "react-router-dom";
+import RawPrice from "./RawPrice";
 
 const RawSpread = () => {
   const location = useLocation();
@@ -108,7 +109,7 @@ const RawSpread = () => {
               />
             </Col>
             <Col md={6}>
-              <RawSpreadTable />
+              <RawPrice />
             </Col>
           </Row>
         </Container>

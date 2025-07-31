@@ -110,7 +110,7 @@ const AddBlog = () => {
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-    if (password === "yourPassword") {
+    if (password === "AbetBlog") {
       setAuthenticated(true);
       setShowPasswordModal(false);
       localStorage.setItem("blogAuth", "true");
@@ -137,7 +137,13 @@ const AddBlog = () => {
     const shortDescription = form.elements.formShortDescription.value;
     const longDescription = editor?.getHTML() || "";
 
-    if (!title || !url || !shortDescription || !longDescription || (!id && !imageFile)) {
+    if (
+      !title ||
+      !url ||
+      !shortDescription ||
+      !longDescription ||
+      (!id && !imageFile)
+    ) {
       showErrorAlert("All required fields must be filled.");
       setSubmitting(false);
       return;
@@ -181,7 +187,10 @@ const AddBlog = () => {
         editor?.commands.clearContent();
       }
     } catch (error) {
-      showErrorAlert(error?.response?.data?.errors?.url ||  "Failed to add blog. Please try again.");
+      showErrorAlert(
+        error?.response?.data?.errors?.url ||
+          "Failed to add blog. Please try again."
+      );
       throw error;
     }
   };

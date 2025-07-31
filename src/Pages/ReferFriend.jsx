@@ -150,12 +150,12 @@ const ReferFriend = () => {
                 <div className={`card-body ${styles.cardBody}`}>
                   <div className={styles.cardHeader}>
                     <h3 className={`card-title ${styles.title}`}>
-                      Referral Starter
+                      Referral Influencer
                     </h3>
                   </div>
                   <div className={styles.cardContent}>
                     <p className={`card-text ${styles.text}`}>
-                      Refer 5 friends and earn $10.
+                      Refer 10 friends and earn $20.
                     </p>
                   </div>
                 </div>
@@ -166,12 +166,12 @@ const ReferFriend = () => {
                 <div className={`card-body ${styles.cardBody}`}>
                   <div className={styles.cardHeader}>
                     <h3 className={`card-title ${styles.title}`}>
-                      Referral Starter
+                      Referral Expert
                     </h3>
                   </div>
                   <div className={styles.cardContent}>
                     <p className={`card-text ${styles.text}`}>
-                      Refer 5 friends and earn $10.
+                      Refer 20 friends and earn $30.
                     </p>
                   </div>
                 </div>
@@ -182,12 +182,12 @@ const ReferFriend = () => {
                 <div className={`card-body ${styles.cardBody}`}>
                   <div className={styles.cardHeader}>
                     <h3 className={`card-title ${styles.title}`}>
-                      Referral Starter
+                      Referral Master
                     </h3>
                   </div>
                   <div className={styles.cardContent}>
                     <p className={`card-text ${styles.text}`}>
-                      Refer 5 friends and earn $10.
+                      Refer 30 friends and earn $40.
                     </p>
                   </div>
                 </div>
@@ -198,28 +198,12 @@ const ReferFriend = () => {
                 <div className={`card-body ${styles.cardBody}`}>
                   <div className={styles.cardHeader}>
                     <h3 className={`card-title ${styles.title}`}>
-                      Referral Starter
+                      Referral Champion
                     </h3>
                   </div>
                   <div className={styles.cardContent}>
                     <p className={`card-text ${styles.text}`}>
-                      Refer 5 friends and earn $10.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 mb-4">
-              <div className={`card ${styles.cardContainer}`}>
-                <div className={`card-body ${styles.cardBody}`}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={`card-title ${styles.title}`}>
-                      Referral Starter
-                    </h3>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <p className={`card-text ${styles.text}`}>
-                      Refer 5 friends and earn $10.
+                      Refer 50 friends and earn $100.
                     </p>
                   </div>
                 </div>
@@ -338,7 +322,7 @@ const ReferFriend = () => {
                   What is the Refer a Friend program?
                 </Accordion.Header>
                 <Accordion.Body>
-                  LOur Refer a Friend program lets you invite friends to upgrade
+                  Our Refer a Friend program lets you invite friends to upgrade
                   their trading journey with Abet Global. When they sign up and
                   trade, you both earn rewards. Minimum deposit and trading
                   volume requirements apply. Read the T&Cs.
@@ -361,7 +345,7 @@ const ReferFriend = () => {
                   When will I receive my reward?
                 </Accordion.Header>
                 <Accordion.Body>
-                  LRewards are credited after the 30-day referral period ends,
+                  Rewards are credited after the 30-day referral period ends,
                   provided your friends have successfully opened an account and
                   started trading. The referral period starts with your friend’s
                   first deposit.

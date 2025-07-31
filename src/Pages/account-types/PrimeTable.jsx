@@ -58,11 +58,12 @@ const PrimeTable = () => {
                   </ul>
                 </div>
                 <div className={styles.cardFooter}>
-                  <button
+                  <a
+                    href="https://secure.abetglobal.com/account/register"
                     className={`btn btn-primary btn-block ${styles.ctaButton}`}
                   >
                     Start Trading <FaArrowRight className="ml-2" />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

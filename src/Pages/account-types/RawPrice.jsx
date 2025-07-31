@@ -2,7 +2,7 @@ import React from "react";
 import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
 import styles from "../../Components/PricingSection.module.css";
 
-const RawSpreadTable = () => {
+const RawPrice = () => {
   const packages = [
     {
       name: "Raw Spread",
@@ -58,11 +58,12 @@ const RawSpreadTable = () => {
                   </ul>
                 </div>
                 <div className={styles.cardFooter}>
-                  <button
+                  <a
+                    href="https://secure.abetglobal.com/account/register"
                     className={`btn btn-primary btn-block ${styles.ctaButton}`}
                   >
                     Start Trading <FaArrowRight className="ml-2" />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -73,4 +74,4 @@ const RawSpreadTable = () => {
   );
 };
 
-export default RawSpreadTable;
+export default RawPrice;
