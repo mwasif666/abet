@@ -42,6 +42,7 @@ import RiskDisclosure from "./Components/Risk";
 import BlogDetail from "./Pages/Blog/BlogDetail";
 import BecomePartner from "./Pages/BecomePartner";
 import AccountTypes from "./Pages/account-types/Accounttypes";
+import ForexDictionary from "./Pages/ForexDic";
 
 const Preloader = () => {
   return (
@@ -115,6 +116,7 @@ const AppWrapper = () => {
           <Route path="/blog-details/:id" element={<BlogDetail />} />
           <Route path="/partner" element={<BecomePartner />} />
           <Route path="/account-type" element={<AccountTypes />} />
+          <Route path="/ForexDictionary" element={<ForexDictionary />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

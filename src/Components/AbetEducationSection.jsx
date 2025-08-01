@@ -14,7 +14,7 @@ const AbetEducationSection = () => {
     {
       icon: <FaBookOpen className={styles.icon} />,
       title: "FINANCE DICTIONARY",
-      link: "#",
+      link: "/ForexDictionary",
     },
     {
       icon: <FaBook className={styles.icon} />,
