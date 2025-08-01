@@ -1,0 +1,74 @@
+/* ForexDictionary.module.css */
+.container {
+  padding: 2rem 0;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #7f8c8d;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.searchContainer {
+  margin-bottom: 2rem;
+}
+
+.searchInput {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.letterButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.letterButton {
+  min-width: 40px;
+}
+
+.letterSection {
+  margin-bottom: 1.5rem;
+}
+
+.letterHeading {
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.noResults {
+  text-align: center;
+  margin-top: 2rem;
+  color: #e74c3c;
+}
+
+.accordionItem {
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem !important;
+  overflow: hidden;
+}
+
+.accordionHeader {
+  background-color: #f8f9fa !important;
+}
+
+.accordionHeader button {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.accordionBody {
+  background-color: #ffffff;
+}
