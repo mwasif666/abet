@@ -10,6 +10,7 @@ import PlatformsSection from "../Components/PlatformsSection";
 import AbetGlobalSection from "../Components/AbetGlobalSection";
 import BlogSection from "../Components/BlogSection";
 import TestimonialSection from "../Components/Testimonial";
+import ForexDictionary from "./ForexDic";
 
 const Home = () => {
   return (
@@ -25,6 +26,7 @@ const Home = () => {
       <AbetEducationSection />
       <BlogSection />
       <TestimonialSection />
+      {/* <ForexDictionary /> */}
     </>
   );
 };

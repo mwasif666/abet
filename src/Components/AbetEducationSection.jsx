@@ -8,13 +8,14 @@ import {
   FaNewspaper,
 } from "react-icons/fa";
 import styles from "./AbetEducationSection.module.css";
+import { Link } from "react-router-dom";
 
 const AbetEducationSection = () => {
   const educationItems = [
     {
       icon: <FaBookOpen className={styles.icon} />,
       title: "FINANCE DICTIONARY",
-      link: "/ForexDictionary",
+      link: "/forex-dictionary",
     },
     {
       icon: <FaBook className={styles.icon} />,
@@ -158,31 +159,36 @@ const AbetEducationSection = () => {
           variants={container}
         >
           {educationItems.map((item, index) => (
-            <motion.div
+            <Link
+              to={item.link}
               key={index}
-              className={`col ${styles.educationItem}`}
-              variants={index % 2 === 0 ? itemLeft : itemRight}
-              whileHover="hover"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              className={`col ${styles.educationItemLink}`}
             >
               <motion.div
-                className={styles.iconWrapper}
-                variants={icon}
+                className={styles.educationItem}
+                variants={index % 2 === 0 ? itemLeft : itemRight}
                 whileHover="hover"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
               >
-                {item.icon}
+                <motion.div
+                  className={styles.iconWrapper}
+                  variants={icon}
+                  whileHover="hover"
+                >
+                  {item.icon}
+                </motion.div>
+                <h3 className={styles.itemTitle}>
+                  {item.title.split(" ").map((word, i) => (
+                    <React.Fragment key={i}>
+                      {word}
+                      <br />
+                    </React.Fragment>
+                  ))}
+                </h3>
               </motion.div>
-              <h3 className={styles.itemTitle}>
-                {item.title.split(" ").map((word, i) => (
-                  <React.Fragment key={i}>
-                    {word}
-                    <br />
-                  </React.Fragment>
-                ))}
-              </h3>
-            </motion.div>
+            </Link>
           ))}
         </motion.div>
       </div>
