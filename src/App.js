@@ -99,7 +99,7 @@ const AppWrapper = () => {
       <div className={`app-content ${loading ? "content-hidden" : ""}`}>
         <LayoutWrapper>
           <Routes location={location}>
-            <Route element={<PublicRoutes />}>
+           
               <Route path="/" element={<Home />} />
               <Route path="/trading" element={<Trading />} />
               <Route path="/platforms" element={<Platforms />} />
@@ -132,8 +132,9 @@ const AppWrapper = () => {
               <Route path="/partner" element={<BecomePartner />} />
               <Route path="/account-type" element={<AccountTypes />} />
               <Route path="/forex-dictionary" element={<Forexdictionary />} />
-              <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
+            <Route element={<PublicRoutes />}>
+              <Route path="/login" element={<Login />} />
             </Route>
             <Route element={<PrivateRoutes />}>
               <Route path="/add-blog" element={<AddBlog />} />
