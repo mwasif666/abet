@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children } from "react";
+import { useState, useEffect} from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -43,8 +43,11 @@ import BlogDetail from "./Pages/Blog/BlogDetail";
 import BecomePartner from "./Pages/BecomePartner";
 import AccountTypes from "./Pages/account-types/Accounttypes";
 import Forexdictionary from "./Pages/ForexDic";
-import { PrivateRoutes, PublicRoutes } from "./middleware/RouteMiddleware";
 import Login from "./Pages/Authentication/Login";
+import AddUser from "./Pages/User/AddUser";
+import UserList from "./Pages/User/UserList";
+import { AdminRoutes, PrivateRoutes, PublicRoutes } from "./middleware/RouteMiddleware";
+import { ToastContainer } from "react-toastify";
 
 const LayoutWrapper = ({ children }) => {
   const location = useLocation();
@@ -54,6 +57,7 @@ const LayoutWrapper = ({ children }) => {
   return (
     <>
       {!hideNavbarFooter && <CustomNavbar />}
+      {<ToastContainer />}
       <main>{children}</main>
       {!hideNavbarFooter && <Footer />}
     </>
@@ -140,6 +144,12 @@ const AppWrapper = () => {
               <Route path="/add-blog" element={<AddBlog />} />
               <Route path="/add-blog/:id" element={<AddBlog />} />
             </Route>
+            <Route element={<AdminRoutes />}>
+              <Route path="/add-user" element={<AddUser />} />
+              <Route path="/add-user/:id" element={<AddUser />} />
+              <Route path="/user-list" element={<UserList />} />
+            </Route>
+              
           </Routes>
         </LayoutWrapper>
       </div>

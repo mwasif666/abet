@@ -2,10 +2,12 @@ import { useRef, useState } from "react";
 import { Container, Card, Form, Button, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useAuth } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const formRef = useRef();
   const { loginUser } = useAuth();
+  const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -33,6 +35,7 @@ const Login = () => {
       const response = await loginUser({ email, password });
       if (response?.status === 200) {
         toast.success("Login successful!");
+        navigate('/')
       } else {
         toast.error("Invalid credentials.");
       }

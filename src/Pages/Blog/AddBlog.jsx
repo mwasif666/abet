@@ -42,17 +42,11 @@ const AddBlog = () => {
   });
 
   useEffect(() => {
-    const storedAuth = localStorage.getItem("blogAuth");
-    if (storedAuth === "true") {
-      setAuthenticated(true);
-      setShowPasswordModal(false);
-
       if (id) {
         getBlogDetail();
       } else {
         setLoading(false);
       }
-    }
   }, [id]);
 
   const showSuccessAlert = (message) => {
@@ -105,23 +99,6 @@ const AddBlog = () => {
       console.error("Error fetching blog:", error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
-    if (password === "AbetBlog") {
-      setAuthenticated(true);
-      setShowPasswordModal(false);
-      localStorage.setItem("blogAuth", "true");
-
-      if (id) {
-        getBlogDetail();
-      } else {
-        setLoading(false);
-      }
-    } else {
-      showErrorAlert("Incorrect password");
     }
   };
 
@@ -215,34 +192,7 @@ const AddBlog = () => {
     }
   };
 
-  if (!authenticated) {
-    return (
-      <Modal show={showPasswordModal} centered backdrop="static">
-        <Modal.Header className="bg-primary text-white">
-          <Modal.Title>Authentication Required</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handlePasswordSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Enter Password</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
-                required
-              />
-            </Form.Group>
-            <div className="d-flex justify-content-end">
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </div>
-          </Form>
-        </Modal.Body>
-      </Modal>
-    );
-  }
+ 
 
   if (loading) {
     return (
@@ -263,17 +213,6 @@ const AddBlog = () => {
             <h3 className="mb-0">
               {id ? "Update Blog Post" : "Create New Blog Post"}
             </h3>
-            <Button
-              variant="light"
-              size="sm"
-              onClick={() => {
-                localStorage.removeItem("blogAuth");
-                setAuthenticated(false);
-                setShowPasswordModal(true);
-              }}
-            >
-              Logout
-            </Button>
           </div>
         </Card.Header>
         <Card.Body>
