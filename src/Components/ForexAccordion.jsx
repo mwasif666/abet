@@ -60,7 +60,7 @@ const ForexAccordion = () => {
     {
       title: "What is a Swap Fee in Forex Trading?",
       content:
-        "A swap fee is the cost or gain from holding a position overnight. It's based on the interest rate difference between the two currencies in a pair. At ABET Global, the swap fee is calculated at 00:00 GMT+2 and may take a few minutes to process. From Wednesday to Thursday, the fee is charged for three days due to the weekend rollover.",
+        "We do not charge a swap fee for the first 45 days. After 45 days, a daily trade holding fee will apply.",
     },
     {
       title: "What are the Forex Trading Hours with ABET Global?",
