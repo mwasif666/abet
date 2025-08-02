@@ -42,9 +42,9 @@ import RiskDisclosure from "./Components/Risk";
 import BlogDetail from "./Pages/Blog/BlogDetail";
 import BecomePartner from "./Pages/BecomePartner";
 import AccountTypes from "./Pages/account-types/Accounttypes";
-import Forexdictionary from "./Pages/ForexDic";
 import { PrivateRoutes, PublicRoutes } from "./middleware/RouteMiddleware";
 import Login from "./Pages/Authentication/Login";
+import ForexDictionary from "./Pages/ForexDic";
 
 const LayoutWrapper = ({ children }) => {
   const location = useLocation();
@@ -131,7 +131,7 @@ const AppWrapper = () => {
               <Route path="/blog-details/:id" element={<BlogDetail />} />
               <Route path="/partner" element={<BecomePartner />} />
               <Route path="/account-type" element={<AccountTypes />} />
-              <Route path="/forex-dictionary" element={<Forexdictionary />} />
+              <Route path="/forex-dictionary" element={<ForexDictionary />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Route>

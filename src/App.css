@@ -145,3 +145,6 @@ td {
 a:hover {
   text-decoration: none !important;
 }
+.accordion-item:not(:first-of-type) {
+  border-top: 1px solid #dee2e6 !important;
+}

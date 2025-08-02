@@ -2,11 +2,19 @@
 .container {
   padding: 2rem 0;
 }
+.container .letterButton {
+  background-color: var(--main-color);
+  color: white !important;
+}
+.container .letterButton:hover {
+  background-color: var(--main-color);
+  color: white !important;
+}
 
 .title {
   text-align: center;
   margin-bottom: 2rem;
-  color: #2c3e50;
+  font-weight: 900;
 }
 
 .description {
@@ -44,7 +52,7 @@
 }
 
 .letterHeading {
-  color: #3498db;
+  color: var(--main-color);
   margin-bottom: 1rem;
 }
 
@@ -62,6 +70,10 @@
 
 .accordionHeader {
   background-color: #f8f9fa !important;
+  /* border: 1px solid var(--main-color); */
+}
+.accordionHeader button {
+  border: none !important;
 }
 
 .accordionHeader button {
@@ -71,4 +83,7 @@
 
 .accordionBody {
   background-color: #ffffff;
+}
+.accordion-item:not(:first-of-type) {
+  border-top: 1px solid #dee2e6 !important;
 }
