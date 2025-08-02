@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -45,6 +45,16 @@ import AccountTypes from "./Pages/account-types/Accounttypes";
 import { PrivateRoutes, PublicRoutes } from "./middleware/RouteMiddleware";
 import Login from "./Pages/Authentication/Login";
 import ForexDictionary from "./Pages/ForexDic";
+import Forexdictionary from "./Pages/ForexDic";
+import Login from "./Pages/Authentication/Login";
+import AddUser from "./Pages/User/AddUser";
+import UserList from "./Pages/User/UserList";
+import {
+  AdminRoutes,
+  PrivateRoutes,
+  PublicRoutes,
+} from "./middleware/RouteMiddleware";
+import { ToastContainer } from "react-toastify";
 
 const LayoutWrapper = ({ children }) => {
   const location = useLocation();
@@ -54,6 +64,7 @@ const LayoutWrapper = ({ children }) => {
   return (
     <>
       {!hideNavbarFooter && <CustomNavbar />}
+      {<ToastContainer />}
       <main>{children}</main>
       {!hideNavbarFooter && <Footer />}
     </>
@@ -99,45 +110,52 @@ const AppWrapper = () => {
       <div className={`app-content ${loading ? "content-hidden" : ""}`}>
         <LayoutWrapper>
           <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/trading" element={<Trading />} />
+            <Route path="/platforms" element={<Platforms />} />
+            <Route path="/promotions" element={<Promotions />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/partnership" element={<Partnership />} />
+            <Route path="/transfers" element={<Transfers />} />
+            <Route path="/micro" element={<Micro />} />
+            <Route path="/raw-spread" element={<RawSpread />} />
+            <Route path="/standard" element={<Standard />} />
+            <Route path="/forex" element={<Forex />} />
+            <Route path="/indices" element={<Indices />} />
+            <Route path="/energies" element={<Energies />} />
+            <Route path="/metals" element={<Metals />} />
+            <Route path="/cryptocurrency" element={<Cryptocurrency />} />
+            <Route path="/prime" element={<Prime />} />
+            <Route path="/execution-policy" element={<Execution />} />
+            <Route path="/spreads" element={<Spreads />} />
+            <Route path="/margin-leverage" element={<Margin />} />
+            <Route path="/refer-a-friend" element={<ReferFriend />} />
+            <Route path="/meta-trader-5" element={<MetaTrader />} />
+            <Route path="/benefithome" element={<BenefitsHome />} />
+            <Route path="/AbetApp" element={<AbetApp />} />
+            <Route path="/faqs" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/legal-documents" element={<LegalDocuments />} />
+            <Route path="/risk" element={<RiskDisclosure />} />
+            <Route path="/blog-details/:id" element={<BlogDetail />} />
+            <Route path="/partner" element={<BecomePartner />} />
+            <Route path="/account-type" element={<AccountTypes />} />
+            <Route path="/forex-dictionary" element={<ForexDictionary />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forex-dictionary" element={<Forexdictionary />} />
+            <Route path="*" element={<NotFound />} />
             <Route element={<PublicRoutes />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/trading" element={<Trading />} />
-              <Route path="/platforms" element={<Platforms />} />
-              <Route path="/promotions" element={<Promotions />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/partnership" element={<Partnership />} />
-              <Route path="/transfers" element={<Transfers />} />
-              <Route path="/micro" element={<Micro />} />
-              <Route path="/raw-spread" element={<RawSpread />} />
-              <Route path="/standard" element={<Standard />} />
-              <Route path="/forex" element={<Forex />} />
-              <Route path="/indices" element={<Indices />} />
-              <Route path="/energies" element={<Energies />} />
-              <Route path="/metals" element={<Metals />} />
-              <Route path="/cryptocurrency" element={<Cryptocurrency />} />
-              <Route path="/prime" element={<Prime />} />
-              <Route path="/execution-policy" element={<Execution />} />
-              <Route path="/spreads" element={<Spreads />} />
-              <Route path="/margin-leverage" element={<Margin />} />
-              <Route path="/refer-a-friend" element={<ReferFriend />} />
-              <Route path="/meta-trader-5" element={<MetaTrader />} />
-              <Route path="/benefithome" element={<BenefitsHome />} />
-              <Route path="/AbetApp" element={<AbetApp />} />
-              <Route path="/faqs" element={<FAQ />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/legal-documents" element={<LegalDocuments />} />
-              <Route path="/risk" element={<RiskDisclosure />} />
-              <Route path="/blog-details/:id" element={<BlogDetail />} />
-              <Route path="/partner" element={<BecomePartner />} />
-              <Route path="/account-type" element={<AccountTypes />} />
-              <Route path="/forex-dictionary" element={<ForexDictionary />} />
               <Route path="/login" element={<Login />} />
-              <Route path="*" element={<NotFound />} />
             </Route>
             <Route element={<PrivateRoutes />}>
               <Route path="/add-blog" element={<AddBlog />} />
               <Route path="/add-blog/:id" element={<AddBlog />} />
+            </Route>
+            <Route element={<AdminRoutes />}>
+              <Route path="/add-user" element={<AddUser />} />
+              <Route path="/add-user/:id" element={<AddUser />} />
+              <Route path="/user-list" element={<UserList />} />
             </Route>
           </Routes>
         </LayoutWrapper>

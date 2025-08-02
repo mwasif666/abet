@@ -1,15 +1,14 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import styles from "../../style/BlogDetail.module.css";
 import {
   FaFacebookF,
   FaTwitter,
   FaLinkedinIn,
   FaRegClock,
 } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
+import axios from "axios";
+import styles from "../../style/BlogDetail.module.css";
 import Logo from "../../assets/logo.png";
 
 const BlogDetail = () => {

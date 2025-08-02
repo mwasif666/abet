@@ -17,16 +17,23 @@ const AddBlog = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
-  const [showPasswordModal, setShowPasswordModal] = useState(true);
-  const [password, setPassword] = useState("");
-
   const [blog, setBlog] = useState({
     title: "",
     url: "",
     short_description: "",
     long_description: "",
     imageFile: "",
+    category: "",
+    slug: "",
+    meta_title: "",
+    meta_description: "",
+    image_alt_text: "",
+    image_name: "",
+    status: "draft",
+    h2: "",
+    h3: "",
+    h4: "",
+    h5: "",
   });
 
   const editor = useEditor({
@@ -42,16 +49,10 @@ const AddBlog = () => {
   });
 
   useEffect(() => {
-    const storedAuth = localStorage.getItem("blogAuth");
-    if (storedAuth === "true") {
-      setAuthenticated(true);
-      setShowPasswordModal(false);
-
-      if (id) {
-        getBlogDetail();
-      } else {
-        setLoading(false);
-      }
+    if (id) {
+      getBlogDetail();
+    } else {
+      setLoading(false);
     }
   }, [id]);
 
@@ -81,49 +82,44 @@ const AddBlog = () => {
     });
   };
 
-  const getBlogDetail = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.leosagitrades.com/public/blogs_list/${id}`
-      );
-      const data = response?.data?.data?.[0];
-      if (data) {
-        setBlog({
-          title: data.title || "",
-          url: data.url || "",
-          short_description: data.short_description || "",
-          long_description: data.long_description || "",
-          imageFile: data.original_name || "",
-        });
+const getBlogDetail = async () => {
+  try {
+    const response = await axios.get(
+      `https://api.leosagitrades.com/public/blogs_list/${id}`
+    );
+    const data = response?.data?.data?.[0];
+    if (data) {
+      setBlog({
+        title: data.title || "",
+        url: data.url || "",
+        short_description: data.short_description || "",
+        long_description: data.long_description || "",
+        imageFile: data.original_name || "",
+        category: data.category || "",
+        slug: data.slug || "",
+        meta_title: data.meta_title || "",
+        meta_description: data.meta_description || "",
+        image_alt_text: data.image_alt_text || "",
+        image_name: data.image_name || "",
+        status: data.status || "draft",
+        h2: data.h2 || "",
+        h3: data.h3 || "",
+        h4: data.h4 || "",
+        h5: data.h5 || "",
+      });
 
-        if (data.long_description) {
-          editor?.commands.setContent(data.long_description);
-        }
+      if (data.long_description) {
+        editor?.commands.setContent(data.long_description);
       }
-    } catch (error) {
-      showErrorAlert("Failed to fetch blog details. Please try again.");
-      console.error("Error fetching blog:", error);
-    } finally {
-      setLoading(false);
     }
-  };
+  } catch (error) {
+    showErrorAlert("Failed to fetch blog details. Please try again.");
+    console.error("Error fetching blog:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
-    if (password === "AbetBlog") {
-      setAuthenticated(true);
-      setShowPasswordModal(false);
-      localStorage.setItem("blogAuth", "true");
-
-      if (id) {
-        getBlogDetail();
-      } else {
-        setLoading(false);
-      }
-    } else {
-      showErrorAlert("Incorrect password");
-    }
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -136,6 +132,18 @@ const AddBlog = () => {
     const imageFile = form.elements.formImage.files[0];
     const shortDescription = form.elements.formShortDescription.value;
     const longDescription = editor?.getHTML() || "";
+    const category = form.elements.formCategory.value;
+    const slug = form.elements.formSlug.value;
+    const metaTitle = form.elements.formMetaTitle.value;
+    const metaDescription = form.elements.formMetaDescription.value;
+    const imageAltText = form.elements.formImageAltText.value;
+    const imageName = form.elements.formImageName.value;
+    const status = form.elements.formStatus.value;
+    const h2 = form.elements.formH2.value;
+    const h3 = form.elements.formH3.value;
+    const h4 = form.elements.formH4.value;
+    const h5 = form.elements.formH5.value;
+
 
     if (
       !title ||
@@ -155,6 +163,17 @@ const AddBlog = () => {
     formData.append("short_description", shortDescription);
     formData.append("long_description", longDescription);
     if (imageFile) formData.append("image", imageFile);
+    formData.append("category", category);
+    formData.append("slug", slug);
+    formData.append("meta_title", metaTitle);
+    formData.append("meta_description", metaDescription);
+    formData.append("image_alt_text", imageAltText);
+    formData.append("image_name", imageName);
+    formData.append("status", status);
+    formData.append("h2", h2);
+    formData.append("h3", h3);
+    formData.append("h4", h4);
+    formData.append("h5", h5);
 
     try {
       if (id) {
@@ -215,35 +234,6 @@ const AddBlog = () => {
     }
   };
 
-  if (!authenticated) {
-    return (
-      <Modal show={showPasswordModal} centered backdrop="static">
-        <Modal.Header className="bg-primary text-white">
-          <Modal.Title>Authentication Required</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handlePasswordSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Enter Password</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
-                required
-              />
-            </Form.Group>
-            <div className="d-flex justify-content-end">
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </div>
-          </Form>
-        </Modal.Body>
-      </Modal>
-    );
-  }
-
   if (loading) {
     return (
       <Container
@@ -263,17 +253,6 @@ const AddBlog = () => {
             <h3 className="mb-0">
               {id ? "Update Blog Post" : "Create New Blog Post"}
             </h3>
-            <Button
-              variant="light"
-              size="sm"
-              onClick={() => {
-                localStorage.removeItem("blogAuth");
-                setAuthenticated(false);
-                setShowPasswordModal(true);
-              }}
-            >
-              Logout
-            </Button>
           </div>
         </Card.Header>
         <Card.Body>
@@ -343,6 +322,117 @@ const AddBlog = () => {
               <Form.Text className="text-muted">
                 Recommended size: 1200x630 pixels (Only required for new posts)
               </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Category*</Form.Label>
+              <Form.Control
+                type="text"
+                id="formCategory"
+                defaultValue={blog.category}
+                placeholder="Enter category"
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Slug*</Form.Label>
+              <Form.Control
+                type="text"
+                id="formSlug"
+                defaultValue={blog.slug}
+                placeholder="Enter slug"
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Meta Title</Form.Label>
+              <Form.Control
+                type="text"
+                id="formMetaTitle"
+                defaultValue={blog.meta_title}
+                placeholder="Enter meta title"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Meta Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={2}
+                id="formMetaDescription"
+                defaultValue={blog.meta_description}
+                placeholder="Enter meta description"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Image Alt Text</Form.Label>
+              <Form.Control
+                type="text"
+                id="formImageAltText"
+                defaultValue={blog.image_alt_text}
+                placeholder="Enter image alt text"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Image Name</Form.Label>
+              <Form.Control
+                type="text"
+                id="formImageName"
+                defaultValue={blog.image_name}
+                placeholder="Enter image display name"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Status</Form.Label>
+              <Form.Select id="formStatus" defaultValue={blog.status}>
+                <option value="draft">Draft</option>
+                <option value="publish">Published</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">H2 Heading</Form.Label>
+              <Form.Control
+                type="text"
+                id="formH2"
+                defaultValue={blog.h2}
+                placeholder="Enter H2 heading"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">H3 Heading</Form.Label>
+              <Form.Control
+                type="text"
+                id="formH3"
+                defaultValue={blog.h3}
+                placeholder="Enter H3 heading"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">H4 Heading</Form.Label>
+              <Form.Control
+                type="text"
+                id="formH4"
+                defaultValue={blog.h4}
+                placeholder="Enter H4 heading"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">H5 Heading</Form.Label>
+              <Form.Control
+                type="text"
+                id="formH5"
+                defaultValue={blog.h5}
+                placeholder="Enter H5 heading"
+              />
             </Form.Group>
 
             <div className="d-flex justify-content-end">
