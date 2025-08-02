@@ -42,8 +42,6 @@ import RiskDisclosure from "./Components/Risk";
 import BlogDetail from "./Pages/Blog/BlogDetail";
 import BecomePartner from "./Pages/BecomePartner";
 import AccountTypes from "./Pages/account-types/Accounttypes";
-import { PrivateRoutes, PublicRoutes } from "./middleware/RouteMiddleware";
-import Login from "./Pages/Authentication/Login";
 import ForexDictionary from "./Pages/ForexDic";
 import Forexdictionary from "./Pages/ForexDic";
 import Login from "./Pages/Authentication/Login";
