@@ -72,14 +72,16 @@ const MetaTrader = () => {
           <div className="row row-cols-xl-8 row-cols-lg-4 row-cols-2">
             {deviceData.map((deviceData, index) => (
               <div className="col">
-                <div key={index} className={styles.meta_images}>
-                  <img
-                    src={deviceData.image}
-                    alt={deviceData.name}
-                    height={50}
-                    width={120}
-                  />
-                </div>
+                <a href="https://download.mql5.com/cdn/web/abet.llc/mt5/abetllc5setup.exe">
+                  <div key={index} className={styles.meta_images}>
+                    <img
+                      src={deviceData.image}
+                      alt={deviceData.name}
+                      height={50}
+                      width={120}
+                    />
+                  </div>
+                </a>
               </div>
             ))}
           </div>

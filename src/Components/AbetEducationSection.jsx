@@ -132,7 +132,12 @@ const AbetEducationSection = () => {
       },
     },
   };
-
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <motion.section
       className={styles.educationSection}
@@ -162,6 +167,7 @@ const AbetEducationSection = () => {
             <Link
               to={item.link}
               key={index}
+              onClick={handleClick}
               className={`col ${styles.educationItemLink}`}
             >
               <motion.div
