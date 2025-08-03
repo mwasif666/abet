@@ -1,25 +1,27 @@
+import axios from "axios";
+import Swal from "sweetalert2";
+import Table from "react-bootstrap/Table";
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Table from "react-bootstrap/Table";
-import Swal from "sweetalert2";
-import axios from "axios";
+import { toast } from "react-toastify";
 
-const UserList = () => {
+const BlogList = () => {
   const naviagte = useNavigate();
-  const [userList, setUserList] = useState([]);
+  const [blogList, setBlogList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getUserList = async () => {
+  const getBlogList = async () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://api.leosagitrades.com/public/users_list`
+        `https://api.leosagitrades.com/public/blogs_list`
       );
+      console.log(response);
+      
       if (response.status === 201) {
-        setUserList(response.data.data);
+        setBlogList(response.data.data);
       }
     } catch (error) {
       console.error(error);
@@ -29,40 +31,40 @@ const UserList = () => {
     }
   };
 
-  const handleDelete = async (item) => {
-     const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete it!",
-      });
-    
-      if (result.isConfirmed) {
+ const handleDelete = async (item) => {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes, delete it!",
+  });
+
+  if (result.isConfirmed) {
     try {
       const response = await axios.post(
-        `https://api.leosagitrades.com/public/delete_user`,
-        { user_id: item.id }
+        `https://api.leosagitrades.com/public/delete_blog`,
+        { blog_id: item.id }
       );
       if (response.status === 201) {
         toast.success(response.data.message);
-        getUserList();
+        getBlogList();
       }
     } catch (error) {
       console.error(error);
-      toast.error("Error in deleting user");
+      toast.error("Error in deleting blog");
     }
   }
-  };
+};
 
   const handleEdit = (item) => {
-    naviagte(`/add-user/${item.id}`);
+    naviagte(`/add-blog/${item.id}`);
   };
 
   useEffect(() => {
-    getUserList();
+    getBlogList();
   }, []);
 
   return (
@@ -72,9 +74,9 @@ const UserList = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Description</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -83,13 +85,13 @@ const UserList = () => {
               <tr>
                 <td colSpan={5}>Loading...</td>
               </tr>
-            ) : userList.length > 0 ? (
-              userList.map((item, index) => (
+            ) : blogList.length > 0 ? (
+              blogList.map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{item.name}</td>
-                  <td>{item.email}</td>
-                  <td>{item.phone}</td>
+                  <td>{item.title.slice(0,30)}</td>
+                  <td>{item.status}</td>
+                  <td>{item.short_description.slice(0,50)}</td>
                   <td>
                     <FaEdit onClick={() => handleEdit(item)} />
                     <MdDelete onClick={() => handleDelete(item)} />
@@ -108,4 +110,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default BlogList;

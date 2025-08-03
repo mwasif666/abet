@@ -48,6 +48,7 @@ import AddUser from "./Pages/User/AddUser";
 import UserList from "./Pages/User/UserList";
 import { AdminRoutes, PrivateRoutes, PublicRoutes } from "./middleware/RouteMiddleware";
 import { ToastContainer } from "react-toastify";
+import BlogList from "./Pages/Blog/BlogList";
 
 const LayoutWrapper = ({ children }) => {
   const location = useLocation();
@@ -148,6 +149,7 @@ const AppWrapper = () => {
               <Route path="/add-user" element={<AddUser />} />
               <Route path="/add-user/:id" element={<AddUser />} />
               <Route path="/user-list" element={<UserList />} />
+              <Route path="/blog-list" element={<BlogList/>} />
             </Route>
               
           </Routes>
