@@ -1,14 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { EditorContent, useEditor } from "@tiptap/react";
-import { Container, Card, Form, Button, Spinner, Modal } from "react-bootstrap";
-import StarterKit from "@tiptap/starter-kit";
-import Underline from "@tiptap/extension-underline";
-import Link from "@tiptap/extension-link";
-import Image from "@tiptap/extension-image";
+import { Container, Card, Form, Button, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axios from "axios";
 import withReactContent from "sweetalert2-react-content";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const MySwal = withReactContent(Swal);
 
@@ -34,18 +31,6 @@ const AddBlog = () => {
     h3: "",
     h4: "",
     h5: "",
-  });
-
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Underline,
-      Link.configure({
-        openOnClick: false,
-      }),
-      Image,
-    ],
-    content: "",
   });
 
   useEffect(() => {
@@ -82,44 +67,39 @@ const AddBlog = () => {
     });
   };
 
-const getBlogDetail = async () => {
-  try {
-    const response = await axios.get(
-      `https://api.leosagitrades.com/public/blogs_list/${id}`
-    );
-    const data = response?.data?.data?.[0];
-    if (data) {
-      setBlog({
-        title: data.title || "",
-        url: data.url || "",
-        short_description: data.short_description || "",
-        long_description: data.long_description || "",
-        imageFile: data.original_name || "",
-        category: data.category || "",
-        slug: data.slug || "",
-        meta_title: data.meta_title || "",
-        meta_description: data.meta_description || "",
-        image_alt_text: data.image_alt_text || "",
-        image_name: data.image_name || "",
-        status: data.status || "draft",
-        h2: data.h2 || "",
-        h3: data.h3 || "",
-        h4: data.h4 || "",
-        h5: data.h5 || "",
-      });
-
-      if (data.long_description) {
-        editor?.commands.setContent(data.long_description);
+  const getBlogDetail = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.leosagitrades.com/public/blogs_list/${id}`
+      );
+      const data = response?.data?.data?.[0];
+      if (data) {
+        setBlog({
+          title: data.title || "",
+          url: data.url || "",
+          short_description: data.short_description || "",
+          long_description: data.long_description || "",
+          imageFile: data.original_name || "",
+          category: data.category || "",
+          slug: data.slug || "",
+          meta_title: data.meta_title || "",
+          meta_description: data.meta_description || "",
+          image_alt_text: data.image_alt_text || "",
+          image_name: data.image_name || "",
+          status: data.status || "draft",
+          h2: data.h2 || "",
+          h3: data.h3 || "",
+          h4: data.h4 || "",
+          h5: data.h5 || "",
+        });
       }
+    } catch (error) {
+      showErrorAlert("Failed to fetch blog details. Please try again.");
+      console.error("Error fetching blog:", error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    showErrorAlert("Failed to fetch blog details. Please try again.");
-    console.error("Error fetching blog:", error);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -131,7 +111,7 @@ const getBlogDetail = async () => {
     const url = form.elements.formBasicUrl.value;
     const imageFile = form.elements.formImage.files[0];
     const shortDescription = form.elements.formShortDescription.value;
-    const longDescription = editor?.getHTML() || "";
+    const longDescription = blog.long_description || "";
     const category = form.elements.formCategory.value;
     const slug = form.elements.formSlug.value;
     const metaTitle = form.elements.formMetaTitle.value;
@@ -143,7 +123,6 @@ const getBlogDetail = async () => {
     const h3 = form.elements.formH3.value;
     const h4 = form.elements.formH4.value;
     const h5 = form.elements.formH5.value;
-
 
     if (
       !title ||
@@ -203,7 +182,7 @@ const getBlogDetail = async () => {
       if (response) {
         showSuccessAlert("Blog added successfully!");
         formRef.current.reset();
-        editor?.commands.clearContent();
+        setBlog((prev) => ({ ...prev, long_description: "" }));
       }
     } catch (error) {
       showErrorAlert(
@@ -277,9 +256,6 @@ const getBlogDetail = async () => {
                 id="formBasicUrl"
                 required
               />
-              <Form.Text className="text-muted">
-                This will be used in the blog's web address
-              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-4">
@@ -296,12 +272,14 @@ const getBlogDetail = async () => {
 
             <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Long Description*</Form.Label>
-              <div
-                className="border rounded p-3 bg-white"
-                style={{ minHeight: "300px" }}
-              >
-                <EditorContent editor={editor} />
-              </div>
+              <CKEditor
+                editor={ClassicEditor}
+                data={blog.long_description}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setBlog((prev) => ({ ...prev, long_description: data }));
+                }}
+              />
             </Form.Group>
 
             <Form.Group className="mb-4">
@@ -320,17 +298,17 @@ const getBlogDetail = async () => {
                 </div>
               )}
               <Form.Text className="text-muted">
-                Recommended size: 1200x630 pixels (Only required for new posts)
+                Recommended size: 1200x630 pixels
               </Form.Text>
             </Form.Group>
 
+            {/* Remaining fields as before */}
             <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Category*</Form.Label>
               <Form.Control
                 type="text"
                 id="formCategory"
                 defaultValue={blog.category}
-                placeholder="Enter category"
                 required
               />
             </Form.Group>
@@ -341,7 +319,6 @@ const getBlogDetail = async () => {
                 type="text"
                 id="formSlug"
                 defaultValue={blog.slug}
-                placeholder="Enter slug"
                 required
               />
             </Form.Group>
@@ -352,7 +329,6 @@ const getBlogDetail = async () => {
                 type="text"
                 id="formMetaTitle"
                 defaultValue={blog.meta_title}
-                placeholder="Enter meta title"
               />
             </Form.Group>
 
@@ -363,7 +339,6 @@ const getBlogDetail = async () => {
                 rows={2}
                 id="formMetaDescription"
                 defaultValue={blog.meta_description}
-                placeholder="Enter meta description"
               />
             </Form.Group>
 
@@ -373,7 +348,6 @@ const getBlogDetail = async () => {
                 type="text"
                 id="formImageAltText"
                 defaultValue={blog.image_alt_text}
-                placeholder="Enter image alt text"
               />
             </Form.Group>
 
@@ -383,7 +357,6 @@ const getBlogDetail = async () => {
                 type="text"
                 id="formImageName"
                 defaultValue={blog.image_name}
-                placeholder="Enter image display name"
               />
             </Form.Group>
 
@@ -395,45 +368,16 @@ const getBlogDetail = async () => {
               </Form.Select>
             </Form.Group>
 
-            <Form.Group className="mb-4">
-              <Form.Label className="fw-bold">H2 Heading</Form.Label>
-              <Form.Control
-                type="text"
-                id="formH2"
-                defaultValue={blog.h2}
-                placeholder="Enter H2 heading"
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-4">
-              <Form.Label className="fw-bold">H3 Heading</Form.Label>
-              <Form.Control
-                type="text"
-                id="formH3"
-                defaultValue={blog.h3}
-                placeholder="Enter H3 heading"
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-4">
-              <Form.Label className="fw-bold">H4 Heading</Form.Label>
-              <Form.Control
-                type="text"
-                id="formH4"
-                defaultValue={blog.h4}
-                placeholder="Enter H4 heading"
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-4">
-              <Form.Label className="fw-bold">H5 Heading</Form.Label>
-              <Form.Control
-                type="text"
-                id="formH5"
-                defaultValue={blog.h5}
-                placeholder="Enter H5 heading"
-              />
-            </Form.Group>
+            {[2, 3, 4, 5].map((num) => (
+              <Form.Group className="mb-4" key={`h${num}`}>
+                <Form.Label className="fw-bold">{`H${num} Heading`}</Form.Label>
+                <Form.Control
+                  type="text"
+                  id={`formH${num}`}
+                  defaultValue={blog[`h${num}`]}
+                />
+              </Form.Group>
+            ))}
 
             <div className="d-flex justify-content-end">
               <Button
@@ -441,7 +385,6 @@ const getBlogDetail = async () => {
                 type="submit"
                 size="lg"
                 disabled={submitting}
-                className="px-4"
               >
                 {submitting ? (
                   <>
@@ -449,8 +392,6 @@ const getBlogDetail = async () => {
                       as="span"
                       animation="border"
                       size="sm"
-                      role="status"
-                      aria-hidden="true"
                       className="me-2"
                     />
                     {id ? "Updating..." : "Submitting..."}
