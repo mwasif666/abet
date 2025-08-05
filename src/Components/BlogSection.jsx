@@ -34,8 +34,8 @@ const BlogSection = () => {
     fetchBlog();
   }, []);
 
-  const handleBlogRedirect = (id) => {
-    navigate(`/blog-details/${id}`);
+  const handleBlogRedirect = (post) => {
+    navigate(`/blog-details/${post?.id}/${post?.slug}`);
   };
 
   const loadMorePosts = () => {
@@ -78,7 +78,7 @@ const BlogSection = () => {
               <div
                 key={post.id}
                 className="col-lg-4 col-md-6 mb-4"
-                onClick={() => handleBlogRedirect(post.id)}
+                onClick={() => handleBlogRedirect(post)}
               >
                 <div className={`${styles.blogCard} h-100`}>
                   <a href={post.link} className={styles.blogLink}>

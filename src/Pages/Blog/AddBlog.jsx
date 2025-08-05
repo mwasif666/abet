@@ -24,13 +24,13 @@ const AddBlog = () => {
     slug: "",
     meta_title: "",
     meta_description: "",
-    image_alt_text: "",
-    image_name: "",
     status: "draft",
-    h2: "",
-    h3: "",
-    h4: "",
-    h5: "",
+    // image_alt_text: "",
+    // image_name: "",
+    // h2: "",
+    // h3: "",
+    // h4: "",
+    // h5: "",
   });
 
   useEffect(() => {
@@ -84,13 +84,13 @@ const AddBlog = () => {
           slug: data.slug || "",
           meta_title: data.meta_title || "",
           meta_description: data.meta_description || "",
-          image_alt_text: data.image_alt_text || "",
-          image_name: data.image_name || "",
           status: data.status || "draft",
-          h2: data.h2 || "",
-          h3: data.h3 || "",
-          h4: data.h4 || "",
-          h5: data.h5 || "",
+          // image_alt_text: data.image_alt_text || "",
+          // image_name: data.image_name || "",
+          // h2: data.h2 || "",
+          // h3: data.h3 || "",
+          // h4: data.h4 || "",
+          // h5: data.h5 || "",
         });
       }
     } catch (error) {
@@ -116,19 +116,21 @@ const AddBlog = () => {
     const slug = form.elements.formSlug.value;
     const metaTitle = form.elements.formMetaTitle.value;
     const metaDescription = form.elements.formMetaDescription.value;
-    const imageAltText = form.elements.formImageAltText.value;
-    const imageName = form.elements.formImageName.value;
     const status = form.elements.formStatus.value;
-    const h2 = form.elements.formH2.value;
-    const h3 = form.elements.formH3.value;
-    const h4 = form.elements.formH4.value;
-    const h5 = form.elements.formH5.value;
+    // const imageAltText = form.elements.formImageAltText.value;
+    // const imageName = form.elements.formImageName.value;
+    // const h2 = form.elements.formH2.value;
+    // const h3 = form.elements.formH3.value;
+    // const h4 = form.elements.formH4.value;
+    // const h5 = form.elements.formH5.value;
 
     if (
       !title ||
       !url ||
       !shortDescription ||
       !longDescription ||
+      !slug ||
+      !metaTitle || 
       (!id && !imageFile)
     ) {
       showErrorAlert("All required fields must be filled.");
@@ -146,13 +148,20 @@ const AddBlog = () => {
     formData.append("slug", slug);
     formData.append("meta_title", metaTitle);
     formData.append("meta_description", metaDescription);
-    formData.append("image_alt_text", imageAltText);
-    formData.append("image_name", imageName);
     formData.append("status", status);
-    formData.append("h2", h2);
-    formData.append("h3", h3);
-    formData.append("h4", h4);
-    formData.append("h5", h5);
+    formData.append("image_alt_text", ' ');
+    formData.append("image_name", '');
+    formData.append("h2", '');
+    formData.append("h3", '');
+    formData.append("h4", '');
+    formData.append("h5", '');
+    formData.append("h6", '');
+    // formData.append("image_alt_text", imageAltText);
+    // formData.append("image_name", imageName);
+    // formData.append("h2", h2);
+    // formData.append("h3", h3);
+    // formData.append("h4", h4);
+    // formData.append("h5", h5);
 
     try {
       if (id) {
@@ -186,7 +195,7 @@ const AddBlog = () => {
       }
     } catch (error) {
       showErrorAlert(
-        error?.response?.data?.errors?.url ||
+        error?.response?.data?.errors?.url || error?.response?.data?.errors?.image || 
           "Failed to add blog. Please try again."
       );
       throw error;
@@ -342,23 +351,23 @@ const AddBlog = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-4">
+            {/* <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Image Alt Text</Form.Label>
               <Form.Control
                 type="text"
                 id="formImageAltText"
                 defaultValue={blog.image_alt_text}
               />
-            </Form.Group>
+            </Form.Group> */}
 
-            <Form.Group className="mb-4">
+            {/* <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Image Name</Form.Label>
               <Form.Control
                 type="text"
                 id="formImageName"
                 defaultValue={blog.image_name}
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Status</Form.Label>
@@ -368,7 +377,7 @@ const AddBlog = () => {
               </Form.Select>
             </Form.Group>
 
-            {[2, 3, 4, 5].map((num) => (
+            {/* {[2, 3, 4, 5].map((num) => (
               <Form.Group className="mb-4" key={`h${num}`}>
                 <Form.Label className="fw-bold">{`H${num} Heading`}</Form.Label>
                 <Form.Control
@@ -377,7 +386,7 @@ const AddBlog = () => {
                   defaultValue={blog[`h${num}`]}
                 />
               </Form.Group>
-            ))}
+            ))} */}
 
             <div className="d-flex justify-content-end">
               <Button

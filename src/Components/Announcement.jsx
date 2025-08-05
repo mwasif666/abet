@@ -19,7 +19,6 @@ const AnnouncementsMarquee = () => {
       const response = await axios.get(
         "https://api.leosagitrades.com/public/blogs_list"
       );
-      // Sort by created_at date (newest first)
       const sortedBlogs = (response.data.data || []).sort((a, b) => {
         return new Date(b.created_at) - new Date(a.created_at);
       });
@@ -31,9 +30,9 @@ const AnnouncementsMarquee = () => {
     }
   };
 
-  const handleBlogRedirect = (id) => {
-    if (!id) return;
-    navigate(`/blog-details/${id}`);
+  const handleBlogRedirect = (announcement) => {
+    if (!announcement?.id) return;
+    navigate(`/blog-details/${announcement.id}/${announcement.slug}`);
   };
 
   const formatDate = (dateString) => {
@@ -51,7 +50,6 @@ const AnnouncementsMarquee = () => {
       ? blog
       : [{ title: "No announcements found", created_at: "", id: null }];
 
-  // Duplicate announcements to create seamless loop
   const duplicatedAnnouncements = [...announcements, ...announcements];
 
   return (
@@ -68,7 +66,7 @@ const AnnouncementsMarquee = () => {
               <div
                 key={`${announcement.id || "empty"}-${index}`}
                 className={styles.tickerItem}
-                onClick={() => handleBlogRedirect(announcement.id)}
+                onClick={() => handleBlogRedirect(announcement)}
               >
                 <span className={styles.tickerPostTitle}>
                   {announcement.title}

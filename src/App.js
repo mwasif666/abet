@@ -137,7 +137,7 @@ const AppWrapper = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal-documents" element={<LegalDocuments />} />
             <Route path="/risk" element={<RiskDisclosure />} />
-            <Route path="/blog-details/:id" element={<BlogDetail />} />
+            <Route path="/blog-details/:id/:slug" element={<BlogDetail />} />
             <Route path="/partner" element={<BecomePartner />} />
             <Route path="/account-type" element={<AccountTypes />} />
             <Route path="/forex-dictionary" element={<ForexDictionary />} />
