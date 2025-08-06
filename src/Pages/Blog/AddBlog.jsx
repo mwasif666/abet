@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Card, Form, Button, Spinner } from "react-bootstrap";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import withReactContent from "sweetalert2-react-content";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const MySwal = withReactContent(Swal);
@@ -130,7 +130,7 @@ const AddBlog = () => {
       !shortDescription ||
       !longDescription ||
       !slug ||
-      !metaTitle || 
+      !metaTitle ||
       (!id && !imageFile)
     ) {
       showErrorAlert("All required fields must be filled.");
@@ -149,13 +149,13 @@ const AddBlog = () => {
     formData.append("meta_title", metaTitle);
     formData.append("meta_description", metaDescription);
     formData.append("status", status);
-    formData.append("image_alt_text", ' ');
-    formData.append("image_name", '');
-    formData.append("h2", '');
-    formData.append("h3", '');
-    formData.append("h4", '');
-    formData.append("h5", '');
-    formData.append("h6", '');
+    formData.append("image_alt_text", " ");
+    formData.append("image_name", "");
+    formData.append("h2", "");
+    formData.append("h3", "");
+    formData.append("h4", "");
+    formData.append("h5", "");
+    formData.append("h6", "");
     // formData.append("image_alt_text", imageAltText);
     // formData.append("image_name", imageName);
     // formData.append("h2", h2);
@@ -195,7 +195,8 @@ const AddBlog = () => {
       }
     } catch (error) {
       showErrorAlert(
-        error?.response?.data?.errors?.url || error?.response?.data?.errors?.image || 
+        error?.response?.data?.errors?.url ||
+          error?.response?.data?.errors?.image ||
           "Failed to add blog. Please try again."
       );
       throw error;
@@ -311,7 +312,19 @@ const AddBlog = () => {
               </Form.Text>
             </Form.Group>
 
-            {/* Remaining fields as before */}
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Category Type</Form.Label>
+              <Form.Select
+                id="formCategory"
+                defaultValue={blog.category}
+                required
+              >
+                <option value="">Select Category</option>
+                <option value="News">News</option>
+                <option value="Blog">Blog</option>
+              </Form.Select>
+            </Form.Group>
+
             <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Category*</Form.Label>
               <Form.Control
@@ -351,6 +364,15 @@ const AddBlog = () => {
               />
             </Form.Group>
 
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Status</Form.Label>
+              <Form.Select id="formStatus" defaultValue={blog.status}>
+                <option value="draft">Draft</option>
+                <option value="publish">Published</option>
+                <option value="scehdule">Scehdule</option>
+              </Form.Select>
+            </Form.Group>
+
             {/* <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Image Alt Text</Form.Label>
               <Form.Control
@@ -368,14 +390,6 @@ const AddBlog = () => {
                 defaultValue={blog.image_name}
               />
             </Form.Group> */}
-
-            <Form.Group className="mb-4">
-              <Form.Label className="fw-bold">Status</Form.Label>
-              <Form.Select id="formStatus" defaultValue={blog.status}>
-                <option value="draft">Draft</option>
-                <option value="publish">Published</option>
-              </Form.Select>
-            </Form.Group>
 
             {/* {[2, 3, 4, 5].map((num) => (
               <Form.Group className="mb-4" key={`h${num}`}>

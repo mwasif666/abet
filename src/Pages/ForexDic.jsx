@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Accordion, Button, Form, Card } from "react-bootstrap";
-import styles from "./ForexDictionary.module.css";
+import styles from "../style/ForexDictionary.module.css";
 
 const ForexDictionary = () => {
   const [searchTerm, setSearchTerm] = useState("");

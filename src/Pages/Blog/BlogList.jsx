@@ -6,10 +6,12 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Col, Form, Row } from "react-bootstrap";
 
 const BlogList = () => {
   const naviagte = useNavigate();
   const [blogList, setBlogList] = useState([]);
+  const [originalBlogList, setOriginalBlogList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getBlogList = async () => {
@@ -18,10 +20,9 @@ const BlogList = () => {
       const response = await axios.get(
         `https://api.leosagitrades.com/public/blogs_list`
       );
-      console.log(response);
-      
       if (response.status === 201) {
         setBlogList(response.data.data);
+        setOriginalBlogList(response.data.data);
       }
     } catch (error) {
       console.error(error);
@@ -31,33 +32,33 @@ const BlogList = () => {
     }
   };
 
- const handleDelete = async (item) => {
-  const result = await Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-    confirmButtonText: "Yes, delete it!",
-  });
+  const handleDelete = async (item) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
 
-  if (result.isConfirmed) {
-    try {
-      const response = await axios.post(
-        `https://api.leosagitrades.com/public/delete_blog`,
-        { blog_id: item.id }
-      );
-      if (response.status === 201) {
-        toast.success(response.data.message);
-        getBlogList();
+    if (result.isConfirmed) {
+      try {
+        const response = await axios.post(
+          `https://api.leosagitrades.com/public/delete_blog`,
+          { blog_id: item.id }
+        );
+        if (response.status === 201) {
+          toast.success(response.data.message);
+          getBlogList();
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Error in deleting blog");
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Error in deleting blog");
     }
-  }
-};
+  };
 
   const handleEdit = (item) => {
     naviagte(`/add-blog/${item.id}`);
@@ -67,9 +68,36 @@ const BlogList = () => {
     getBlogList();
   }, []);
 
+  const handleChange = (e) => {
+    setLoading(true);
+    if (e.target.value == "all") {
+      setBlogList(originalBlogList);
+    } else {
+      setBlogList(originalBlogList.filter((y) => y.status === e.target.value));  
+    }
+    setLoading(false);
+  };
+
   return (
     <>
       <div className="container mt-3">
+        <Row>
+          <Col md={3}>
+            <Form.Group className="mb-4">
+              <Form.Select
+                id="formStatus"
+                defaultValue={"all"}
+                onChange={(e) => handleChange(e)}
+              >
+                <option value="all">All</option>
+                <option value="draft">Draft</option>
+                <option value="publish">Published</option>
+                <option value="scehdule">Scehdule</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+        </Row>
+
         <Table striped bordered hover variant="dark">
           <thead>
             <tr>
@@ -89,9 +117,9 @@ const BlogList = () => {
               blogList.map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{item.title.slice(0,30)}</td>
+                  <td>{item.title.slice(0, 30)}</td>
                   <td>{item.status}</td>
-                  <td>{item.short_description.slice(0,50)}</td>
+                  <td>{item.short_description.slice(0, 50)}</td>
                   <td>
                     <FaEdit onClick={() => handleEdit(item)} />
                     <MdDelete onClick={() => handleDelete(item)} />
