@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import styles from "../../style/BlogDetail.module.css";
 import Logo from "../../assets/logo.png";
+
 const BlogDetail = () => {
   const { slug } = useParams();
   const [blog, setBlog] = useState({
@@ -23,9 +24,14 @@ const BlogDetail = () => {
     image_alt_text: "",
     meta_title: "",
     meta_description: "",
+    id: "",
   });
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+  const [commentLoading, setCommentLoading] = useState(false);
+  const [commentsLoading, setCommentsLoading] = useState(true);
 
   const getBlogDetail = async () => {
     try {
@@ -45,13 +51,66 @@ const BlogDetail = () => {
           image_alt_text: blogData.image_alt_text || "",
           meta_title: blogData.meta_title || "",
           meta_description: blogData.meta_description || "",
+          id: blogData.id || "",
         });
+        fetchComments(blogData.id);
       }
     } catch (error) {
       toast.error("Failed to fetch blog details. Please try again.");
       console.error("Error fetching blog:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchComments = async (blogId) => {
+    try {
+      setCommentsLoading(true);
+      const response = await axios.get(
+        `https://api.leosagitrades.com/public/blog_comments?blog_id=${blogId}`
+      );
+      if (response?.data?.data) {
+        setComments(response.data.data);
+      }
+    } catch (error) {
+      toast.error("Failed to fetch comments. Please try again.");
+      console.error("Error fetching comments:", error);
+    } finally {
+      setCommentsLoading(false);
+    }
+  };
+
+  const postComment = async (blogId, commentText) => {
+    try {
+      setCommentLoading(true);
+      const response = await axios.post(
+        "https://api.leosagitrades.com/public/blog_comments",
+        {
+          blog_id: blogId,
+          comment: commentText,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.data && response.data.success) {
+        toast.success("Comment submitted successfully!");
+        return true;
+      } else {
+        throw new Error(response.data.message || "Failed to submit comment");
+      }
+    } catch (error) {
+      console.error("Comment submission error:", error);
+      toast.error(
+        error.response?.data?.message ||
+          "Failed to submit comment. Please try again."
+      );
+      return false;
+    } finally {
+      setCommentLoading(false);
     }
   };
 
@@ -63,6 +122,20 @@ const BlogDetail = () => {
     e.preventDefault();
     toast.success("Thanks for subscribing!");
     setEmail("");
+  };
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (!newComment.trim()) {
+      toast.error("Please enter a comment");
+      return;
+    }
+
+    const success = await postComment(blog.id, newComment);
+    if (success) {
+      setNewComment("");
+      await fetchComments(blog.id);
+    }
   };
 
   if (loading) {
@@ -81,7 +154,6 @@ const BlogDetail = () => {
           name="description"
           content={blog.meta_description || blog.short_description}
         />
-
         <meta property="og:title" content={blog.meta_title || blog.title} />
         <meta
           property="og:description"
@@ -91,10 +163,11 @@ const BlogDetail = () => {
           property="og:image"
           content={`https://api.leosagitrades.com/storage/app/public/blogs/${blog.encoded_name}`}
         />
-        <meta property="og:url" content={`https://yourdomain.com/blog/${slug}`} />
+        <meta
+          property="og:url"
+          content={`https://yourdomain.com/blog/${slug}`}
+        />
         <meta property="og:type" content="article" />
-
-        
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={blog.meta_title || blog.title} />
         <meta
@@ -107,7 +180,6 @@ const BlogDetail = () => {
         />
       </Helmet>
       <article className={styles.blogDetailContainer}>
-   
         <div className={styles.blogHeader}>
           <div className={styles.blogMeta}>
             <span className={styles.categoryTag}>NEWS</span>
@@ -170,28 +242,59 @@ const BlogDetail = () => {
           />
         </div>
 
-        {/* Newsletter */}
-        {/* <div className={styles.newsletterSection}>
-        <div className={styles.newsletterCard}>
-          <div className={styles.newsletterIcon}>
-            <FiMail />
-          </div>
-          <div className={styles.newsletterContent}>
-            <h2>Newsletter</h2>
-            <p>Keep in touch with our news & offers</p>
-            <form onSubmit={handleSubscribe} className={styles.subscribeForm}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <button type="submit">Subscribe</button>
-            </form>
-          </div>
+        <div className={styles.commentSection}>
+          <h3 className={styles.commentTitle}>Comments ({comments.length})</h3>
+
+          {commentsLoading ? (
+            <div className={styles.loadingContainer}>
+              <div className={styles.loadingSpinner}></div>
+            </div>
+          ) : comments.length > 0 ? (
+            <div className={styles.commentList}>
+              {comments.map((comment) => (
+                <div key={comment.id} className={styles.commentItem}>
+                  <div className={styles.commentHeader}>
+                    <span className={styles.commentAuthor}>Anonymous</span>
+                    <span className={styles.commentDate}>
+                      {new Date(comment.created_at).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        }
+                      )}
+                    </span>
+                  </div>
+                  <div className={styles.commentText}>{comment.comment}</div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className={styles.noComments}>
+              No comments yet. Be the first to comment!
+            </p>
+          )}
+
+          <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
+            <h4 className={styles.commentFormTitle}>Leave a Comment</h4>
+            <textarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Write your comment here..."
+              className={styles.commentInput}
+              rows="5"
+              required
+            />
+            <button
+              type="submit"
+              className={styles.commentSubmit}
+              disabled={commentLoading}
+            >
+              {commentLoading ? "Submitting..." : "Submit Comment"}
+            </button>
+          </form>
         </div>
-      </div> */}
       </article>
     </>
   );
