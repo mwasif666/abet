@@ -11,20 +11,24 @@ const MySwal = withReactContent(Swal);
 
 const AddBlog = () => {
   const formRef = useRef();
-  const { id } = useParams();
+  const { slug } = useParams();
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [userDetail, setUserDetail] = useState({});
   const [blog, setBlog] = useState({
+    id: "",
     title: "",
     url: "",
     short_description: "",
     long_description: "",
     imageFile: "",
     category: "",
+    sub_category: "",
     slug: "",
     meta_title: "",
     meta_description: "",
     status: "draft",
+    tags: ""
     // image_alt_text: "",
     // image_name: "",
     // h2: "",
@@ -33,13 +37,22 @@ const AddBlog = () => {
     // h5: "",
   });
 
+  const getDetailFromLocalStorage = () => {
+  const data = localStorage.getItem('userDetails');
+  if (data) {
+    setUserDetail(JSON.parse(data));
+  }
+};
+
+
   useEffect(() => {
-    if (id) {
+    if (slug) {
       getBlogDetail();
     } else {
       setLoading(false);
     }
-  }, [id]);
+    getDetailFromLocalStorage();
+  }, [slug]);
 
   const showSuccessAlert = (message) => {
     MySwal.fire({
@@ -70,21 +83,24 @@ const AddBlog = () => {
   const getBlogDetail = async () => {
     try {
       const response = await axios.get(
-        `https://api.leosagitrades.com/public/blogs_list/${id}`
+        `https://api.leosagitrades.com/public/blogs_list/${slug}`
       );
       const data = response?.data?.data?.[0];
       if (data) {
         setBlog({
+          id:data.id || "",
           title: data.title || "",
           url: data.url || "",
           short_description: data.short_description || "",
           long_description: data.long_description || "",
           imageFile: data.original_name || "",
           category: data.category || "",
+          sub_category: data.sub_category || "",
           slug: data.slug || "",
           meta_title: data.meta_title || "",
           meta_description: data.meta_description || "",
           status: data.status || "draft",
+          tags: data.tags || "",
           // image_alt_text: data.image_alt_text || "",
           // image_name: data.image_name || "",
           // h2: data.h2 || "",
@@ -113,10 +129,13 @@ const AddBlog = () => {
     const shortDescription = form.elements.formShortDescription.value;
     const longDescription = blog.long_description || "";
     const category = form.elements.formCategory.value;
+    const subCategory = form.elements.formSubCategory.value;
     const slug = form.elements.formSlug.value;
     const metaTitle = form.elements.formMetaTitle.value;
     const metaDescription = form.elements.formMetaDescription.value;
     const status = form.elements.formStatus.value;
+    const tags = "";
+    // const status = form.elements.formStatus.value;
     // const imageAltText = form.elements.formImageAltText.value;
     // const imageName = form.elements.formImageName.value;
     // const h2 = form.elements.formH2.value;
@@ -131,7 +150,9 @@ const AddBlog = () => {
       !longDescription ||
       !slug ||
       !metaTitle ||
-      (!id && !imageFile)
+      !category || 
+      !subCategory ||
+      (!slug && !imageFile)
     ) {
       showErrorAlert("All required fields must be filled.");
       setSubmitting(false);
@@ -145,10 +166,12 @@ const AddBlog = () => {
     formData.append("long_description", longDescription);
     if (imageFile) formData.append("image", imageFile);
     formData.append("category", category);
+    formData.append("sub_category", subCategory);
     formData.append("slug", slug);
     formData.append("meta_title", metaTitle);
     formData.append("meta_description", metaDescription);
     formData.append("status", status);
+    formData.append("tags", tags);
     formData.append("image_alt_text", " ");
     formData.append("image_name", "");
     formData.append("h2", "");
@@ -164,10 +187,12 @@ const AddBlog = () => {
     // formData.append("h5", h5);
 
     try {
-      if (id) {
-        formData.append("blog_id", id);
+      if (slug) {
+        formData.append("blog_id", blog?.id);
+        formData.append("user_id", userDetail.id);
         await updateBlog(formData);
       } else {
+        formData.append("user_id", userDetail.id);
         await addBlog(formData);
       }
     } catch (error) {
@@ -240,7 +265,7 @@ const AddBlog = () => {
         <Card.Header className="bg-primary text-white">
           <div className="d-flex justify-content-between align-items-center">
             <h3 className="mb-0">
-              {id ? "Update Blog Post" : "Create New Blog Post"}
+              {slug ? "Update Blog Post" : "Create New Blog Post"}
             </h3>
           </div>
         </Card.Header>
@@ -294,7 +319,7 @@ const AddBlog = () => {
 
             <Form.Group className="mb-4">
               <Form.Label className="fw-bold">
-                Featured Image{!id && "*"}
+                Featured Image{!slug && "*"}
               </Form.Label>
               <Form.Control
                 type="file"
@@ -320,17 +345,17 @@ const AddBlog = () => {
                 required
               >
                 <option value="">Select Category</option>
-                <option value="News">News</option>
-                <option value="Blog">Blog</option>
+                <option value="news">News</option>
+                <option value="blog">Blog</option>
               </Form.Select>
             </Form.Group>
 
             <Form.Group className="mb-4">
-              <Form.Label className="fw-bold">Category*</Form.Label>
+              <Form.Label className="fw-bold">Sub Category*</Form.Label>
               <Form.Control
                 type="text"
-                id="formCategory"
-                defaultValue={blog.category}
+                id="formSubCategory"
+                defaultValue={blog.sub_category}
                 required
               />
             </Form.Group>
@@ -369,7 +394,7 @@ const AddBlog = () => {
               <Form.Select id="formStatus" defaultValue={blog.status}>
                 <option value="draft">Draft</option>
                 <option value="publish">Published</option>
-                <option value="scehdule">Scehdule</option>
+                {/* <option value="scehdule">Scehdule</option> */}
               </Form.Select>
             </Form.Group>
 
@@ -417,10 +442,10 @@ const AddBlog = () => {
                       size="sm"
                       className="me-2"
                     />
-                    {id ? "Updating..." : "Submitting..."}
+                    {slug ? "Updating..." : "Submitting..."}
                   </>
                 ) : (
-                  <>{id ? "Update Blog" : "Publish Blog"}</>
+                  <>{slug ? "Update Blog" : "Publish Blog"}</>
                 )}
               </Button>
             </div>

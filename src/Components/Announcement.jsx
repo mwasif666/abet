@@ -30,9 +30,17 @@ const AnnouncementsMarquee = () => {
     }
   };
 
+   function validateSlug(slug) {
+    if (slug.startsWith("/")) {
+      return slug.slice(1);
+    } else {
+      return slug;
+    }
+  }
+
   const handleBlogRedirect = (announcement) => {
     if (!announcement?.id) return;
-    navigate(`/blog-details/${announcement.id}/${announcement.slug}`);
+    navigate(`/blog-details/${validateSlug(announcement.slug)}`);
   };
 
   const formatDate = (dateString) => {

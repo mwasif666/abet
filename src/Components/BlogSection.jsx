@@ -34,8 +34,16 @@ const BlogSection = () => {
     fetchBlog();
   }, []);
 
+  function validateSlug(slug) {
+    if (slug.startsWith("/")) {
+      return slug.slice(1);
+    } else {
+      return slug;
+    }
+  }
+
   const handleBlogRedirect = (post) => {
-    navigate(`/blog-details/${post?.id}/${post?.slug}`);
+    navigate(`/blog-details/${validateSlug(post?.slug)}`);
   };
 
   const loadMorePosts = () => {

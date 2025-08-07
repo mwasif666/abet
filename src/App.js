@@ -137,7 +137,7 @@ const AppWrapper = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal-documents" element={<LegalDocuments />} />
             <Route path="/risk" element={<RiskDisclosure />} />
-            <Route path="/blog-details/:id/:slug" element={<BlogDetail />} />
+            <Route path="/blog-details/:slug" element={<BlogDetail />} />
             <Route path="/partner" element={<BecomePartner />} />
             <Route path="/account-type" element={<AccountTypes />} />
             <Route path="/forex-dictionary" element={<ForexDictionary />} />
@@ -149,7 +149,7 @@ const AppWrapper = () => {
             </Route>
             <Route element={<PrivateRoutes />}>
               <Route path="/add-blog" element={<AddBlog />} />
-              <Route path="/add-blog/:id" element={<AddBlog />} />
+              <Route path="/add-blog/:slug" element={<AddBlog />} />
             </Route>
             <Route element={<AdminRoutes />}>
               <Route path="/add-user" element={<AddUser />} />

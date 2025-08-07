@@ -60,8 +60,16 @@ const BlogList = () => {
     }
   };
 
+  function validateSlug(slug) {
+    if (slug.startsWith("/")) {
+      return slug.slice(1);
+    } else {
+      return slug;
+    }
+  }
+
   const handleEdit = (item) => {
-    naviagte(`/add-blog/${item.id}`);
+    naviagte(`/add-blog/${validateSlug(item.slug)}`);
   };
 
   useEffect(() => {
@@ -73,7 +81,7 @@ const BlogList = () => {
     if (e.target.value == "all") {
       setBlogList(originalBlogList);
     } else {
-      setBlogList(originalBlogList.filter((y) => y.status === e.target.value));  
+      setBlogList(originalBlogList.filter((y) => y.status === e.target.value));
     }
     setLoading(false);
   };
@@ -92,7 +100,7 @@ const BlogList = () => {
                 <option value="all">All</option>
                 <option value="draft">Draft</option>
                 <option value="publish">Published</option>
-                <option value="scehdule">Scehdule</option>
+                {/* <option value="scehdule">Scehdule</option> */}
               </Form.Select>
             </Form.Group>
           </Col>
@@ -105,13 +113,15 @@ const BlogList = () => {
               <th>Title</th>
               <th>Status</th>
               <th>Description</th>
+              <th>Email</th>
+              <th>Name</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={5}>Loading...</td>
+                <td colSpan={7}>Loading...</td>
               </tr>
             ) : blogList.length > 0 ? (
               blogList.map((item, index) => (
@@ -120,6 +130,8 @@ const BlogList = () => {
                   <td>{item.title.slice(0, 30)}</td>
                   <td>{item.status}</td>
                   <td>{item.short_description.slice(0, 50)}</td>
+                  <td>{item.user.email}</td>
+                  <td>{item.user.name}</td>
                   <td>
                     <FaEdit onClick={() => handleEdit(item)} />
                     <MdDelete onClick={() => handleDelete(item)} />

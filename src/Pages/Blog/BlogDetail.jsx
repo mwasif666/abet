@@ -12,7 +12,7 @@ import axios from "axios";
 import styles from "../../style/BlogDetail.module.css";
 import Logo from "../../assets/logo.png";
 const BlogDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [blog, setBlog] = useState({
     title: "",
     url: "",
@@ -30,7 +30,7 @@ const BlogDetail = () => {
   const getBlogDetail = async () => {
     try {
       const response = await axios.get(
-        `https://api.leosagitrades.com/public/blogs_list/${id}`
+        `https://api.leosagitrades.com/public/blogs_list/${slug}`
       );
       if (response?.data?.data?.[0]) {
         const blogData = response.data.data[0];
@@ -57,7 +57,7 @@ const BlogDetail = () => {
 
   useEffect(() => {
     getBlogDetail();
-  }, [id]);
+  }, [slug]);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -91,7 +91,7 @@ const BlogDetail = () => {
           property="og:image"
           content={`https://api.leosagitrades.com/storage/app/public/blogs/${blog.encoded_name}`}
         />
-        <meta property="og:url" content={`https://yourdomain.com/blog/${id}`} />
+        <meta property="og:url" content={`https://yourdomain.com/blog/${slug}`} />
         <meta property="og:type" content="article" />
 
         
