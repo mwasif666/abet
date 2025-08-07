@@ -1,6 +1,13 @@
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Card, Form, Button, Spinner } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Form,
+  Button,
+  Spinner,
+  CardBody,
+} from "react-bootstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -15,6 +22,7 @@ const AddBlog = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [userDetail, setUserDetail] = useState({});
+  const [tagInput, setTagInput] = useState("");
   const [blog, setBlog] = useState({
     id: "",
     title: "",
@@ -28,7 +36,7 @@ const AddBlog = () => {
     meta_title: "",
     meta_description: "",
     status: "draft",
-    tags: ""
+    tags: [],
     // image_alt_text: "",
     // image_name: "",
     // h2: "",
@@ -38,12 +46,11 @@ const AddBlog = () => {
   });
 
   const getDetailFromLocalStorage = () => {
-  const data = localStorage.getItem('userDetails');
-  if (data) {
-    setUserDetail(JSON.parse(data));
-  }
-};
-
+    const data = localStorage.getItem("userDetails");
+    if (data) {
+      setUserDetail(JSON.parse(data));
+    }
+  };
 
   useEffect(() => {
     if (slug) {
@@ -88,7 +95,7 @@ const AddBlog = () => {
       const data = response?.data?.data?.[0];
       if (data) {
         setBlog({
-          id:data.id || "",
+          id: data.id || "",
           title: data.title || "",
           url: data.url || "",
           short_description: data.short_description || "",
@@ -130,11 +137,12 @@ const AddBlog = () => {
     const longDescription = blog.long_description || "";
     const category = form.elements.formCategory.value;
     const subCategory = form.elements.formSubCategory.value;
-    const slug = form.elements.formSlug.value;
+    const slugVal = form.elements.formSlug.value;
     const metaTitle = form.elements.formMetaTitle.value;
     const metaDescription = form.elements.formMetaDescription.value;
     const status = form.elements.formStatus.value;
-    const tags = "";
+    const tags = blog.tags || [];
+
     // const status = form.elements.formStatus.value;
     // const imageAltText = form.elements.formImageAltText.value;
     // const imageName = form.elements.formImageName.value;
@@ -148,9 +156,9 @@ const AddBlog = () => {
       !url ||
       !shortDescription ||
       !longDescription ||
-      !slug ||
+      !slugVal ||
       !metaTitle ||
-      !category || 
+      !category ||
       !subCategory ||
       (!slug && !imageFile)
     ) {
@@ -167,7 +175,7 @@ const AddBlog = () => {
     if (imageFile) formData.append("image", imageFile);
     formData.append("category", category);
     formData.append("sub_category", subCategory);
-    formData.append("slug", slug);
+    formData.append("slug", slugVal);
     formData.append("meta_title", metaTitle);
     formData.append("meta_description", metaDescription);
     formData.append("status", status);
@@ -216,6 +224,7 @@ const AddBlog = () => {
       if (response) {
         showSuccessAlert("Blog added successfully!");
         formRef.current.reset();
+        setBlog((prev) => ({ ...prev, tags: [] }));
         setBlog((prev) => ({ ...prev, long_description: "" }));
       }
     } catch (error) {
@@ -246,6 +255,32 @@ const AddBlog = () => {
       showErrorAlert("Failed to update blog. Please try again.");
       throw error;
     }
+  };
+
+  const addTags = (e) => {
+    e.preventDefault();
+    const trimmedTag = tagInput.trim();
+    if (!trimmedTag) return;
+    if (blog.tags.includes(trimmedTag)) return;
+
+    setBlog((prevBlog) => ({
+      ...prevBlog,
+      tags: [...prevBlog.tags, trimmedTag],
+    }));
+    setTagInput("");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      addTags(e);
+    }
+  };
+
+  const handleRemove = (indexToRemove) => {
+    setBlog((prevBlog) => ({
+      ...prevBlog,
+      tags: prevBlog.tags.filter((_, index) => index !== indexToRemove),
+    }));
   };
 
   if (loading) {
@@ -397,7 +432,41 @@ const AddBlog = () => {
                 {/* <option value="scehdule">Scehdule</option> */}
               </Form.Select>
             </Form.Group>
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-bold">Tags</Form.Label>
+              <Form.Control
+                type="text"
+                id="formTag"
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type and press Enter or click Add"
+              />
+              <Button variant="primary" onClick={addTags} className="mt-2">
+                Add
+              </Button>
+            </Form.Group>
 
+            <Card>
+              <CardBody>
+                {blog?.tags.length === 0 ? (
+                  <p className="text-muted">No tags added yet.</p>
+                ) : (
+                  <div className="d-flex flex-wrap">
+                    {blog?.tags?.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="badge bg-primary me-2 mb-2"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleRemove(index)}
+                      >
+                        {tag} &times;
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </CardBody>
+            </Card>
             {/* <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Image Alt Text</Form.Label>
               <Form.Control
@@ -427,7 +496,7 @@ const AddBlog = () => {
               </Form.Group>
             ))} */}
 
-            <div className="d-flex justify-content-end">
+            <div className="d-flex justify-content-end mt-2">
               <Button
                 variant="primary"
                 type="submit"
