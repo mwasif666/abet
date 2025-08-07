@@ -25,13 +25,13 @@ const BlogDetail = () => {
     meta_title: "",
     meta_description: "",
     id: "",
+    comments: [],
   });
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
-  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [commentLoading, setCommentLoading] = useState(false);
-  const [commentsLoading, setCommentsLoading] = useState(true);
+  const [commentsLoading, setCommentsLoading] = useState(false);
 
   const getBlogDetail = async () => {
     try {
@@ -52,8 +52,8 @@ const BlogDetail = () => {
           meta_title: blogData.meta_title || "",
           meta_description: blogData.meta_description || "",
           id: blogData.id || "",
+          comments: blogData.comments || [],
         });
-        fetchComments(blogData.id);
       }
     } catch (error) {
       toast.error("Failed to fetch blog details. Please try again.");
@@ -63,26 +63,10 @@ const BlogDetail = () => {
     }
   };
 
-  const fetchComments = async (blogId) => {
-    try {
-      setCommentsLoading(true);
-      const response = await axios.get(
-        `https://api.leosagitrades.com/public/blog_comments?blog_id=${blogId}`
-      );
-      if (response?.data?.data) {
-        setComments(response.data.data);
-      }
-    } catch (error) {
-      toast.error("Failed to fetch comments. Please try again.");
-      console.error("Error fetching comments:", error);
-    } finally {
-      setCommentsLoading(false);
-    }
-  };
-
   const postComment = async (blogId, commentText) => {
     try {
       setCommentLoading(true);
+      setCommentsLoading(true);
       const response = await axios.post(
         "https://api.leosagitrades.com/public/blog_comments",
         {
@@ -95,12 +79,15 @@ const BlogDetail = () => {
           },
         }
       );
-
-      if (response.data && response.data.success) {
+      if (response.status === 201) {
         toast.success("Comment submitted successfully!");
+        const newComment = response.data?.data || { comment: commentText };
+        setBlog((prevBlog) => ({
+          ...prevBlog,
+          comments: [...(prevBlog.comments || []), newComment],
+        }));
+        setNewComment('');
         return true;
-      } else {
-        throw new Error(response.data.message || "Failed to submit comment");
       }
     } catch (error) {
       console.error("Comment submission error:", error);
@@ -111,6 +98,7 @@ const BlogDetail = () => {
       return false;
     } finally {
       setCommentLoading(false);
+      setCommentsLoading(false);
     }
   };
 
@@ -131,11 +119,7 @@ const BlogDetail = () => {
       return;
     }
 
-    const success = await postComment(blog.id, newComment);
-    if (success) {
-      setNewComment("");
-      await fetchComments(blog.id);
-    }
+    await postComment(blog.id, newComment);
   };
 
   if (loading) {
@@ -243,15 +227,17 @@ const BlogDetail = () => {
         </div>
 
         <div className={styles.commentSection}>
-          <h3 className={styles.commentTitle}>Comments ({comments.length})</h3>
+          <h3 className={styles.commentTitle}>
+            Comments ({blog?.comments?.length || 0})
+          </h3>
 
           {commentsLoading ? (
             <div className={styles.loadingContainer}>
               <div className={styles.loadingSpinner}></div>
             </div>
-          ) : comments.length > 0 ? (
+          ) : blog.comments.length > 0 ? (
             <div className={styles.commentList}>
-              {comments.map((comment) => (
+              {blog.comments.slice(0, 8).map((comment) => (
                 <div key={comment.id} className={styles.commentItem}>
                   <div className={styles.commentHeader}>
                     <span className={styles.commentAuthor}>Anonymous</span>
