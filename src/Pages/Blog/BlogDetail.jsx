@@ -11,12 +11,15 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import styles from "../../style/BlogDetail.module.css";
 import Logo from "../../assets/logo.png";
+import Badge from "react-bootstrap/Badge";
+import { Row } from "react-bootstrap";
 
 const BlogDetail = () => {
   const { slug } = useParams();
   const [blog, setBlog] = useState({
     title: "",
     url: "",
+    category:"",
     short_description: "",
     long_description: "",
     encoded_name: "",
@@ -26,9 +29,11 @@ const BlogDetail = () => {
     meta_description: "",
     id: "",
     comments: [],
+    tags: [],
+    sub_category: ""
   });
+  // const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(true);
-  const [email, setEmail] = useState("");
   const [newComment, setNewComment] = useState("");
   const [commentLoading, setCommentLoading] = useState(false);
   const [commentsLoading, setCommentsLoading] = useState(false);
@@ -53,6 +58,10 @@ const BlogDetail = () => {
           meta_description: blogData.meta_description || "",
           id: blogData.id || "",
           comments: blogData.comments || [],
+          tags: blogData.tags || [],
+          sub_category: blogData.sub_category || "",
+          category:blogData.category || "",
+
         });
       }
     } catch (error) {
@@ -86,7 +95,7 @@ const BlogDetail = () => {
           ...prevBlog,
           comments: [...(prevBlog.comments || []), newComment],
         }));
-        setNewComment('');
+        setNewComment("");
         return true;
       }
     } catch (error) {
@@ -106,11 +115,11 @@ const BlogDetail = () => {
     getBlogDetail();
   }, [slug]);
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    toast.success("Thanks for subscribing!");
-    setEmail("");
-  };
+  // const handleSubscribe = (e) => {
+  //   e.preventDefault();
+  //   toast.success("Thanks for subscribing!");
+  //   setEmail("");
+  // };
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -166,12 +175,13 @@ const BlogDetail = () => {
       <article className={styles.blogDetailContainer}>
         <div className={styles.blogHeader}>
           <div className={styles.blogMeta}>
-            <span className={styles.categoryTag}>NEWS</span>
+            <span className={styles.categoryTag}>{blog.category.toLocaleUpperCase()}</span>
             <div className={styles.readTime}>
               <FaRegClock className={styles.clockIcon} />
               <span>2 min read</span>
             </div>
           </div>
+          <h5 >{blog.sub_category}</h5>
 
           <h1 className={styles.blogTitle}>{blog.title}</h1>
 
@@ -226,10 +236,40 @@ const BlogDetail = () => {
           />
         </div>
 
+        <div className="d-flex flex-wrap align-items-center">
+          {blog?.tags?.length > 0 &&
+            blog.tags.map((item) => (
+              <h6 key={item.id}>
+                <Badge bg="secondary" className="mx-1 py-2 px-2">
+                  {item.tag}
+                </Badge>
+              </h6>
+            ))}
+        </div>
+
         <div className={styles.commentSection}>
           <h3 className={styles.commentTitle}>
             Comments ({blog?.comments?.length || 0})
           </h3>
+
+          <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
+            <h4 className={styles.commentFormTitle}>Leave a Comment</h4>
+            <textarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Write your comment here..."
+              className={styles.commentInput}
+              rows="5"
+              required
+            />
+            <button
+              type="submit"
+              className={styles.commentSubmit}
+              disabled={commentLoading}
+            >
+              {commentLoading ? "Submitting..." : "Submit Comment"}
+            </button>
+          </form>
 
           {commentsLoading ? (
             <div className={styles.loadingContainer}>
@@ -261,25 +301,6 @@ const BlogDetail = () => {
               No comments yet. Be the first to comment!
             </p>
           )}
-
-          <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
-            <h4 className={styles.commentFormTitle}>Leave a Comment</h4>
-            <textarea
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              placeholder="Write your comment here..."
-              className={styles.commentInput}
-              rows="5"
-              required
-            />
-            <button
-              type="submit"
-              className={styles.commentSubmit}
-              disabled={commentLoading}
-            >
-              {commentLoading ? "Submitting..." : "Submit Comment"}
-            </button>
-          </form>
         </div>
       </article>
     </>
