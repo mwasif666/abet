@@ -37,6 +37,7 @@ const AddBlog = () => {
     meta_description: "",
     status: "draft",
     tags: [],
+    schedule_time: "",
     // image_alt_text: "",
     // image_name: "",
     // h2: "",
@@ -44,6 +45,33 @@ const AddBlog = () => {
     // h4: "",
     // h5: "",
   });
+  const [statusVal, setStatusVal] = useState(blog.status || "draft");
+
+ function extractFromTimestamp(timestamp, type) {
+  const dateObj = new Date(timestamp);
+
+  if (isNaN(dateObj.getTime())) {
+    console.error("Invalid timestamp:", timestamp);
+    return null;
+  }
+
+  if (type === "date") {
+    return dateObj.toISOString().split("T")[0]; 
+  } else if (type === "time") {
+    return dateObj.toTimeString().split(" ")[0]; 
+  } else {
+    console.error("Invalid type:", type);
+    return null;
+  }
+}
+
+  const [scheduleDate, setScheduleDate] = useState(
+    extractFromTimestamp(blog.schedule_time, "date") || ""
+  );
+  const [scheduleTime, setScheduleTime] = useState(
+    blog.schedule_time,
+    "time" || ""
+  );
 
   const getDetailFromLocalStorage = () => {
     const data = localStorage.getItem("userDetails");
@@ -107,7 +135,9 @@ const AddBlog = () => {
           meta_title: data.meta_title || "",
           meta_description: data.meta_description || "",
           status: data.status || "draft",
-          tags: data.tags || "",
+          tags: data.tags || [],
+          time: data.time,
+          date: data.date,
           // image_alt_text: data.image_alt_text || "",
           // image_name: data.image_name || "",
           // h2: data.h2 || "",
@@ -167,6 +197,18 @@ const AddBlog = () => {
       return;
     }
 
+    if (status === "scehdule" && (!scheduleDate || !scheduleTime)) {
+      showErrorAlert("Please Select date and time.");
+      setSubmitting(false);
+      return;
+    }
+
+    let timestamp = null;
+    if (statusVal === "schedule" && scheduleDate && scheduleTime) {
+      const combined = new Date(`${scheduleDate}T${scheduleTime}`);
+      timestamp = combined.toISOString();
+    }
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("url", url);
@@ -180,6 +222,7 @@ const AddBlog = () => {
     formData.append("meta_description", metaDescription);
     formData.append("status", status);
     formData.append("tags", tags);
+    formData.append("schedule_time", timestamp);
     formData.append("image_alt_text", " ");
     formData.append("image_name", "");
     formData.append("h2", "");
@@ -426,12 +469,39 @@ const AddBlog = () => {
 
             <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Status</Form.Label>
-              <Form.Select id="formStatus" defaultValue={blog.status}>
+              <Form.Select
+                id="formStatus"
+                defaultValue={blog.status}
+                onChange={(e) => setStatusVal(e.target.value)}
+              >
                 <option value="draft">Draft</option>
                 <option value="publish">Published</option>
-                {/* <option value="scehdule">Scehdule</option> */}
+                <option value="schedule">Scehdule</option>
               </Form.Select>
             </Form.Group>
+            {statusVal === "schedule" && (
+              <>
+                <Form.Group className="mb-4">
+                  <Form.Label className="fw-bold">Schedule Date</Form.Label>
+                  <Form.Control
+                    type="date"
+                    id="formScheduleDate"
+                    value={scheduleDate}
+                    onChange={(e) => setScheduleDate(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-4">
+                  <Form.Label className="fw-bold">Schedule Time</Form.Label>
+                  <Form.Control
+                    type="time"
+                    id="formScheduleTime"
+                    value={scheduleTime}
+                    onChange={(e) => setScheduleTime(e.target.value)}
+                  />
+                </Form.Group>
+              </>
+            )}
             <Form.Group className="mb-4">
               <Form.Label className="fw-bold">Tags</Form.Label>
               <Form.Control
