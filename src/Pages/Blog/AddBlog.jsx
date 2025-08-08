@@ -47,30 +47,29 @@ const AddBlog = () => {
   });
   const [statusVal, setStatusVal] = useState(blog.status || "draft");
 
- function extractFromTimestamp(timestamp, type) {
-  const dateObj = new Date(timestamp);
+  function extractFromTimestamp(timestamp, type) {
+    const dateObj = new Date(timestamp);
 
-  if (isNaN(dateObj.getTime())) {
-    console.error("Invalid timestamp:", timestamp);
-    return null;
-  }
+    if (isNaN(dateObj.getTime())) {
+      // console.error("Invalid timestamp:", timestamp);
+      return null;
+    }
 
-  if (type === "date") {
-    return dateObj.toISOString().split("T")[0]; 
-  } else if (type === "time") {
-    return dateObj.toTimeString().split(" ")[0]; 
-  } else {
-    console.error("Invalid type:", type);
-    return null;
+    if (type === "date") {
+      return dateObj.toISOString().split("T")[0];
+    } else if (type === "time") {
+      return dateObj.toTimeString().split(" ")[0];
+    } else {
+      console.error("Invalid type:", type);
+      return null;
+    }
   }
-}
 
   const [scheduleDate, setScheduleDate] = useState(
     extractFromTimestamp(blog.schedule_time, "date") || ""
   );
   const [scheduleTime, setScheduleTime] = useState(
-    blog.schedule_time,
-    "time" || ""
+    extractFromTimestamp(blog.schedule_time, "time") || ""
   );
 
   const getDetailFromLocalStorage = () => {
@@ -87,6 +86,7 @@ const AddBlog = () => {
       setLoading(false);
     }
     getDetailFromLocalStorage();
+   
   }, [slug]);
 
   const showSuccessAlert = (message) => {
@@ -115,6 +115,11 @@ const AddBlog = () => {
     });
   };
 
+  const convertObjToArray = (tagsObj)=>{
+    if(tagsObj.length === 0) return []  
+    return tagsObj.map(item => item.tag); 
+  }
+
   const getBlogDetail = async () => {
     try {
       const response = await axios.get(
@@ -135,7 +140,7 @@ const AddBlog = () => {
           meta_title: data.meta_title || "",
           meta_description: data.meta_description || "",
           status: data.status || "draft",
-          tags: data.tags || [],
+          tags: convertObjToArray(data.tags),
           time: data.time,
           date: data.date,
           // image_alt_text: data.image_alt_text || "",
@@ -206,7 +211,7 @@ const AddBlog = () => {
     let timestamp = null;
     if (statusVal === "schedule" && scheduleDate && scheduleTime) {
       const combined = new Date(`${scheduleDate}T${scheduleTime}`);
-      timestamp = combined.toISOString();
+      timestamp = combined.toISOString().slice(0, 19).replace("T", " ");
     }
 
     const formData = new FormData();
@@ -222,7 +227,6 @@ const AddBlog = () => {
     formData.append("meta_description", metaDescription);
     formData.append("status", status);
     formData.append("tags", tags);
-    formData.append("schedule_time", timestamp);
     formData.append("image_alt_text", " ");
     formData.append("image_name", "");
     formData.append("h2", "");
@@ -236,6 +240,8 @@ const AddBlog = () => {
     // formData.append("h3", h3);
     // formData.append("h4", h4);
     // formData.append("h5", h5);
+    if(statusVal === "schedule") {formData.append("schedule_time", timestamp);}
+
 
     try {
       if (slug) {
@@ -523,14 +529,14 @@ const AddBlog = () => {
                   <p className="text-muted">No tags added yet.</p>
                 ) : (
                   <div className="d-flex flex-wrap">
-                    {blog?.tags?.map((tag, index) => (
+                    {blog?.tags?.map((tagObj, index) => (
                       <span
                         key={index}
                         className="badge bg-primary me-2 mb-2"
                         style={{ cursor: "pointer" }}
                         onClick={() => handleRemove(index)}
                       >
-                        {tag} &times;
+                        {tagObj} &times;
                       </span>
                     ))}
                   </div>

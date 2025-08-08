@@ -78,7 +78,7 @@ const BlogList = () => {
 
   const handleChange = (e) => {
     setLoading(true);
-    if (e.target.value == "all") {
+    if (e.target.value === "all") {
       setBlogList(originalBlogList);
     } else {
       setBlogList(originalBlogList.filter((y) => y.status === e.target.value));
@@ -100,7 +100,7 @@ const BlogList = () => {
                 <option value="all">All</option>
                 <option value="draft">Draft</option>
                 <option value="publish">Published</option>
-                {/* <option value="scehdule">Scehdule</option> */}
+                <option value="schedule">Scehdule</option>
               </Form.Select>
             </Form.Group>
           </Col>
@@ -140,7 +140,7 @@ const BlogList = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={5}>No User Found!.</td>
+                <td colSpan={5}>No Blog Found!.</td>
               </tr>
             )}
           </tbody>
