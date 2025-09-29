@@ -1,6 +1,7 @@
 // CircularAnimation.js
 import React from "react";
 import styles from "../Components/CircularAnimation.module.css";
+import { Helmet } from "react-helmet";
 
 const About = () => {
   const points = [
@@ -16,6 +17,14 @@ const About = () => {
 
   return (
     <div className={styles.wrapper}>
+      <Helmet>
+        <title>About Abet Global | Trusted Online Trading Platform</title>
+        <meta
+          name="description"
+          content="Learn about Abet Global's mission, values, and commitment to secure, transparent trading. Discover what makes us a trusted name in global financial markets."
+        />
+      </Helmet>
+
       <div className="container">
         <div className="row">
           <h1 className={`text-center ${styles.headingAbout}`}>About Us</h1>

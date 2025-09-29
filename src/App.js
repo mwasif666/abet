@@ -54,9 +54,17 @@ import {
 } from "./middleware/RouteMiddleware";
 import { ToastContainer } from "react-toastify";
 import BlogList from "./Pages/Blog/BlogList";
+import ReactGA from "react-ga4";
+
+const TRACKING_ID = "G-E1GLTK5PRC";
+ReactGA.initialize(TRACKING_ID);
 
 const LayoutWrapper = ({ children }) => {
   const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: location.pathname });
+  }, [location]);
   const hideNavbarFooter = ["/login"].includes(
     location.pathname.toLocaleLowerCase()
   );
@@ -155,7 +163,7 @@ const AppWrapper = () => {
               <Route path="/add-user" element={<AddUser />} />
               <Route path="/add-user/:id" element={<AddUser />} />
               <Route path="/user-list" element={<UserList />} />
-              <Route path="/blog-list" element={<BlogList/>} />
+              <Route path="/blog-list" element={<BlogList />} />
             </Route>
           </Routes>
         </LayoutWrapper>

@@ -9,23 +9,29 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa";
 
+import pdf1 from "../assets/pdf/Client.pdf";
+import pdf2 from "../assets/pdf/Risk.pdf";
+import pdf3 from "../assets/pdf/ComplaintManagement.pdf";
+import pdf4 from "../assets/pdf/Complaint.pdf";
+import pdf5 from "../assets/pdf/Execution.pdf";
+
 const LegalDocuments = () => {
   const documentsLeft = [
     {
       title: "Client Agreement",
-      url: "https://abet.leosagitrades.com/wp-content/uploads/2025/02/Client-Agreement.pdf",
+      url: pdf1,
       icon: <FaFileContract className={styles.documentIcon} />,
       color: "#3498db",
     },
     {
       title: "Risk Disclosure",
-      url: "https://abet.leosagitrades.com/wp-content/uploads/2024/10/Risk-Disclosure.pdf",
+      url: pdf2,
       icon: <FaExclamationTriangle className={styles.documentIcon} />,
       color: "#e74c3c",
     },
     {
       title: "Complaint Management",
-      url: "https://abet.leosagitrades.com/wp-content/uploads/2024/10/Complaint-Management.pdf",
+      url: pdf3,
       icon: <FaComments className={styles.documentIcon} />,
       color: "#2ecc71",
     },
@@ -34,13 +40,13 @@ const LegalDocuments = () => {
   const documentsRight = [
     {
       title: "Complaint Handling Procedure",
-      url: "https://abet.leosagitrades.com/wp-content/uploads/2024/10/Complaint-Handeling-Procedure.pdf",
+      url: pdf4,
       icon: <FaCogs className={styles.documentIcon} />,
       color: "#9b59b6",
     },
     {
       title: "Execution Policy",
-      url: "https://abet.leosagitrades.com/wp-content/uploads/2024/10/Execution-Policy.pdf",
+      url: pdf5,
       icon: <FaBolt className={styles.documentIcon} />,
       color: "#f39c12",
     },

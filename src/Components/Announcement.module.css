@@ -29,7 +29,16 @@
 .tickerMarquee {
   display: inline-block;
   white-space: nowrap;
-  animation: scroll 60s linear infinite;
+  animation: scroll linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%); /* start from right edge */
+  }
+  100% {
+    transform: translateX(-40%); /* move whole width left */
+  }
 }
 
 .tickerItem {
@@ -57,15 +66,6 @@
 .itemSeparator {
   color: #dee2e6;
   margin-left: 8px;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
 }
 
 @media (max-width: 768px) {

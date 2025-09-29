@@ -58,7 +58,12 @@ const BlogSection = () => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
-
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <section className={`${styles.blogSection} py-5`}>
       <div className="container">
@@ -88,7 +93,10 @@ const BlogSection = () => {
                 className="col-lg-4 col-md-6 mb-4"
                 onClick={() => handleBlogRedirect(post)}
               >
-                <div className={`${styles.blogCard} h-100`}>
+                <div
+                  className={`${styles.blogCard}  h-100`}
+                  onClick={handleClick}
+                >
                   <a href={post.link} className={styles.blogLink}>
                     <div className={styles.blogImageContainer}>
                       <img

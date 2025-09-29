@@ -30,7 +30,7 @@ const AnnouncementsMarquee = () => {
     }
   };
 
-   function validateSlug(slug) {
+  function validateSlug(slug) {
     if (slug.startsWith("/")) {
       return slug.slice(1);
     } else {
@@ -48,6 +48,19 @@ const AnnouncementsMarquee = () => {
     const options = { year: "numeric", month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
+
+  // 🔥 Dynamic animation speed fix
+  useEffect(() => {
+    if (marqueeRef.current) {
+      const marqueeWidth = marqueeRef.current.scrollWidth;
+      const containerWidth = marqueeRef.current.parentElement.offsetWidth;
+      const totalWidth = marqueeWidth + containerWidth;
+
+      // har 100px ke liye 1s ka time
+      const duration = totalWidth / 100;
+      marqueeRef.current.style.animationDuration = `${duration}s`;
+    }
+  }, [blog]);
 
   if (loading) {
     return <div className="text-center">Loading announcements...</div>;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import ForexAccordion from "./ForexAccordion";
 import Accordion2 from "./Accordion2";
 import Accordion3 from "./Accordion3";
@@ -9,6 +10,13 @@ import Accordion6 from "./Accordion6";
 const FAQ = () => {
   return (
     <>
+      <Helmet>
+        <title>FAQs | Abet Global Trading Platform Support</title>
+        <meta
+          name="description"
+          content="Find answers to frequently asked questions about trading, deposits, withdrawals, account types, and regulations on Abet Global's official help page."
+        />
+      </Helmet>
       <h1 className="my-5 text-center">FAQ's</h1>
       <div className="container">
         <h1 className="mt-5 mb-3">Forex</h1>

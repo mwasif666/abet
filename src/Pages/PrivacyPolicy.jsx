@@ -1,9 +1,17 @@
 import React from "react";
 import styles from "../style/PrivacyPolicy.module.css";
+import { Helmet } from "react-helmet";
 
 const PrivacyPolicy = () => {
   return (
     <div className={`container ${styles.privacyContainer}`}>
+      <Helmet>
+        <title>Privacy Policy | Abet Global Secure Trading</title>
+        <meta
+          name="description"
+          content="Learn how Abet Global protects your personal data. Our privacy policy outlines secure handling, encryption, cookies, and compliance practices."
+        />
+      </Helmet>
       <h1 className={styles.mainHeading}>Privacy Policy</h1>
 
       <section className={styles.policySection}>

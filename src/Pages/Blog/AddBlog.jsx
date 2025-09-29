@@ -86,7 +86,6 @@ const AddBlog = () => {
       setLoading(false);
     }
     getDetailFromLocalStorage();
-   
   }, [slug]);
 
   const showSuccessAlert = (message) => {
@@ -115,10 +114,10 @@ const AddBlog = () => {
     });
   };
 
-  const convertObjToArray = (tagsObj)=>{
-    if(tagsObj.length === 0) return []  
-    return tagsObj.map(item => item.tag); 
-  }
+  const convertObjToArray = (tagsObj) => {
+    if (tagsObj.length === 0) return [];
+    return tagsObj.map((item) => item.tag);
+  };
 
   const getBlogDetail = async () => {
     try {
@@ -240,8 +239,9 @@ const AddBlog = () => {
     // formData.append("h3", h3);
     // formData.append("h4", h4);
     // formData.append("h5", h5);
-    if(statusVal === "schedule") {formData.append("schedule_time", timestamp);}
-
+    if (statusVal === "schedule") {
+      formData.append("schedule_time", timestamp);
+    }
 
     try {
       if (slug) {
@@ -343,6 +343,43 @@ const AddBlog = () => {
     );
   }
 
+  // Image Upload
+  function UploadAdapter(loader) {
+    this.loader = loader;
+  }
+
+  UploadAdapter.prototype.upload = function () {
+    return this.loader.file.then(
+      (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+
+          reader.onload = function () {
+            resolve({
+              default: reader.result,
+            });
+          };
+
+          reader.onerror = function (error) {
+            reject(error);
+          };
+
+          reader.onabort = function () {
+            reject(new Error("Image upload aborted"));
+          };
+
+          reader.readAsDataURL(file);
+        })
+    );
+  };
+
+  // Plugin to add our custom upload adapter
+  function MyCustomUploadAdapterPlugin(editor) {
+    editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+      return new UploadAdapter(loader);
+    };
+  }
+
   return (
     <Container className="py-4">
       <Card className="shadow">
@@ -397,6 +434,112 @@ const AddBlog = () => {
                 onChange={(event, editor) => {
                   const data = editor.getData();
                   setBlog((prev) => ({ ...prev, long_description: data }));
+                }}
+                config={{
+                  toolbar: {
+                    items: [
+                      "undo",
+                      "redo",
+                      "|",
+                      "heading",
+                      "|",
+                      "bold",
+                      "italic",
+                      "underline",
+                      "strikethrough",
+                      "|",
+                      "link",
+                      "uploadImage",
+                      "blockQuote",
+                      "insertTable",
+                      "mediaEmbed",
+                      "|",
+                      "bulletedList",
+                      "numberedList",
+                      "outdent",
+                      "indent",
+                      "|",
+                      "code",
+                      "codeBlock",
+                      "|",
+                      "alignment",
+                      "|",
+                      "horizontalLine",
+                      "|",
+                      "sourceEditing",
+                    ],
+                    shouldNotGroupWhenFull: true,
+                  },
+                  heading: {
+                    options: [
+                      {
+                        model: "paragraph",
+                        title: "Paragraph",
+                        class: "ck-heading_paragraph",
+                      },
+                      { model: "heading1", view: "h1", title: "Heading 1" },
+                      { model: "heading2", view: "h2", title: "Heading 2" },
+                      { model: "heading3", view: "h3", title: "Heading 3" },
+                      { model: "heading4", view: "h4", title: "Heading 4" },
+                      { model: "heading5", view: "h5", title: "Heading 5" },
+                      { model: "heading6", view: "h6", title: "Heading 6" },
+                    ],
+                  },
+                  image: {
+                    toolbar: [
+                      "imageTextAlternative",
+                      "toggleImageCaption",
+                      "imageStyle:inline",
+                      "imageStyle:block",
+                      "imageStyle:side",
+                      "linkImage",
+                    ],
+                    styles: [
+                      "full",
+                      "side",
+                      "alignLeft",
+                      "alignRight",
+                      "alignCenter",
+                    ],
+                  },
+                  link: {
+                    // Automatically add target="_blank" and rel="noopener noreferrer"
+                    decorators: {
+                      openInNewTab: {
+                        mode: "manual",
+                        label: "Open in new tab",
+                        attributes: {
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        },
+                      },
+                    },
+                    // Add default protocol if missing
+                    defaultProtocol: "https://",
+                  },
+                  table: {
+                    contentToolbar: [
+                      "tableColumn",
+                      "tableRow",
+                      "mergeTableCells",
+                      "tableProperties",
+                      "tableCellProperties",
+                    ],
+                  },
+                  codeBlock: {
+                    languages: [
+                      { language: "plaintext", label: "Plain text" },
+                      { language: "html", label: "HTML" },
+                      { language: "css", label: "CSS" },
+                      { language: "javascript", label: "JavaScript" },
+                      { language: "python", label: "Python" },
+                      { language: "java", label: "Java" },
+                    ],
+                  },
+                  alignment: {
+                    options: ["left", "center", "right", "justify"],
+                  },
+                  extraPlugins: [MyCustomUploadAdapterPlugin],
                 }}
               />
             </Form.Group>
